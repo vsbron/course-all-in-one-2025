@@ -3,7 +3,7 @@ import Book from "./Book";
 function BookList() {
   // Returned JSX
   return (
-    <section>
+    <section style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <Book />
       <Book />
       <Book />

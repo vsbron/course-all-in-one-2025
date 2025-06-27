@@ -4,7 +4,7 @@ function App() {
   // Returned JSX
   return (
     <div>
-      <div style={{ marginBottom: "20px" }}>Hello world!</div>
+      <h1>Hello world!</h1>
       <BookList />
     </div>
   );
