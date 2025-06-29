@@ -42,6 +42,7 @@ function BookList() {
     <section className="book-list">
       {books.map((book) => (
         <Book
+          key={`${book.title} by ${book.author}`}
           cover={book.cover}
           title={book.title}
           subtitle={book.subtitle}
