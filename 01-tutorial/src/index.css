@@ -42,11 +42,14 @@ body {
   font-size: 1rem;
 }
 .book h3 {
-  margin-bottom: 1rem;
   font-size: 0.9rem;
 }
 .book h4 {
   color: #617d98;
   font-size: "0.75";
   margin-top: "0.5rem";
+}
+
+.book-title {
+  margin-bottom: 1rem;
 }
