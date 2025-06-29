@@ -41,13 +41,7 @@ function BookList() {
   return (
     <section className="book-list">
       {books.map((book) => (
-        <Book
-          key={`${book.title} by ${book.author}`}
-          cover={book.cover}
-          title={book.title}
-          subtitle={book.subtitle}
-          author={book.author}
-        />
+        <Book key={`${book.title} by ${book.author}`} {...book} />
       ))}
     </section>
   );
