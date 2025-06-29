@@ -1,4 +1,10 @@
 function Book() {
+  // Book details constant variables
+  const title = "The Lost Bookshop";
+  const subtitle =
+    "The most charming and uplifting novel for 2025 and the perfect gift for book lovers!";
+  const author = "Evie Woods";
+
   // Returned JSX
   return (
     <article className="book">
@@ -9,12 +15,9 @@ function Book() {
         alt="The Lost Bookshop"
         title="The Lost Bookshop"
       />
-      <h2>The Lost Bookshop</h2>
-      <h3>
-        The most charming and uplifting novel for 2025 and the perfect gift for
-        book lovers!
-      </h3>
-      <h4>Evie Woods</h4>
+      <h2>{title}</h2>
+      <h3>{subtitle}</h3>
+      <h4>{author.toUpperCase()}</h4>
     </article>
   );
 }
