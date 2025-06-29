@@ -6,8 +6,8 @@ function Book({ cover, title, subtitle, author }) {
         src={`./images/${cover}`}
         width="305"
         height="465"
-        alt="The Lost Bookshop"
-        title="The Lost Bookshop"
+        alt={title}
+        title={title}
       />
       <div className="book-title">
         <h2>{title}</h2>
