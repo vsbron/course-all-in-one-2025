@@ -5,7 +5,7 @@ import Title from "./Title";
 function Book() {
   // Returned JSX
   return (
-    <article>
+    <article className="book">
       <Image />
       <Title />
       <Author />
