@@ -45,10 +45,8 @@ function BookList() {
 
   // Function that gets the book info based on the passed id
   const getBook = (id) => {
-    const chosenBook = books.filter((book) => book.id === id);
-    console.log(
-      `${chosenBook.at(0).title} is written by ${chosenBook.at(0).author}`
-    );
+    const chosenBook = books.find((book) => book.id === id);
+    console.log(`${chosenBook.title} is written by ${chosenBook.author}`);
   };
 
   // Returned JSX
