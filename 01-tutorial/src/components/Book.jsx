@@ -1,9 +1,4 @@
-function Book({ cover, title, subtitle, author }) {
-  // Simple event handler
-  const handleLogBook = () => {
-    console.log(`${title} is written by ${author}`);
-  };
-
+function Book({ clickHandler, id, cover, title, subtitle, author }) {
   // Returned JSX
   return (
     <article className="book">
@@ -19,7 +14,7 @@ function Book({ cover, title, subtitle, author }) {
         {subtitle && <h3>{subtitle}</h3>}
       </div>
       <h4>{author.toUpperCase()}</h4>
-      <button onClick={handleLogBook}>Log it</button>
+      <button onClick={() => clickHandler(id)}>Log it</button>
     </article>
   );
 }
