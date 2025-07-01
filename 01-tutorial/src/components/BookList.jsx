@@ -11,11 +11,14 @@ function BookList() {
 
   // Returned JSX
   return (
-    <section className="book-list">
-      {books.map((book, i) => (
-        <Book key={book.id} clickHandler={getBook} {...book} index={i} />
-      ))}
-    </section>
+    <>
+      <h1 style={{ textAlign: "center", marginTop: "3rem" }}>Book case</h1>
+      <section className="book-list">
+        {books.map((book, i) => (
+          <Book key={book.id} clickHandler={getBook} {...book} index={i} />
+        ))}
+      </section>
+    </>
   );
 }
 

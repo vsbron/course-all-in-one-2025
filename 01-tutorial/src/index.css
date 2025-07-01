@@ -14,7 +14,7 @@ body {
 .book-list {
   width: 90vw;
   max-width: 1170px;
-  margin: 5rem auto;
+  margin: 2rem auto;
   display: grid;
   gap: 2rem;
 }
@@ -66,7 +66,7 @@ body {
   color: #fff;
   background: #c35600;
   color: #fff;
-  border-radius: 1rem 0 1rem 0;
+  border-radius: 1rem 0;
 }
 
 button {
