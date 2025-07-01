@@ -1,6 +1,6 @@
 function Book({ cover, title, subtitle, author }) {
   // Simple event handler
-  const logTheBook = () => {
+  const handleLogBook = () => {
     console.log(`${title} is written by ${author}`);
   };
 
@@ -19,7 +19,7 @@ function Book({ cover, title, subtitle, author }) {
         {subtitle && <h3>{subtitle}</h3>}
       </div>
       <h4>{author.toUpperCase()}</h4>
-      <button onClick={logTheBook}>Log it</button>
+      <button onClick={handleLogBook}>Log it</button>
     </article>
   );
 }
