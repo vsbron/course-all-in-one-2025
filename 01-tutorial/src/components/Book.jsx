@@ -1,4 +1,9 @@
 function Book({ cover, title, subtitle, author }) {
+  // Simple event handler
+  const logTheBook = () => {
+    console.log(`${title} is written by ${author}`);
+  };
+
   // Returned JSX
   return (
     <article className="book">
@@ -14,6 +19,7 @@ function Book({ cover, title, subtitle, author }) {
         {subtitle && <h3>{subtitle}</h3>}
       </div>
       <h4>{author.toUpperCase()}</h4>
+      <button onClick={logTheBook}>Log it</button>
     </article>
   );
 }

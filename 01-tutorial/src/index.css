@@ -46,10 +46,15 @@ body {
 }
 .book h4 {
   color: #617d98;
-  font-size: "0.75";
-  margin-top: "0.5rem";
+  font-size: 0.75;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .book-title {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+button {
+  padding: 2px 5px;
 }
