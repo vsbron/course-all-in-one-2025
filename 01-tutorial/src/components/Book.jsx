@@ -1,7 +1,8 @@
-function Book({ clickHandler, id, cover, title, subtitle, author }) {
+function Book({ clickHandler, id, cover, title, subtitle, author, index }) {
   // Returned JSX
   return (
     <article className="book">
+      <span className="book-order">#{index + 1}</span>
       <img
         src={`${cover}`}
         width="305"

@@ -12,8 +12,8 @@ function BookList() {
   // Returned JSX
   return (
     <section className="book-list">
-      {books.map((book) => (
-        <Book key={book.id} clickHandler={getBook} {...book} />
+      {books.map((book, i) => (
+        <Book key={book.id} clickHandler={getBook} {...book} index={i} />
       ))}
     </section>
   );
