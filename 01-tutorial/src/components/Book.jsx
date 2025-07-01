@@ -3,7 +3,7 @@ function Book({ clickHandler, id, cover, title, subtitle, author }) {
   return (
     <article className="book">
       <img
-        src={`./images/${cover}`}
+        src={`${cover}`}
         width="305"
         height="465"
         alt={title}
