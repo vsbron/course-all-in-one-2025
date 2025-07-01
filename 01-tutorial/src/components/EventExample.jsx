@@ -4,7 +4,10 @@ function EventExample() {
     e.preventDefault();
     alert("Submitting");
   };
-  const handleFormInput = () => {
+  const handleFormInput = (e) => {
+    console.log(e.target);
+    console.log(e.target.name);
+    console.log(e.target.value);
     console.log("Logging");
   };
 
