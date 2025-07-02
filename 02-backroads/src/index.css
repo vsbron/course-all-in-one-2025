@@ -522,6 +522,7 @@ Navbar
   .nav-links {
     height: auto;
     display: flex;
+    gap: 1rem;
   }
   .nav-center {
     display: flex;
