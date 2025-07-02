@@ -1,5 +1,6 @@
-import { services } from "../lib/data";
 import Title from "./ui/Title";
+
+import { services } from "../lib/data";
 
 function Services() {
   // Returned JSX
@@ -8,7 +9,7 @@ function Services() {
       <Title title="Our" subtitle="services" />
       <div className="section-center services-center">
         {services.map((service) => (
-          <article className="service">
+          <article className="service" key={service.id}>
             <span className="service-icon">
               <i className={service.icon}></i>
             </span>
