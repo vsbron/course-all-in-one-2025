@@ -415,6 +415,7 @@ Footer
   justify-content: center;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .footer-link {
   color: var(--clr-white);
