@@ -1,4 +1,4 @@
-import Item from './Person';
+import Item from "./Person";
 
 const List = ({ people }) => {
   return (

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-const url = 'https://api.github.com/users/QuincyLarson';
+import { useEffect, useState } from "react";
+const url = "https://api.github.com/users/QuincyLarson";
 
 const FetchData = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +29,7 @@ const FetchData = () => {
     fetchUser();
   }, []);
   // order matters
-  // don't place user JSX before loading or error
+  // don"t place user JSX before loading or error
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -41,7 +41,7 @@ const FetchData = () => {
   return (
     <div>
       <img
-        style={{ width: '100px', borderRadius: '25px' }}
+        style={{ width: "100px", borderRadius: "25px" }}
         src={avatar_url}
         alt={name}
       />
