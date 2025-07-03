@@ -1,11 +1,11 @@
-import UseStateObject from "./tutorial/01-useState/04-useState-object";
+import UseStateGotcha from "./tutorial/01-useState/05-useState-gotcha";
 
 function App() {
   // Returned JSX
   return (
     <div className="container">
       <h2>Advanced React</h2>
-      <UseStateObject />
+      <UseStateGotcha />
     </div>
   );
 }
