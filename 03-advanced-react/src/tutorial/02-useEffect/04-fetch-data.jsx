@@ -4,7 +4,7 @@ const url = "https://api.github.com/users";
 
 const FetchData = () => {
   // Creating the state for the fetched data
-  const [fetchedData, setFetchedData] = useState({});
+  const [users, setUsers] = useState([]);
 
   // Creating the useEffect function
   useEffect(() => {
@@ -17,7 +17,7 @@ const FetchData = () => {
       try {
         const response = await fetch(url, { signal });
         const data = await response.json();
-        setFetchedData(data);
+        setUsers(data);
       } catch {
         console.log("There was an error while fetching data");
       }
@@ -34,46 +34,38 @@ const FetchData = () => {
   return (
     <>
       <h2>fetch data example</h2>
-      {fetchedData.length > 0 && (
-        <ul
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5,1fr)",
-            gap: "15px 30px",
-          }}
-        >
-          {fetchedData.map((data) => (
-            <li
-              key={data.id}
-              style={{ display: "flex", gap: "10px", alignItems: "center" }}
+      <ul className="users">
+        {users.map((data) => (
+          <li
+            key={data.id}
+            style={{ display: "flex", gap: "10px", alignItems: "center" }}
+          >
+            <img
+              src={data.avatar_url}
+              width="50"
+              height="50"
+              alt={data.login}
+              style={{ borderRadius: "50%" }}
+            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
             >
-              <img
-                src={data.avatar_url}
-                width="50"
-                height="50"
-                alt={data.login}
-                style={{ borderRadius: "50%" }}
-              />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                }}
-              >
-                {data.login}
-                <span style={{ display: "inline-block", marginTop: "-5px" }}>
-                  [
-                  <a href={data.html_url} target="_blank" rel="noreferrer">
-                    GitHub link
-                  </a>
-                  ]
-                </span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+              {data.login}
+              <span style={{ display: "inline-block", marginTop: "-5px" }}>
+                [
+                <a href={data.html_url} target="_blank" rel="noreferrer">
+                  GitHub link
+                </a>
+                ]
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
