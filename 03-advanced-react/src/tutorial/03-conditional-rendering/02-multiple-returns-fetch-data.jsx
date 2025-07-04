@@ -27,10 +27,10 @@ const MultipleReturnsFetchData = () => {
         // Disabling the error, setting the user
         setIsError(false);
         setUser(data);
-      } catch {
+      } catch (err) {
         // If error, enabling error, logging the message
         setIsError(true);
-        console.log("There was an error while fetching data");
+        console.log(err);
       } finally {
         // Disabling the loading state
         setIsLoading(false);
@@ -44,17 +44,30 @@ const MultipleReturnsFetchData = () => {
     return () => controller.abort();
   }, []);
 
-  // Returned JSX
+  // Returned conditional JSX
   if (isLoading) {
     return <h2>Loading</h2>;
-  } else if (isError) {
+  }
+  if (isError) {
     return <h2>There was an error while fetching data</h2>;
-  } else
-    return (
-      <>
-        <h2>Fetch Data</h2>
-        <div>{user.login}</div>
-      </>
-    );
+  }
+  return (
+    <>
+      <h2>Fetch Data</h2>
+      <div>
+        <img
+          src={user.avatar_url}
+          style={{ borderRadius: "25px" }}
+          width="150"
+          height="150"
+          alt={user.login}
+          title={user.name}
+        />
+        <h3>{user.name}</h3>
+        <h4>Works at {user.company}</h4>
+        <p>{user.bio}</p>
+      </div>
+    </>
+  );
 };
 export default MultipleReturnsFetchData;

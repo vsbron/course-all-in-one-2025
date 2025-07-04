@@ -17,7 +17,7 @@ const MultipleReturnsBasics = () => {
     };
   }, []);
 
-  // Returned JSX
+  // Returned conditional JSX
   if (isLoading) {
     return <h2>Loading...</h2>;
   } else return <h2>Multiple Returns Basics</h2>;
