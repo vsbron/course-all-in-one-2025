@@ -1,11 +1,11 @@
-import MultipleEffects from "./tutorial/02-useEffect/03-multiple-effects";
+import FetchData from "./tutorial/02-useEffect/04-fetch-data";
 
 function App() {
   // Returned JSX
   return (
     <div className="container">
       <h2>Advanced React</h2>
-      <MultipleEffects />
+      <FetchData />
     </div>
   );
 }
