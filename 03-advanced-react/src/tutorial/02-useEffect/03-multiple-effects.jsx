@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
 
 const MultipleEffects = () => {
+  // Creating states for 2 values
   const [value, setValue] = useState(0);
   const [secondValue, setSecondValue] = useState(0);
 
-  // useEffect(() => {
-  //   console.log("hello from first useEffect");
-  // }, []);
+  // Setting the useEffect functions (just for the example purposes)
+  useEffect(() => {
+    console.log("hello from first useEffect");
+  }, [value]);
+  useEffect(() => {
+    console.log("hello from second useEffect");
+  }, [secondValue]);
 
-  // useEffect(() => {
-  //   console.log("hello from second useEffect");
-  // }, []);
+  // Returned JSX
   return (
     <div>
       <h1>value : {value}</h1>

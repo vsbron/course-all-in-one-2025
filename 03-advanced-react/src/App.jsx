@@ -1,11 +1,11 @@
-import UseEffectBasics from "./tutorial/02-useEffect/02-useEffect-basics";
+import MultipleEffects from "./tutorial/02-useEffect/03-multiple-effects";
 
 function App() {
   // Returned JSX
   return (
     <div className="container">
       <h2>Advanced React</h2>
-      <UseEffectBasics />
+      <MultipleEffects />
     </div>
   );
 }
