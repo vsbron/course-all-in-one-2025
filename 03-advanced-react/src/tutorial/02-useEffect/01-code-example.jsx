@@ -7,7 +7,7 @@ const CodeExample = () => {
   // Declaring a test function
   const sayHello = () => {
     console.log("Hello");
-    // Causes inifinite render
+    // Causes infinite render
     // setValue(val => val + 1)
   };
 
