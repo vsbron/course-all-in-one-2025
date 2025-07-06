@@ -22,6 +22,14 @@ const MultipleReturnsFetchData = () => {
 
         // Fetching the data
         const response = await fetch(url, { signal });
+
+        // Guard clause
+        if (!response.ok) {
+          setIsError(true);
+          return;
+        }
+
+        // Getting the actual data
         const data = await response.json();
 
         // Disabling the error, setting the user
