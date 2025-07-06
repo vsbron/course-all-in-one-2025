@@ -1,9 +1,8 @@
 import { useState } from "react";
 
 const ShortCircuitOverview = () => {
-  const [text, setText] = useState("");
-  const [name, setName] = useState("Susan");
-  console.log();
+  const [text] = useState("");
+  const [name] = useState("Susan");
 
   // Returned JSX
   return (
