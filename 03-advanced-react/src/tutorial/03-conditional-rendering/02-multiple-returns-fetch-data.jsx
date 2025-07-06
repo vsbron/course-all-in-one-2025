@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// Fetching URL
 const url = "https://api.github.com/users/QuincyLarson";
 
 const MultipleReturnsFetchData = () => {
@@ -59,21 +60,25 @@ const MultipleReturnsFetchData = () => {
   if (isError) {
     return <h2>There was an error while fetching data</h2>;
   }
+
+  // Destructuring user state value
+  const { avatar_url, login, name, company, bio } = user;
+
   return (
     <>
       <h2>Fetch Data</h2>
       <div>
         <img
-          src={user.avatar_url}
+          src={avatar_url}
           style={{ borderRadius: "25px" }}
           width="150"
           height="150"
-          alt={user.login}
-          title={user.name}
+          alt={login}
+          title={name}
         />
-        <h3>{user.name}</h3>
-        <h4>Works at {user.company}</h4>
-        <p>{user.bio}</p>
+        <h3>{name}</h3>
+        <h4>Works at {company}</h4>
+        <p>{bio}</p>
       </div>
     </>
   );
