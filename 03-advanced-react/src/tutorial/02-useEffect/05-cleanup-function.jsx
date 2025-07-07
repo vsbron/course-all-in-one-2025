@@ -26,15 +26,29 @@ const CleanupFunction = () => {
 };
 
 const RandomComponent = () => {
-  // Create basic useEffect function
-  useEffect(() => {
-    // Creating the log message inside the interval with id
-    const logMessage = setInterval(() => {
-      console.log("Hello from Random Component's interval");
-    }, 1000);
+  // // Create basic useEffect function with setInterval
+  // useEffect(() => {
+  //   // Creating the log message inside the interval with id
+  //   const logMessage = setInterval(() => {
+  //     console.log("Hello from Random Component's interval");
+  //   }, 1000);
 
-    // Cleanup function for interval
-    return () => clearInterval(logMessage);
+  //   // Cleanup function for interval
+  //   return () => clearInterval(logMessage);
+  // }, []);
+
+  // Create basic useEffect function with event listener
+  useEffect(() => {
+    // Creating the log message inside the scroll event handler
+    const scrollHandle = () => {
+      console.log("Logging on scroll");
+    };
+
+    // Adding the event listener
+    window.addEventListener("scroll", scrollHandle);
+
+    // Cleanup function for event listener
+    return () => window.removeEventListener("scroll", scrollHandle);
   }, []);
 
   // Returned JSX
