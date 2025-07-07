@@ -1,11 +1,11 @@
-import UserChallenge from "./tutorial/03-conditional-rendering/07-user-challenge";
+import CleanupFunction from "./tutorial/02-useEffect/05-cleanup-function";
 
 function App() {
   // Returned JSX
   return (
     <div className="container">
       <h2>Advanced React</h2>
-      <UserChallenge />
+      <CleanupFunction />
     </div>
   );
 }
