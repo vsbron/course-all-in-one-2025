@@ -1,11 +1,11 @@
-import CleanupFunction from "./tutorial/02-useEffect/05-cleanup-function";
+import Navbar from "./tutorial/04-project-structure/Navbar";
 
 function App() {
   // Returned JSX
   return (
     <div className="container">
       <h2>Advanced React</h2>
-      <CleanupFunction />
+      <Navbar />
     </div>
   );
 }
