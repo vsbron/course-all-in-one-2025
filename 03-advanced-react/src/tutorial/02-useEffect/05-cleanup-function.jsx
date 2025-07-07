@@ -28,7 +28,13 @@ const CleanupFunction = () => {
 const RandomComponent = () => {
   // Create basic useEffect function
   useEffect(() => {
-    console.log("useEffect from Random Component");
+    // Creating the log message inside the interval with id
+    const logMessage = setInterval(() => {
+      console.log("Hello from Random Component's interval");
+    }, 1000);
+
+    // Cleanup function for interval
+    return () => clearInterval(logMessage);
   }, []);
 
   // Returned JSX
