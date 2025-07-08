@@ -1,7 +1,9 @@
+import avatar from "../../assets/default-avatar.svg";
+
 function Person({ person }) {
   // Destructuring props
-  const { name, nickName, images } = person;
-  const img = images[0].small.url;
+  const { name, nickName = "N/A", images } = person;
+  const img = images?.at(0).small.url || avatar;
 
   // Returned JSX
   return (
@@ -9,19 +11,18 @@ function Person({ person }) {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "50px 125px",
+          gridTemplateColumns: "75px 200px",
           textAlign: "left",
+          alignItems: "center",
           gap: "20px",
-          maxWidth: "195px",
+          maxWidth: "270px",
           margin: "0 auto",
         }}
       >
-        <div>
-          {images && <img src={img} width="50" height="50" alt="" title="" />}
-        </div>
+        <img src={img} width="75" height="75" alt={name} title={name} />
         <div>
           <div>Name: {name}</div>
-          <div>Nickname: {nickName || "N/A"}</div>
+          <div>Nickname: {nickName}</div>
         </div>
       </div>
     </li>
