@@ -6,14 +6,12 @@ const UserChallenge = () => {
   // Create state for the name input and data
   const [name, setName] = useState("");
   const [users, setUsers] = useState(data);
-  const [id, setId] = useState(5);
 
   // Create form submit handler
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setUsers((d) => [...d, { name: name, id: id }]);
+    setUsers((d) => [...d, { name: name, id: Date.now() }]);
     setName("");
-    setId((id) => id + 1);
   };
 
   // Create remove user handler
