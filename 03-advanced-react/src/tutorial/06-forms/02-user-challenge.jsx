@@ -8,11 +8,17 @@ const UserChallenge = () => {
   const [users, setUsers] = useState(data);
   const [id, setId] = useState(5);
 
+  // Create form submit handler
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setUsers((d) => [...d, { name: name, id: id }]);
     setName("");
-    setId((i) => i++);
+    setId((id) => id + 1);
+  };
+
+  // Create remove user handler
+  const removeUser = (id) => {
+    setUsers((us) => us.filter((user) => user.id !== id));
   };
 
   return (
@@ -41,10 +47,31 @@ const UserChallenge = () => {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))",
+          gap: "20px",
         }}
       >
         {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li key={user.id}>
+            {user.name}{" "}
+            <span
+              style={{
+                background: "red",
+                color: "white",
+                display: "inline-block",
+                fontWeight: "700",
+                lineHeight: "1",
+                width: "20px",
+                height: "20px",
+                marginLeft: "10px",
+                cursor: "pointer",
+                border: "rgba(0,0,0,.5) 1px solid",
+                borderRadius: "3px",
+              }}
+              onClick={() => removeUser(user.id)}
+            >
+              X
+            </span>
+          </li>
         ))}
       </ul>
     </div>
