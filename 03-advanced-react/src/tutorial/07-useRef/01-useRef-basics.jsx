@@ -4,13 +4,26 @@ const UseRefBasics = () => {
   // Creating the state for the value
   const [value, setValue] = useState(0);
 
-  // Creating the useRef instance
+  // Creating the useRef instances
   const refContainer = useRef(null);
+  const isMounted = useRef(false);
 
   // useEffect function that places our focus on the input field
   useEffect(() => {
     refContainer.current.focus();
   }, []);
+
+  // useEffect function that logs the mounted ref only on re-render
+  useEffect(() => {
+    // Check and assign isMounted if false
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+
+    // Log the message
+    console.log("Re-render log");
+  }, [value]);
 
   // Create the form submit handler that logs the input value using ref
   const handleSubmit = (e) => {
