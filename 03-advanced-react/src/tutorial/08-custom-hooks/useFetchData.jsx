@@ -4,7 +4,7 @@ const useFetchData = (url) => {
   // Creating the state variables
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [user, setUser] = useState(null);
+  const [data, setData] = useState(null);
 
   // useEffect function that fetches the data
   useEffect(() => {
@@ -13,7 +13,7 @@ const useFetchData = (url) => {
     const signal = controller.signal;
 
     // Fetch function
-    const fetchUser = async () => {
+    const fetchData = async () => {
       try {
         const resp = await fetch(url, { signal });
         // console.log(resp);
@@ -23,8 +23,8 @@ const useFetchData = (url) => {
           return;
         }
 
-        const user = await resp.json();
-        setUser(user);
+        const data = await resp.json();
+        setData(data);
         setIsError(false);
       } catch (error) {
         setIsError(true);
@@ -33,14 +33,14 @@ const useFetchData = (url) => {
         setIsLoading(false);
       }
     };
-    fetchUser();
+    fetchData();
 
     // Cleanup function
     return () => controller.abort();
   }, [url]);
 
   // Returned values
-  return { isLoading, isError, user };
+  return { isLoading, isError, data };
 };
 
 export default useFetchData;

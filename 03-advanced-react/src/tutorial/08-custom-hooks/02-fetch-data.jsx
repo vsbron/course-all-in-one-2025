@@ -5,7 +5,7 @@ const url = "https://api.github.com/users/QuincyLarson";
 
 const FetchData = () => {
   // Getting the data from the custom hook
-  const { isLoading, isError, user } = useFetchData(url);
+  const { isLoading, isError, data: user } = useFetchData(url);
 
   // Guard clauses
   if (isLoading) {
