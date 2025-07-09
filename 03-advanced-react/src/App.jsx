@@ -1,11 +1,11 @@
-import ToggleExample from "./tutorial/08-custom-hooks/01-toggle";
+import FetchData from "./tutorial/08-custom-hooks/02-fetch-data";
 
 function App() {
   // Returned JSX
   return (
     <div className="container">
       <h2>Advanced React</h2>
-      <ToggleExample />
+      <FetchData />
     </div>
   );
 }
