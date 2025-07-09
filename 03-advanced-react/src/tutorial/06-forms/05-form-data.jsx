@@ -1,11 +1,22 @@
-import { useState } from "react";
-
 const UncontrolledInputs = () => {
-  const [value, setValue] = useState(0);
-
+  // Form submit handler using FormData
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    // One way of getting data
+    const name = formData.get("name");
+    console.log(name);
+
+    // Another way of getting data
+    const newUser = Object.fromEntries(formData);
+    console.log(newUser);
+
+    // Reset the fields
+    e.currentTarget.reset();
   };
+
+  // Returned JSX
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
@@ -22,9 +33,15 @@ const UncontrolledInputs = () => {
           <label htmlFor="email" className="form-label">
             Email
           </label>
-          <input type="email" className="form-input" id="email" name="email" />
+          <input
+            type="email"
+            className="form-input"
+            id="email"
+            name="email"
+            required
+          />
         </div>
-        {/* email */}
+        {/* password */}
         <div className="form-row">
           <label htmlFor="password" className="form-label">
             Password
