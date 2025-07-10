@@ -5,17 +5,12 @@ const GlobalContext = createContext();
 
 // Setting the Provider
 export const GlobalProvider = ({ children }) => {
-  // Create the state for the value
-  const [value, setValue] = useState(false);
-
-  // Create the toggle function
-  const toggleValue = () => {
-    setValue((val) => !val);
-  };
+  // Create the state for the name
+  const [name, setName] = useState("Peter");
 
   // Returned Provider
   return (
-    <GlobalContext.Provider value={{ value, toggleValue }}>
+    <GlobalContext.Provider value={{ name, setName }}>
       {children}
     </GlobalContext.Provider>
   );
@@ -32,8 +27,8 @@ export const useGlobal = () => {
     throw new Error("useGlobal must be used within an GlobalProvider");
 
   // Destructuring the context for the values
-  const { value, toggleValue } = context;
+  const { name, setName } = context;
 
   // Return values
-  return { value, toggleValue };
+  return { name, setName };
 };
