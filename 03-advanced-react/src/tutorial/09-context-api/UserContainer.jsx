@@ -1,4 +1,9 @@
-function UserContainer({ user, logOut }) {
+import { useNavbar } from "./NavbarProvider";
+
+function UserContainer() {
+  // Getting the user and logout function from the Context API
+  const { user, logOut } = useNavbar();
+
   // Returned JSX
   return (
     <div className="user-container">

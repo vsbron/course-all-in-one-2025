@@ -1,6 +1,6 @@
 import UserContainer from "./UserContainer";
 
-function NavLinks({ user, logOut }) {
+function NavLinks() {
   // Returned JSX
   return (
     <div className="nav-container">
@@ -12,7 +12,7 @@ function NavLinks({ user, logOut }) {
           <a href="#">About</a>
         </li>
       </ul>
-      <UserContainer user={user} logOut={logOut} />
+      <UserContainer />
     </div>
   );
 }
