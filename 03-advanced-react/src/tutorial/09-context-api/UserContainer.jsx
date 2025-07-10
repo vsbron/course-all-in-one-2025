@@ -1,17 +1,16 @@
 function UserContainer({ user, logOut }) {
   // Returned JSX
   return (
-    <div>
-      <h4>UserContainer</h4>
+    <div className="user-container">
       {user ? (
         <>
-          <h5>{user.name}</h5>
+          <p>Hello there, {user?.name?.toUpperCase()}</p>
           <button className="btn" onClick={logOut}>
             Log out
           </button>
         </>
       ) : (
-        <h5>Please log in!</h5>
+        <p>Please log in!</p>
       )}
     </div>
   );

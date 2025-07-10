@@ -12,10 +12,10 @@ function Navbar() {
 
   // Returned JSX
   return (
-    <div>
-      <h2>Navbar</h2>
+    <nav className="navbar">
+      <h5>CONTEXT API</h5>
       <NavLinks user={user} logOut={logOut} />
-    </div>
+    </nav>
   );
 }
 
