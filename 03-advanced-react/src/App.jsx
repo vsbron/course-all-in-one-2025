@@ -1,4 +1,4 @@
-import ReducerBasics from "./tutorial/10-useReducer/01-useReducer";
+import ReducerBasics from "./tutorial/10-useReducer/02-useReducer.jsx";
 
 function App() {
   // Returned JSX
