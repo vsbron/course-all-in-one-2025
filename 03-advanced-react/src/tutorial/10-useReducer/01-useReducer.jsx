@@ -1,12 +1,30 @@
-import React from "react";
-import { data } from "../../data";
-const ReducerBasics = () => {
-  const [people, setPeople] = React.useState(data);
+import { useState } from "react";
 
+import { data } from "../../data";
+
+// Declaring the initial data
+const initialPeople = data;
+
+const ReducerBasics = () => {
+  // Creating the state for the people
+  const [people, setPeople] = useState(initialPeople);
+
+  // Create a helper functions
   const removeItem = (id) => {
     let newPeople = people.filter((person) => person.id !== id);
     setPeople(newPeople);
   };
+  const clearList = () => {
+    setPeople([]);
+  };
+  const resetList = () => {
+    setPeople(initialPeople);
+  };
+
+  // Creating boolean flag
+  const isEmpty = people.length === 0;
+
+  // Returned JSX
   return (
     <div>
       {people.map((person) => {
@@ -21,9 +39,9 @@ const ReducerBasics = () => {
       <button
         className="btn"
         style={{ marginTop: "2rem" }}
-        onClick={() => setPeople([])}
+        onClick={isEmpty ? resetList : clearList}
       >
-        clear items
+        {isEmpty ? "Reset" : "Clear items"}
       </button>
     </div>
   );
