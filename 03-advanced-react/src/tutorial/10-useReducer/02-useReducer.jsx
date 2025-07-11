@@ -6,7 +6,16 @@ import { data } from "../../data";
 const initialState = { people: data };
 
 // Creating the reducer
-const reducer = () => {};
+const reducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case "CLEAR_LIST":
+      return { ...state, people: [] };
+    case "RESET_LIST":
+      return initialState;
+  }
+};
 
 const ReducerBasics = () => {
   // Getting the state and the dispatch from useReducer hook
@@ -14,8 +23,12 @@ const ReducerBasics = () => {
 
   // Create a helper functions
   const removeItem = (id) => {};
-  const clearList = () => {};
-  const resetList = () => {};
+  const clearList = () => {
+    dispatch({ type: "CLEAR_LIST" });
+  };
+  const resetList = () => {
+    dispatch({ type: "RESET_LIST" });
+  };
 
   // Creating boolean flag
   const isEmpty = state.people.length === 0;
