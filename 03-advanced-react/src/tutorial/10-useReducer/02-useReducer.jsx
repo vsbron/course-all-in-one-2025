@@ -3,17 +3,22 @@ import { useReducer } from "react";
 import { data } from "../../data";
 
 // Declaring the initial data
-const initialState = { people: data };
+const initialState = { people: data, isLoading: false };
+
+const CLEAR_LIST = "CLEAR_LIST";
+const RESET_LIST = "RESET_LIST";
+const REMOVE_ITEM = "REMOVE_ITEM";
 
 // Creating the reducer
-const reducer = (state, action) => {
-  const { type, payload } = action;
-
+const reducer = (state, { type, payload }) => {
+  // Switch statement that checks the type and does the change
   switch (type) {
-    case "CLEAR_LIST":
+    case CLEAR_LIST:
       return { ...state, people: [] };
-    case "RESET_LIST":
+    case RESET_LIST:
       return initialState;
+    default:
+      throw new Error(`No matching ${type}`);
   }
 };
 
@@ -24,10 +29,10 @@ const ReducerBasics = () => {
   // Create a helper functions
   const removeItem = (id) => {};
   const clearList = () => {
-    dispatch({ type: "CLEAR_LIST" });
+    dispatch({ type: CLEAR_LIST });
   };
   const resetList = () => {
-    dispatch({ type: "RESET_LIST" });
+    dispatch({ type: RESET_LIST });
   };
 
   // Creating boolean flag
