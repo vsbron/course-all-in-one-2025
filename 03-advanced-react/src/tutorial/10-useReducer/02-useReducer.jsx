@@ -5,6 +5,7 @@ import { data } from "../../data";
 // Declaring the initial data
 const initialState = { people: data, isLoading: false };
 
+// Preparing the action type names
 const CLEAR_LIST = "CLEAR_LIST";
 const RESET_LIST = "RESET_LIST";
 const REMOVE_ITEM = "REMOVE_ITEM";
@@ -17,6 +18,11 @@ const reducer = (state, { type, payload }) => {
       return { ...state, people: [] };
     case RESET_LIST:
       return initialState;
+    case REMOVE_ITEM:
+      return {
+        ...state,
+        people: state.people.filter((person) => person.id !== payload.id),
+      };
     default:
       throw new Error(`No matching ${type}`);
   }
@@ -27,7 +33,9 @@ const ReducerBasics = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // Create a helper functions
-  const removeItem = (id) => {};
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE_ITEM, payload: { id } });
+  };
   const clearList = () => {
     dispatch({ type: CLEAR_LIST });
   };
