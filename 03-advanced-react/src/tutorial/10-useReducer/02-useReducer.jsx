@@ -1,32 +1,7 @@
 import { useReducer } from "react";
 
-import { data } from "../../data";
-
-// Declaring the initial data
-const initialState = { people: data, isLoading: false };
-
-// Preparing the action type names
-const CLEAR_LIST = "CLEAR_LIST";
-const RESET_LIST = "RESET_LIST";
-const REMOVE_ITEM = "REMOVE_ITEM";
-
-// Creating the reducer
-const reducer = (state, { type, payload }) => {
-  // Switch statement that checks the type and does the change
-  switch (type) {
-    case CLEAR_LIST:
-      return { ...state, people: [] };
-    case RESET_LIST:
-      return initialState;
-    case REMOVE_ITEM:
-      return {
-        ...state,
-        people: state.people.filter((person) => person.id !== payload.id),
-      };
-    default:
-      throw new Error(`No matching ${type}`);
-  }
-};
+import { CLEAR_LIST, REMOVE_ITEM, RESET_LIST } from "./actions";
+import reducer, { initialState } from "./reducer";
 
 const ReducerBasics = () => {
   // Getting the state and the dispatch from useReducer hook
