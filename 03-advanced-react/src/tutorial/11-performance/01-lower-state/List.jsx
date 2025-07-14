@@ -1,6 +1,7 @@
 import Person from "./Person";
 
 const List = ({ people }) => {
+  // Returned JSX
   return (
     <div>
       {people.map((person) => {

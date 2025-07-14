@@ -5,6 +5,8 @@ const Person = ({ name }) => {
   // useEffect(() => {
   //   console.log("unfortunately does not fix the issue");
   // }, []);
+
+  // Returned JSX
   return (
     <div>
       <h4>{name}</h4>
