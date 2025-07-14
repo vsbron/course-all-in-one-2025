@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useState, useTransition } from "react";
+
 const LatestReact = () => {
+  // Creating the state values for text and items
   const [text, setText] = useState("");
   const [items, setItems] = useState([]);
 
+  // Getting the pending state and startTransition function from the hook
+  const [isPending, startTransition] = useTransition();
+
+  // Input change handler
   const handleChange = (e) => {
     setText(e.target.value);
 
     // slow down CPU
-    // const newItems = Array.from({ length: 5000 }, (_, index) => {
-    //   return (
-    //     <div key={index}>
-    //       <img src="/vite.svg" alt="" />
-    //     </div>
-    //   );
-    // });
-    // setItems(newItems);
+    startTransition(() => {
+      const newItems = Array.from({ length: 15000 }, (_, index) => {
+        return (
+          <div key={index}>
+            <img src="/vite.svg" alt="" />
+          </div>
+        );
+      });
+      setItems(newItems);
+    });
   };
+
+  // Returned JSX
   return (
     <section>
       <form className="form">
@@ -35,7 +45,7 @@ const LatestReact = () => {
           marginTop: "2rem",
         }}
       >
-        {items}
+        {isPending ? <div>Loading...</div> : items}
       </div>
     </section>
   );
