@@ -1,10 +1,15 @@
 import { useState } from "react";
-import { data } from "../../../../data";
+
 import List from "./List";
+
+import { data } from "../../../data";
+
 const LowerState = () => {
-  const [people, setPeople] = useState(data);
+  // Creating a state value for people and count
+  const [people, _] = useState(data);
   const [count, setCount] = useState(0);
 
+  // Returned JSX
   return (
     <section>
       <button
