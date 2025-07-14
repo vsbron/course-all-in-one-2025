@@ -1,11 +1,11 @@
-import LowerState from "./tutorial/11-performance/01-lower-state/index.jsx";
+import LowerStateChallenge from "./tutorial/11-performance/02-lower-state-challenge/index.jsx";
 
 function App() {
   // Returned JSX
   return (
     <div className="container">
       <h2>Advanced React</h2>
-      <LowerState />
+      <LowerStateChallenge />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { data } from "../../../data";
 
 const LowerState = () => {
   // Creating state value for people
-  const [people, setPeople] = useState(data);
+  const [people, _] = useState(data);
 
   // Returned JSX
   return (
