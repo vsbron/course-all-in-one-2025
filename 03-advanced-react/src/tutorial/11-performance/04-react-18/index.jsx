@@ -1,9 +1,13 @@
-import { useState, useTransition } from "react";
+import { useState, useTransition, Suspense, lazy } from "react";
+
+// Importing the component with LazyLoad
+const SlowComponent = lazy(() => import("./SlowComponent"));
 
 const LatestReact = () => {
-  // Creating the state values for text and items
+  // Creating the state values for text, items and show
   const [text, setText] = useState("");
   const [items, setItems] = useState([]);
+  const [show, setShow] = useState(false);
 
   // Getting the pending state and startTransition function from the hook
   const [isPending, startTransition] = useTransition();
@@ -47,6 +51,14 @@ const LatestReact = () => {
       >
         {isPending ? <div>Loading...</div> : items}
       </div>
+      <button onClick={() => setShow((show) => !show)} className="btn">
+        toggle
+      </button>
+      {show && (
+        <Suspense fallback="Loading...">
+          <SlowComponent />
+        </Suspense>
+      )}
     </section>
   );
 };
