@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import List from "./List";
 
@@ -6,8 +6,17 @@ import { data } from "../../../data";
 
 const LowerState = () => {
   // Creating a state value for people and count
-  const [people, _] = useState(data);
+  const [people, setPeople] = useState(data);
   const [count, setCount] = useState(0);
+
+  // Creating a remove person function with useCallback hook
+  const removePerson = useCallback(
+    (id) => {
+      const newPeople = people.filter((person) => person.id !== id);
+      setPeople(newPeople);
+    },
+    [people]
+  );
 
   // Returned JSX
   return (
@@ -19,7 +28,7 @@ const LowerState = () => {
       >
         count {count}
       </button>
-      <List people={people} />
+      <List people={people} removePerson={removePerson} />
     </section>
   );
 };
