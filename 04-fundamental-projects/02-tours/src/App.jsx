@@ -46,7 +46,21 @@ const App = () => {
     return () => controller.abort();
   }, []);
 
+  // Create the remove tour function
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours);
+  };
+
   // Returned JSX
-  return <main>{isLoading ? <Loading /> : <Tours tours={tours} />}</main>;
+  return (
+    <main>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Tours tours={tours} removeTour={removeTour} />
+      )}
+    </main>
+  );
 };
 export default App;
