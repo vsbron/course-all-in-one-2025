@@ -11,36 +11,26 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [tours, setTours] = useState([]);
 
+  // Declare the fetch tours function
+  const fetchTours = async (signal) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(url, { signal });
+      const data = await response.json();
+      setTours(data);
+    } catch (error) {
+      if (error.name === "AbortError") return;
+      console.error("Fetch error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // useEffect function that fetches the tours data
   useEffect(() => {
-    // Creating controller for fetch function
+    // Creating controller for fetch function adn call the function
     const controller = new AbortController();
-    const signal = controller.signal;
-
-    // Declare the fetch function
-    const fetchTours = async () => {
-      try {
-        // Enabling the loading state
-        setIsLoading(true);
-
-        // Fetch data
-        const response = await fetch(url, { signal });
-        const data = await response.json();
-
-        // Setting the tours state
-        setTours(data);
-      } catch (error) {
-        if (error.name === "AbortError") {
-          return;
-        }
-        console.error("Fetch error:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    // Call the function
-    fetchTours();
+    fetchTours(controller.signal);
 
     // Cleanup function
     return () => controller.abort();
@@ -57,8 +47,21 @@ const App = () => {
     <main>
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : tours.length > 0 ? (
         <Tours tours={tours} removeTour={removeTour} />
+      ) : (
+        <div className="title">
+          <h2>No tours left</h2>
+          <div className="title-underline"></div>
+          <button
+            type="button"
+            style={{ marginTop: "2rem" }}
+            className="btn"
+            onClick={() => fetchTours()}
+          >
+            Refresh
+          </button>
+        </div>
       )}
     </main>
   );
