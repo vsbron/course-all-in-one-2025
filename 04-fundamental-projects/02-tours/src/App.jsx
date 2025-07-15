@@ -27,6 +27,7 @@ const App = () => {
         const response = await fetch(url, { signal });
         const data = await response.json();
 
+        // Setting the tours state
         setTours(data);
       } catch (error) {
         if (error.name === "AbortError") {
@@ -46,6 +47,6 @@ const App = () => {
   }, []);
 
   // Returned JSX
-  return <div>{isLoading ? <Loading /> : <Tours />}</div>;
+  return <main>{isLoading ? <Loading /> : <Tours tours={tours} />}</main>;
 };
 export default App;

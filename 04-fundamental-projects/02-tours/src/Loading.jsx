@@ -1,6 +1,6 @@
 function Loading() {
   // Returned JSX
-  return <div>Loading...</div>;
+  return <div className="loading"></div>;
 }
 
 export default Loading;
