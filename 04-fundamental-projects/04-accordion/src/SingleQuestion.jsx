@@ -3,7 +3,7 @@ function SingleQuestion({ title, info }) {
   console.log(info);
 
   // Returned JSX
-  return <div></div>;
+  return <div>Single Question</div>;
 }
 
 export default SingleQuestion;
