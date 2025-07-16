@@ -10,6 +10,14 @@ const App = () => {
   // Destructuring the person data
   const { name, job, image, text } = people[index];
 
+  // Creating the next/prev functions for a state change
+  const prevPerson = () => {
+    setIndex((i) => (i === 0 ? people.length - 1 : i - 1));
+  };
+  const nextPerson = () => {
+    setIndex((i) => (i + 1 === people.length ? 0 : i + 1));
+  };
+
   // Returned JSX
   return (
     <main>
@@ -23,6 +31,14 @@ const App = () => {
         <h4 className="author">{name}</h4>
         <p className="job">{job}</p>
         <p className="info">{text}</p>
+        <div className="btn-container">
+          <button className="prev-btn" onClick={prevPerson}>
+            <FaChevronLeft />
+          </button>
+          <button className="next-btn" onClick={nextPerson}>
+            <FaChevronRight />
+          </button>
+        </div>
       </article>
     </main>
   );
