@@ -1,9 +1,19 @@
+import { useState } from "react";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+
 function SingleQuestion({ title, info }) {
-  console.log(title);
-  console.log(info);
+  // Creating state value for show info flag
+  const [showInfo, setShowInfo] = useState(false);
 
   // Returned JSX
-  return <div>Single Question</div>;
+  return (
+    <article className="question">
+      <header>
+        <h5>{title}</h5>
+      </header>
+      <p>{info}</p>
+    </article>
+  );
 }
 
 export default SingleQuestion;
