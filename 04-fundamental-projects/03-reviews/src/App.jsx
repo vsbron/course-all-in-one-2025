@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaBeer } from "react-icons/fa";
 
 import people from "./data";
 
@@ -9,9 +10,11 @@ const App = () => {
   // Destructuring the person data
   const { name, job, image, text } = people[index];
 
-  console.log(name);
-
   // Returned JSX
-  return <h2>Reviews Starter</h2>;
+  return (
+    <div>
+      <h2>Reviews Starter</h2>
+    </div>
+  );
 };
 export default App;
