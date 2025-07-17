@@ -4,6 +4,7 @@ import menu from "./data";
 
 import Menu from "./Menu";
 import Title from "./Title";
+import Categories from "./Categories";
 
 // Getting the list with uniques menu items categories
 const allCategories = ["all", ...new Set(menu.map((item) => item.category))];
@@ -18,6 +19,7 @@ const App = () => {
     <main>
       <section className="menu">
         <Title text="Our menu" />
+        <Categories categories={categories} />
         <Menu items={menuItems} />
       </section>
     </main>
