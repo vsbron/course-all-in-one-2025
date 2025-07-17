@@ -1,8 +1,8 @@
 import Duties from "./Duties";
 
-function JobInfo({ jobs }) {
+function JobInfo({ jobs, currentItem }) {
   // Destructuring jobs props
-  const { company, dates, duties, title } = jobs[0];
+  const { company, dates, duties, title } = jobs[currentItem];
 
   // Returned JSX
   return (
