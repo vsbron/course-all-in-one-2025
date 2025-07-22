@@ -1,8 +1,10 @@
-const App = () => {
+function App() {
+  // Returned JSX
   return (
-    <main>
-      <h2>Slider Starter</h2>
-    </main>
+    <div>
+      <h1>Slider project</h1>
+    </div>
   );
-};
+}
+
 export default App;
