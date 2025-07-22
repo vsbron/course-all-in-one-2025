@@ -14,30 +14,25 @@ function SlickCarousel() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    fade: true,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    pauseOnHover: true,
   };
 
   // Returned JSX
   return (
     <section className="slick-container">
       <Slider {...settings}>
-        <div>
-          <h3>1</h3>
-        </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-        <div>
-          <h3>5</h3>
-        </div>
-        <div>
-          <h3>6</h3>
-        </div>
+        {list.map(({ id, image, name, title, quote }) => (
+          <article key={id}>
+            <img src={image} alt={name} className="person-img" />
+            <h5 className="name">{name}</h5>
+            <p className="title">{title}</p>
+            <p className="text">{quote}</p>
+            <FaQuoteRight className="icon" />
+          </article>
+        ))}
       </Slider>
     </section>
   );
