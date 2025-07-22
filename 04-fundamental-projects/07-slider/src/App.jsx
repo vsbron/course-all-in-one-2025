@@ -1,9 +1,11 @@
+import Carousel from "./Carousel";
+
 function App() {
   // Returned JSX
   return (
-    <div>
-      <h1>Slider project</h1>
-    </div>
+    <main>
+      <Carousel />
+    </main>
   );
 }
 
