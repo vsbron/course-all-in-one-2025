@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
@@ -16,6 +16,16 @@ function Carousel() {
   const nextSlide = () => {
     setCurrentPerson((cp) => (cp === people.length - 1 ? 0 : cp + 1));
   };
+
+  // useEffect that changes the slides automatically
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      nextSlide();
+    }, 2000);
+
+    // Cleanup function
+    return () => clearInterval(slideInterval);
+  }, [currentPerson]);
 
   // Returned JSX
   return (
