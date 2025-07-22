@@ -1,10 +1,12 @@
 import Carousel from "./Carousel";
+import SlickCarousel from "./SlickCarousel";
 
 function App() {
   // Returned JSX
   return (
     <main>
       <Carousel />
+      <SlickCarousel />
     </main>
   );
 }
