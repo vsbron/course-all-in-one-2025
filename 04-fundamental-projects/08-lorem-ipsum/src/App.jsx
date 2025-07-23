@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
 import data from "./data";
 
@@ -11,6 +12,7 @@ function App() {
   const [count, setCount] = useState(MIN_PARAGRAPHS);
   const [text, setText] = useState([]);
 
+  // Create form submit handler
   const handleSubmit = (e) => {
     // Prevent default behavior
     e.preventDefault();
@@ -40,8 +42,8 @@ function App() {
         </button>
       </form>
       <article className="lorem-text">
-        {text.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
+        {text.map((paragraph) => (
+          <p key={nanoid()}>{paragraph}</p>
         ))}
       </article>
     </section>
