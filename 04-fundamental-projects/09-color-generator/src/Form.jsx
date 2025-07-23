@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form() {
+function Form({ addColor }) {
   // Creating state value for color
   const [color, setColor] = useState("");
 
@@ -8,6 +8,8 @@ function Form() {
   const handleSubmit = (e) => {
     // Prevent default behavior
     e.preventDefault();
+    // Call the add color function
+    addColor(color);
   };
 
   // Create from color input change handler
