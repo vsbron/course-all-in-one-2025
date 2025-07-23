@@ -1,0 +1,37 @@
+import { useState } from "react";
+
+function Form() {
+  // Creating state value for color
+  const [color, setColor] = useState("");
+
+  // Create form submit handler
+  const handleSubmit = (e) => {
+    // Prevent default behavior
+    e.preventDefault();
+  };
+
+  // Create from color input change handler
+  const handleChange = (e) => {
+    setColor(e.target.value);
+  };
+
+  // Returned JSX
+  return (
+    <section className="container">
+      <h4>Color generator</h4>
+      <form className="color-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={color}
+          onChange={handleChange}
+          placeholder="#f15025"
+        />
+        <button className="btn" type="submit" style={{ background: color }}>
+          Submit
+        </button>
+      </form>
+    </section>
+  );
+}
+
+export default Form;
