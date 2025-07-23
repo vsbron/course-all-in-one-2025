@@ -4,7 +4,7 @@ function Form({ addColor }) {
   // Creating state value for color
   const [color, setColor] = useState("");
 
-  // Create form submit handler
+  // Form submit handler
   const handleSubmit = (e) => {
     // Prevent default behavior
     e.preventDefault();
@@ -12,7 +12,7 @@ function Form({ addColor }) {
     addColor(color);
   };
 
-  // Create from color input change handler
+  // Form color input change handler
   const handleChange = (e) => {
     setColor(e.target.value);
   };
