@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
 import Form from "./Form";
@@ -6,7 +6,15 @@ import Items from "./Items";
 
 function App() {
   // Creating state variable for items
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("list")) || []
+  );
+
+  // useEffect function that handles the data being saved/loaded from the localStorage
+  useEffect(() => {
+    // Setting the data in the localStorage
+    localStorage.setItem("list", JSON.stringify(items));
+  }, [items]);
 
   // Create the function for adding the item to the state
   const addItem = (item) => {
