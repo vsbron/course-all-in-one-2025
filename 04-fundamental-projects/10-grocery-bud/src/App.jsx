@@ -21,7 +21,9 @@ function App() {
   };
 
   // Create function for removing the item from the state
-  const removeItem = (itemId) => {};
+  const removeItem = (itemId) => {
+    setItems((curItems) => curItems.filter((item) => item.id !== itemId));
+  };
 
   // Returned JSX
   return (
