@@ -2,6 +2,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 
 import Form from "./Form";
+import Items from "./Items";
 
 function App() {
   // Creating state variable for items
@@ -19,10 +20,14 @@ function App() {
     setItems((oldItems) => [...oldItems, newItem]);
   };
 
+  // Create function for removing the item from the state
+  const removeItem = (itemId) => {};
+
   // Returned JSX
   return (
     <section className="section-center">
       <Form addItem={addItem} />
+      <Items items={items} removeItem={removeItem} />
     </section>
   );
 }
