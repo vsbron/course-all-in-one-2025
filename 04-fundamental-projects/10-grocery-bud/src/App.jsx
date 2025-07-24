@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
+import { ToastContainer } from "react-toastify";
 
 import Form from "./Form";
 import Items from "./Items";
@@ -53,6 +54,7 @@ function App() {
     <section className="section-center">
       <Form addItem={addItem} />
       <Items items={items} removeItem={removeItem} editItem={editItem} />
+      <ToastContainer position="top-center" />
     </section>
   );
 }

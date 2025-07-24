@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 function Form({ addItem }) {
   // Create state value for name
@@ -6,16 +7,15 @@ function Form({ addItem }) {
 
   // Form submit handler
   const handleSubmit = (e) => {
-    // Prevent default behavior
+    // Prevent default behavior and guard clause with toast error
     e.preventDefault();
+    if (!item) {
+      toast.error("Item name is empty!");
+      return;
+    }
 
-    // Guard clause
-    if (!item) return;
-
-    // Add item to the list
+    // Add item to the list and reset the form
     addItem(item);
-
-    // Clear the form value
     setItem("");
   };
 
