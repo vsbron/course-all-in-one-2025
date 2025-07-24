@@ -1,13 +1,22 @@
 import { useState } from "react";
 
-function Form() {
+function Form({ addItem }) {
   // Create state value for name
-  const [name, setName] = useState("");
+  const [item, setItem] = useState("");
 
   // Form submit handler
   const handleSubmit = (e) => {
+    // Prevent default behavior
     e.preventDefault();
-    console.log(name);
+
+    // Guard clause
+    if (!item) return;
+
+    // Add item to the list
+    addItem(item);
+
+    // Clear the form value
+    setItem("");
   };
 
   // Returned JSX
@@ -17,9 +26,9 @@ function Form() {
       <div className="form-control">
         <input
           type="text"
-          value={name}
+          value={item}
           onChange={(e) => {
-            setName(e.target.value);
+            setItem(e.target.value);
           }}
         />
         <button type="submit" className="btn">
