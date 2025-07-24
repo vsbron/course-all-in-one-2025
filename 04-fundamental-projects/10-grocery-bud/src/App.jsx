@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 import Form from "./Form";
 import Items from "./Items";
@@ -30,11 +30,17 @@ function App() {
 
     // Adding new items to the state
     setItems((oldItems) => [...oldItems, newItem]);
+
+    // Toast message
+    toast.success("Item was added successfully!");
   };
 
   // Create function for removing the item from the state
   const removeItem = (itemId) => {
     setItems((curItems) => curItems.filter((item) => item.id !== itemId));
+
+    // Toast message
+    toast.warn("Item was deleted!");
   };
 
   // Create function for editing the item in the state
@@ -47,14 +53,17 @@ function App() {
     });
     setItems(newItems);
     localStorage.setItem(STORAGE_ITEM_NAME, JSON.stringify(newItems));
+
+    // Toast message
+    toast.success("Item was successfully edited!");
   };
 
   // Returned JSX
   return (
     <section className="section-center">
+      <ToastContainer position="top-center" />
       <Form addItem={addItem} />
       <Items items={items} removeItem={removeItem} editItem={editItem} />
-      <ToastContainer position="top-center" />
     </section>
   );
 }
