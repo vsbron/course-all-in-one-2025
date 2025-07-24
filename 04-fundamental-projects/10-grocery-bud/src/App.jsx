@@ -4,16 +4,19 @@ import { nanoid } from "nanoid";
 import Form from "./Form";
 import Items from "./Items";
 
+// Declaring the name for local storage
+const STORAGE_ITEM_NAME = "list-react";
+
 function App() {
   // Creating state variable for items
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("list")) || []
+    JSON.parse(localStorage.getItem(STORAGE_ITEM_NAME)) || []
   );
 
   // useEffect function that handles the data being saved/loaded from the localStorage
   useEffect(() => {
     // Setting the data in the localStorage
-    localStorage.setItem("list", JSON.stringify(items));
+    localStorage.setItem(STORAGE_ITEM_NAME, JSON.stringify(items));
   }, [items]);
 
   // Create the function for adding the item to the state
@@ -33,11 +36,23 @@ function App() {
     setItems((curItems) => curItems.filter((item) => item.id !== itemId));
   };
 
+  // Create function for editing the item in the state
+  const editItem = (itemId) => {
+    const newItems = items.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, completed: !item.completed };
+      }
+      return item;
+    });
+    setItems(newItems);
+    localStorage.setItem(STORAGE_ITEM_NAME, JSON.stringify(newItems));
+  };
+
   // Returned JSX
   return (
     <section className="section-center">
       <Form addItem={addItem} />
-      <Items items={items} removeItem={removeItem} />
+      <Items items={items} removeItem={removeItem} editItem={editItem} />
     </section>
   );
 }
