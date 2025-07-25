@@ -13,8 +13,6 @@ function Navbar() {
 
   // Create the button handler button to toggle menu
   const toggleLinks = () => {
-    console.log(linksRef.current.getBoundingClientRect());
-
     setShowLinks((sL) => !sL);
   };
 
@@ -29,12 +27,15 @@ function Navbar() {
   return (
     <nav>
       <div className="nav-center">
+        {/* Logo */}
         <div className="nav-header">
           <img src={logo} className="logo" alt="Logo" />
           <button className="nav-toggle" onClick={toggleLinks}>
             <FaBars />
           </button>
         </div>
+
+        {/* Nav links */}
         <div className="links-container" style={linkStyles}>
           <ul className="links" ref={linksRef}>
             {links.map(({ id, url, text }) => (
@@ -44,6 +45,17 @@ function Navbar() {
             ))}
           </ul>
         </div>
+
+        {/* Social links */}
+        <ul className="social-icons">
+          {social.map(({ id, url, icon }) => (
+            <li key={id}>
+              <a href={url} target="_blank">
+                {icon}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );

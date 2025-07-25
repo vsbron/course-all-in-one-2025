@@ -305,3 +305,7 @@ nav {
   overflow: hidden;
   transition: var(--transition);
 }
+
+.social-icons {
+  display: none;
+}
