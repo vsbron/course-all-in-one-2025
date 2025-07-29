@@ -6,15 +6,15 @@ import { social, links } from "./data";
 import logo from "./logo.svg";
 
 function Sidebar() {
-  // Getting the isSidebarOpen and closeSidebar from the Context API
-  const { isSidebarOpen, closeSidebar } = useAppContext();
+  // Getting the sidebar state and toggle function from the Context API
+  const { isSidebarOpen, toggleSidebar } = useAppContext();
 
   // Returned JSX
   return (
     <aside className={`sidebar ${isSidebarOpen ? "show-sidebar" : ""}`}>
       <div className="sidebar-header">
         <img src={logo} alt="Coding addict" className="logo" />
-        <button className="close-btn" onClick={closeSidebar}>
+        <button className="close-btn" onClick={toggleSidebar}>
           <FaTimes />
         </button>
       </div>

@@ -9,18 +9,12 @@ export const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Create the setter functions for further use
-  const openSidebar = () => {
-    setIsSidebarOpen(true);
+  // Create the toggle functions for further use
+  const toggleSidebar = () => {
+    setIsSidebarOpen((isOpen) => !isOpen);
   };
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const toggleModal = () => {
+    setIsModalOpen((isOpen) => !isOpen);
   };
 
   // Returned Provider
@@ -29,10 +23,8 @@ export const AppProvider = ({ children }) => {
       value={{
         isSidebarOpen,
         isModalOpen,
-        openModal,
-        openSidebar,
-        closeModal,
-        closeSidebar,
+        toggleSidebar,
+        toggleModal,
       }}
     >
       {children}
@@ -49,22 +41,13 @@ export const useAppContext = () => {
   if (!context) throw new Error("useApp must be used within an AppProvider");
 
   // Destructuring the context for the values
-  const {
-    isSidebarOpen,
-    isModalOpen,
-    openModal,
-    openSidebar,
-    closeModal,
-    closeSidebar,
-  } = context;
+  const { isSidebarOpen, isModalOpen, toggleSidebar, toggleModal } = context;
 
   // Return values
   return {
     isSidebarOpen,
     isModalOpen,
-    openModal,
-    openSidebar,
-    closeModal,
-    closeSidebar,
+    toggleSidebar,
+    toggleModal,
   };
 };

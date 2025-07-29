@@ -3,16 +3,16 @@ import { FaBars } from "react-icons/fa";
 import { useAppContext } from "./AppContext";
 
 function Home() {
-  // Getting the open functions from the Context API
-  const { openModal, openSidebar } = useAppContext();
+  // Getting the toggle functions from the Context API
+  const { toggleModal, toggleSidebar } = useAppContext();
 
   // Returned JSX
   return (
     <main>
-      <button onClick={openSidebar} className="sidebar-toggle">
+      <button onClick={toggleSidebar} className="sidebar-toggle">
         <FaBars />
       </button>
-      <button onClick={openModal} className="btn">
+      <button onClick={toggleModal} className="btn">
         Show modal
       </button>
     </main>
