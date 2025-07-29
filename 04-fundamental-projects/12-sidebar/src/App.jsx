@@ -1,10 +1,16 @@
+import Home from "./Home";
+import Modal from "./Modal";
+import Sidebar from "./Sidebar";
+
 function App() {
   // Returned JSX
   return (
-    <div>
-      <h1>Sidebar</h1>
-    </div>
-  )
+    <main>
+      <Home />
+      <Modal />
+      <Sidebar />
+    </main>
+  );
 }
 
-export default App
+export default App;
