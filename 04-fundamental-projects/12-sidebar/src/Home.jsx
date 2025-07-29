@@ -7,7 +7,16 @@ function Home() {
   const { openModal, openSidebar } = useAppContext();
 
   // Returned JSX
-  return <main>Home</main>;
+  return (
+    <main>
+      <button onClick={openSidebar} className="sidebar-toggle">
+        <FaBars />
+      </button>
+      <button onClick={openModal} className="btn">
+        Show modal
+      </button>
+    </main>
+  );
 }
 
 export default Home;
