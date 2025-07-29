@@ -11,7 +11,7 @@ function Sidebar() {
 
   // Returned JSX
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isSidebarOpen ? "show-sidebar" : ""}`}>
       <div className="sidebar-header">
         <img src={logo} alt="Coding addict" className="logo" />
         <button className="close-btn" onClick={closeSidebar}>

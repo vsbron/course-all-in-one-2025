@@ -341,7 +341,11 @@ main {
   grid-template-rows: auto 1fr auto;
   row-gap: 1rem;
   box-shadow: var(--red-dark);
+  transform: translateX(-100%);
   transition: var(--transition);
+}
+.sidebar.show-sidebar {
+  transform: translateX(0);
 }
 @media screen and (min-width: 676px) {
   .sidebar {
@@ -355,9 +359,11 @@ main {
   align-items: center;
   padding: 1rem 1.5rem;
 }
+
 .logo {
   height: 40px;
 }
+
 .close-btn {
   font-size: 1.75rem;
   background: transparent;
@@ -365,6 +371,7 @@ main {
   color: var(--red-dark);
   cursor: pointer;
 }
+
 .links a {
   display: flex;
   align-items: center;
@@ -388,6 +395,7 @@ main {
 .links a:hover svg {
   color: var(--grey-600);
 }
+
 .social-links {
   display: flex;
   justify-self: center;
