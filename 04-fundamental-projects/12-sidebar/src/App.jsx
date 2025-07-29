@@ -1,4 +1,10 @@
-const App = () => {
-  return <h2>Sidebar Starter</h2>;
-};
-export default App;
+function App() {
+  // Returned JSX
+  return (
+    <div>
+      <h1>Sidebar</h1>
+    </div>
+  )
+}
+
+export default App
