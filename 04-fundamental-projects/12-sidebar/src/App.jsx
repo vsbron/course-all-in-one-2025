@@ -5,11 +5,11 @@ import Sidebar from "./Sidebar";
 function App() {
   // Returned JSX
   return (
-    <main>
+    <>
       <Home />
       <Modal />
       <Sidebar />
-    </main>
+    </>
   );
 }
 

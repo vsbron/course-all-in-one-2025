@@ -1,3 +1,5 @@
+import { FaBars } from "react-icons/fa";
+
 import { useAppContext } from "./AppContext";
 
 function Home() {
@@ -5,7 +7,7 @@ function Home() {
   const { openModal, openSidebar } = useAppContext();
 
   // Returned JSX
-  return <div>Home</div>;
+  return <main>Home</main>;
 }
 
 export default Home;

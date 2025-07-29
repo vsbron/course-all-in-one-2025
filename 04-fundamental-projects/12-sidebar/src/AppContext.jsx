@@ -6,8 +6,8 @@ const AppContext = createContext();
 // Setting the Provider
 export const AppProvider = ({ children }) => {
   // Create state values for sidebar and module
-  const [isSidebarOpen, setIsSidebarOpen] = useState(boolean);
-  const [isModalOpen, setIsModalOpen] = useState(boolean);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Create the setter functions for further use
   const openSidebar = () => {
