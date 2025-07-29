@@ -306,7 +306,6 @@ main {
   opacity: 1;
   transition: opacity 0.4s ease-in-out;
 }
-
 .modal-container {
   background: var(--white);
   width: 90vw;
