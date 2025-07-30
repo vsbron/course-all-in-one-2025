@@ -7,12 +7,14 @@ function Navbar() {
 
   // Returned JSX
   return (
-    <nav className="nav-center">
-      <h3 className="logo">Strapi</h3>
-      <button className="toggle-btn" onClick={openSidebar}>
-        <FaBars />
-      </button>
-      {/* NAV LINKS LATER */}
+    <nav className="nav">
+      <div className="nav-center">
+        <h3 className="logo">Strapi</h3>
+        <button className="toggle-btn" onClick={openSidebar}>
+          <FaBars />
+        </button>
+        {/* NAV LINKS LATER */}
+      </div>
     </nav>
   );
 }
