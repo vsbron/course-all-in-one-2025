@@ -1,10 +1,6 @@
 function App() {
   // Returned JSX
-  return (
-    <div>
-      
-    </div>
-  )
+  return <div>Strapi</div>;
 }
 
-export default App
+export default App;
