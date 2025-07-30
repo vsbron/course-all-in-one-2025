@@ -362,8 +362,8 @@ body {
   border-color: transparent;
   color: var(--primary-500);
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.4rem;
+  right: 2rem;
   cursor: pointer;
 }
 
