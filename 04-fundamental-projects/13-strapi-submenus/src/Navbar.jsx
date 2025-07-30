@@ -1,5 +1,8 @@
 import { FaBars } from "react-icons/fa";
+
 import { useAppContext } from "./AppContext";
+
+import NavLinks from "./NavLinks";
 
 function Navbar() {
   // Get the values from Context API
@@ -13,7 +16,7 @@ function Navbar() {
         <button className="toggle-btn" onClick={openSidebar}>
           <FaBars />
         </button>
-        {/* NAV LINKS LATER */}
+        <NavLinks />
       </div>
     </nav>
   );
