@@ -10,12 +10,12 @@ function Sidebar() {
 
   // Returned JSX
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isSidebarOpen ? "show-sidebar" : ""}`}>
       <div className="sidebar-container">
-        <button className="close-btn">
+        <button className="close-btn" onClick={closeSidebar}>
           <FaTimes />
         </button>
-        <div className="sidebar-links">
+        <div>
           {sublinks.map(({ pageId, page, links }) => (
             <article key={pageId}>
               <h4>{page}</h4>
