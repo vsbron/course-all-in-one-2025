@@ -406,9 +406,11 @@ body {
   .nav-links {
     display: flex;
     justify-content: center;
+    align-self: stretch;
   }
 
   .nav-center {
+    align-self: stretch;
     display: grid;
     grid-template-columns: auto 1fr;
   }
@@ -435,10 +437,10 @@ body {
     display: block;
     position: fixed;
     top: 6rem;
+    left: 50%;
     width: var(--fluid-width);
     max-width: var(--max-width);
     background: var(--white);
-    left: 50%;
     padding: 2rem;
     transform: rotateX(-90deg) translateX(-50%);
     transform-origin: top;
