@@ -449,11 +449,13 @@ body {
     visibility: hidden;
     opacity: 0;
     transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    z-index: -1;
   }
   .submenu.show-submenu {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0) translateX(-50%);
+    z-index: 10;
   }
 
   .submenu h5 {
