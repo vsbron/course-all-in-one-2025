@@ -11,7 +11,7 @@ function Submenu() {
 
   // Returned JSX
   return (
-    <div className="submenu">
+    <div className={`submenu ${currentPage ? "show-submenu" : ""}`}>
       <h5>{currentPage?.page}</h5>
       <div
         className="submenu-links"
