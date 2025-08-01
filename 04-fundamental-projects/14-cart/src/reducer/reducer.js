@@ -4,7 +4,7 @@ import {
   INCREASE,
   DECREASE,
   LOADING,
-  ITEMS,
+  DISPLAY_ITEMS,
 } from "./action";
 
 // Create reducer

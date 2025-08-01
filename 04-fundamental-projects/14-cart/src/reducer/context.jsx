@@ -6,7 +6,7 @@ import {
   INCREASE,
   DECREASE,
   LOADING,
-  ITEMS,
+  DISPLAY_ITEMS,
 } from "./action";
 import reducer from "./reducer";
 
