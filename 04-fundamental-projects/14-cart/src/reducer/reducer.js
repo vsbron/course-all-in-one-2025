@@ -9,7 +9,13 @@ import {
 
 // Create reducer
 const reducer = (state, action) => {
-  return state;
+  switch (action.type) {
+    case CLEAR_CART:
+      return { ...state, cart: new Map() };
+      break;
+    default:
+      throw new Error(`No matching action type: ${action.type}`);
+  }
 };
 
 export default reducer;

@@ -3,7 +3,7 @@ import { useAppContext } from "./reducer/context";
 import CartItem from "./CartItem";
 const CartContainer = () => {
   // Getting the cart from the reducer
-  const { cart } = useAppContext();
+  const { cart, clearCart } = useAppContext();
 
   // Converting cart to the array
   const cartArray = Array.from(cart.entries());
@@ -39,10 +39,7 @@ const CartContainer = () => {
             total <span>$10</span>
           </h5>
         </div>
-        <button
-          className="btn btn-hipster"
-          onClick={() => console.log("clear cart")}
-        >
+        <button className="btn btn-hipster" onClick={clearCart}>
           clear cart
         </button>
       </footer>
