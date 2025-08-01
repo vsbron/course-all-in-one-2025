@@ -10,9 +10,10 @@ import {
 // Create reducer
 const reducer = (state, action) => {
   switch (action.type) {
-    case CLEAR_CART:
+    case CLEAR_CART: {
       return { ...state, cart: new Map() };
-    case REMOVE:
+    }
+    case REMOVE: {
       // Creating the new cart instance as a Map
       const newCart = new Map(state.cart);
 
@@ -21,16 +22,26 @@ const reducer = (state, action) => {
 
       // Return stat with the new cart
       return { ...state, cart: newCart };
-    case INCREASE:
-      const newCart2 = new Map(state.cart);
-      const itemId = action.payload.id;
-      const item = newCart2.get(itemId);
-      console.log(item);
+    }
+    case INCREASE: {
+      // Creating the new cart instance as a Map
+      const newCart = new Map(state.cart);
+
+      // Getting the item from the cart
+      const item = newCart.get(action.payload.id);
+
+      // Create new item with updated amount
+      const newItem = { ...item, amount: item.amount + 1 };
+
+      // Update the item in the state cart
+      newCart.set(action.payload.id, newItem);
 
       // Return stat with the new cart
-      return { ...state, cart: newCart2 };
-    default:
+      return { ...state, cart: newCart };
+    }
+    default: {
       throw new Error(`No matching action type: ${action.type}`);
+    }
   }
 };
 
