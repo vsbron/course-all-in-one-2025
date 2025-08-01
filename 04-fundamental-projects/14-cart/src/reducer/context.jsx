@@ -26,14 +26,17 @@ export const AppProvider = ({ children }) => {
   // Getting the state and dispatch function from the reducer
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Clear cart function
+  // Helper function to work with the state
   const clearCart = () => {
     dispatch({ type: CLEAR_CART });
+  };
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE, payload: { id } });
   };
 
   // Return the provider
   return (
-    <AppContext.Provider value={{ ...state, clearCart }}>
+    <AppContext.Provider value={{ ...state, clearCart, removeItem }}>
       {children}
     </AppContext.Provider>
   );
@@ -48,8 +51,8 @@ export const useAppContext = () => {
   if (!context) throw new Error("useApp must be used within an AppProvider");
 
   // Destructuring the context for the values
-  const { cart, clearCart } = context;
+  const { cart, clearCart, removeItem } = context;
 
   // Return values
-  return { cart, clearCart };
+  return { cart, clearCart, removeItem };
 };

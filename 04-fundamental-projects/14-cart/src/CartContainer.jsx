@@ -1,6 +1,7 @@
 import { useAppContext } from "./reducer/context";
 
 import CartItem from "./CartItem";
+
 const CartContainer = () => {
   // Getting the cart from the reducer
   const { cart, clearCart } = useAppContext();
@@ -8,6 +9,9 @@ const CartContainer = () => {
   // Converting cart to the array
   const cartArray = Array.from(cart.entries());
 
+  console.log(cartArray);
+
+  // Guard clause
   if (cartArray.length === 0) {
     return (
       <section className="cart">
@@ -19,6 +23,8 @@ const CartContainer = () => {
       </section>
     );
   }
+
+  // Returned JSX
   return (
     <section className="cart">
       {/* cart header */}
