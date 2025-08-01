@@ -21,6 +21,14 @@ const reducer = (state, action) => {
 
       // Return stat with the new cart
       return { ...state, cart: newCart };
+    case INCREASE:
+      const newCart2 = new Map(state.cart);
+      const itemId = action.payload.id;
+      const item = newCart2.get(itemId);
+      console.log(item);
+
+      // Return stat with the new cart
+      return { ...state, cart: newCart2 };
     default:
       throw new Error(`No matching action type: ${action.type}`);
   }

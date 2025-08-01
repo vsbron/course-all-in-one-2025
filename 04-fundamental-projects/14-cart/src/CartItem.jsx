@@ -4,7 +4,7 @@ import { useAppContext } from "./reducer/context";
 
 const CartItem = ({ id, img, title, price, amount }) => {
   // Getting the remove function from the Context API
-  const { removeItem } = useAppContext();
+  const { removeItem, increase } = useAppContext();
 
   // Returned JSX
   return (
@@ -20,7 +20,7 @@ const CartItem = ({ id, img, title, price, amount }) => {
       </div>
       <div>
         {/* increase amount */}
-        <button className="amount-btn" onClick={() => console.log("increase")}>
+        <button className="amount-btn" onClick={() => increase(id)}>
           <FaChevronUp className="amount-icon" />
         </button>
         {/* amount */}

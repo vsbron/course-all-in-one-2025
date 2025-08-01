@@ -33,10 +33,13 @@ export const AppProvider = ({ children }) => {
   const removeItem = (id) => {
     dispatch({ type: REMOVE, payload: { id } });
   };
+  const increase = (id) => {
+    dispatch({ type: INCREASE, payload: { id } });
+  };
 
   // Return the provider
   return (
-    <AppContext.Provider value={{ ...state, clearCart, removeItem }}>
+    <AppContext.Provider value={{ ...state, clearCart, removeItem, increase }}>
       {children}
     </AppContext.Provider>
   );
@@ -51,8 +54,8 @@ export const useAppContext = () => {
   if (!context) throw new Error("useApp must be used within an AppProvider");
 
   // Destructuring the context for the values
-  const { cart, clearCart, removeItem } = context;
+  const { cart, clearCart, removeItem, increase } = context;
 
   // Return values
-  return { cart, clearCart, removeItem };
+  return { cart, clearCart, removeItem, increase };
 };

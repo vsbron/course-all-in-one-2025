@@ -9,8 +9,6 @@ const CartContainer = () => {
   // Converting cart to the array
   const cartArray = Array.from(cart.entries());
 
-  console.log(cartArray);
-
   // Guard clause
   if (cartArray.length === 0) {
     return (
@@ -33,9 +31,10 @@ const CartContainer = () => {
       </header>
       {/* cart items */}
       <div>
-        {cartArray.map(({ id, item }) => (
-          <CartItem key={id} {...item} />
-        ))}
+        {cartArray.map((cartItem) => {
+          const [id, item] = cartItem;
+          return <CartItem key={id} {...item} />;
+        })}
       </div>
       {/* cart footer */}
       <footer>
