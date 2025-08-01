@@ -10,14 +10,18 @@ import {
 } from "./action";
 import reducer from "./reducer";
 
+import cartItems from "../data";
+
 // Create Context
 const AppContext = createContext();
 
 // Create the initial state
 const initialState = {
   isLoading: false,
-  cart: [],
+  cart: new Map(cartItems.map((item) => [item.id, item])),
 };
+
+// Create the provider
 export const AppProvider = ({ children }) => {
   // Getting the state and dispatch function from the reducer
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -37,8 +41,8 @@ export const useAppContext = () => {
   if (!context) throw new Error("useApp must be used within an AppProvider");
 
   // Destructuring the context for the values
-  const {} = context;
+  const { cart } = context;
 
   // Return values
-  return {};
+  return { cart };
 };
