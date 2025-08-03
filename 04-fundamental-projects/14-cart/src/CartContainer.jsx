@@ -3,8 +3,8 @@ import { useAppContext } from "./reducer/context";
 import CartItem from "./CartItem";
 
 const CartContainer = () => {
-  // Getting the cart from the reducer
-  const { cart, clearCart } = useAppContext();
+  // Getting the cart, clear function and cart's total cost from the reducer
+  const { cart, clearCart, totalCost } = useAppContext();
 
   // Converting cart to the array
   const cartArray = Array.from(cart.entries());
@@ -41,7 +41,7 @@ const CartContainer = () => {
         <hr />
         <div>
           <h5 className="cart-total">
-            total <span>$10</span>
+            total <span>${totalCost.toFixed(2)}</span>
           </h5>
         </div>
         <button className="btn btn-hipster" onClick={clearCart}>

@@ -11,6 +11,7 @@ import {
 import reducer from "./reducer";
 
 import cartItems from "../data";
+import { getTotals } from "../utils";
 
 // Create Context
 const AppContext = createContext();
@@ -25,6 +26,9 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   // Getting the state and dispatch function from the reducer
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Get the total amount and cost of the cart
+  const { totalAmount, totalCost } = getTotals(state.cart);
 
   // Helper function to work with the state
   const clearCart = () => {
@@ -43,7 +47,15 @@ export const AppProvider = ({ children }) => {
   // Return the provider
   return (
     <AppContext.Provider
-      value={{ ...state, clearCart, removeItem, increase, decrease }}
+      value={{
+        ...state,
+        clearCart,
+        removeItem,
+        increase,
+        decrease,
+        totalAmount,
+        totalCost,
+      }}
     >
       {children}
     </AppContext.Provider>
@@ -59,8 +71,24 @@ export const useAppContext = () => {
   if (!context) throw new Error("useApp must be used within an AppProvider");
 
   // Destructuring the context for the values
-  const { cart, clearCart, removeItem, increase, decrease } = context;
+  const {
+    cart,
+    clearCart,
+    removeItem,
+    increase,
+    decrease,
+    totalAmount,
+    totalCost,
+  } = context;
 
   // Return values
-  return { cart, clearCart, removeItem, increase, decrease };
+  return {
+    cart,
+    clearCart,
+    removeItem,
+    increase,
+    decrease,
+    totalAmount,
+    totalCost,
+  };
 };
