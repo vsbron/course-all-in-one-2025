@@ -309,8 +309,7 @@ Cart
   min-height: calc(100vh - 5rem);
   width: var(--view-width);
   max-width: var(--fixed-width);
-  margin: 0 auto;
-  margin-top: 40px;
+  margin: 40px auto 0;
   padding: 2.5rem 0;
 }
 .cart h2 {
