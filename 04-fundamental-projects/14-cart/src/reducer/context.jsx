@@ -22,7 +22,7 @@ const AppContext = createContext();
 // Create the initial state
 const initialState = {
   isLoading: false,
-  cart: new Map(cartItems.map((item) => [item.id, item])),
+  cart: new Map(),
 };
 
 // Create the provider
@@ -56,10 +56,15 @@ export const AppProvider = ({ children }) => {
     // Create the fetch function
     const fetchData = async () => {
       try {
+        // Enable loading state
+        dispatch({ type: LOADING });
+
         // Fetch and json data
         const response = await fetch(url, { signal });
         const cart = await response.json();
-        console.log(cart);
+
+        // Enable loading state
+        dispatch({ type: DISPLAY_ITEMS, payload: { cart } });
       } catch (error) {
         // If Abort controller error - move on
         if (error.name === "AbortError") return;
