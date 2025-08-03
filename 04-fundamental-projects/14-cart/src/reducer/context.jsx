@@ -13,6 +13,9 @@ import reducer from "./reducer";
 import cartItems from "../data";
 import { getTotals } from "../utils";
 
+// Setting the url for data fetching
+const url = "https://www.course-api.com/react-useReducer-cart-project";
+
 // Create Context
 const AppContext = createContext();
 
@@ -44,6 +47,33 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: DECREASE, payload: { id } });
   };
 
+  // useEffect function for data fetching
+  useEffect(() => {
+    // Setting the Abort controller
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    // Create the fetch function
+    const fetchData = async () => {
+      try {
+        // Fetch and json data
+        const response = await fetch(url, { signal });
+        const cart = await response.json();
+        console.log(cart);
+      } catch (error) {
+        // If Abort controller error - move on
+        if (error.name === "AbortError") return;
+        console.error("Fetch error:", error);
+      }
+    };
+
+    // Call the fetch function
+    fetchData();
+
+    // Cleanup function
+    return () => controller.abort();
+  }, []);
+
   // Return the provider
   return (
     <AppContext.Provider
@@ -72,6 +102,7 @@ export const useAppContext = () => {
 
   // Destructuring the context for the values
   const {
+    isLoading,
     cart,
     clearCart,
     removeItem,
@@ -83,6 +114,7 @@ export const useAppContext = () => {
 
   // Return values
   return {
+    isLoading,
     cart,
     clearCart,
     removeItem,
