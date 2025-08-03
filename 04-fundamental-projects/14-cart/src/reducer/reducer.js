@@ -39,6 +39,31 @@ const reducer = (state, action) => {
       // Return stat with the new cart
       return { ...state, cart: newCart };
     }
+    case DECREASE: {
+      // Creating the new cart instance as a Map
+      const newCart = new Map(state.cart);
+
+      // Getting the item from the cart
+      const item = newCart.get(action.payload.id);
+
+      // Declare new item
+      let newItem = {};
+
+      // If item has more than one quantity
+      if (item.amount > 1) {
+        // Create new item with updated amount
+        newItem = { ...item, amount: item.amount - 1 };
+
+        // Update the item in the state cart
+        newCart.set(action.payload.id, newItem);
+      } else {
+        // Delete the item via ID if it's just 1
+        newCart.delete(action.payload.id);
+      }
+
+      // Return stat with the new cart
+      return { ...state, cart: newCart };
+    }
     default: {
       throw new Error(`No matching action type: ${action.type}`);
     }

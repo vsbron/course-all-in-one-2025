@@ -4,7 +4,7 @@ import { useAppContext } from "./reducer/context";
 
 const CartItem = ({ id, img, title, price, amount }) => {
   // Getting the remove function from the Context API
-  const { removeItem, increase } = useAppContext();
+  const { removeItem, increase, decrease } = useAppContext();
 
   // Returned JSX
   return (
@@ -26,7 +26,7 @@ const CartItem = ({ id, img, title, price, amount }) => {
         {/* amount */}
         <span className="amount">{amount}</span>
         {/* decrease amount */}
-        <button className="amount-btn" onClick={() => console.log("decrease")}>
+        <button className="amount-btn" onClick={() => decrease(id)}>
           <FaChevronDown className="amount-icon" />
         </button>
       </div>
