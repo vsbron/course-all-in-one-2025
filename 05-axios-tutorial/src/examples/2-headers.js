@@ -1,22 +1,36 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const url = 'https://icanhazdadjoke.com/';
+const url = "https://icanhazdadjoke.com/";
 // Accept : 'application/json'
 
 const Headers = () => {
-  const [joke, setJoke] = useState('random dad joke');
+  // Create state value for joke
+  const [joke, setJoke] = useState("random dad joke");
 
+  // Create the dad joke fetching
   const fetchDadJoke = async () => {
-    console.log('fetch dad joke');
+    try {
+      // Fetching data with headers
+      const { data } = await axios(url, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      // Set the joke in the state
+      setJoke(data.joke);
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
+  // Returned JSX
   return (
-    <section className='section text-center'>
-      <button className='btn' onClick={fetchDadJoke}>
+    <section className="section text-center">
+      <button className="btn" onClick={fetchDadJoke}>
         random joke
       </button>
-      <p className='dad-joke'>{joke}</p>
+      <p className="dad-joke">{joke}</p>
     </section>
   );
 };
