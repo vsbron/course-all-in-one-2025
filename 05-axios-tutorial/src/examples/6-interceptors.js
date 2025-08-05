@@ -1,16 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-const url = 'https://www.course-api.com/react-store-products';
+import authFetch from "../axios/interceptors";
+
+// Setting the URL for fetch
+const url = "https://www.course-api.com/react-store-products";
 
 const Interceptors = () => {
+  // Create the fetch function
   const fetchData = async () => {
-    console.log('axios interceptors');
+    try {
+      const resp = await authFetch("react-store-products");
+      console.log(resp);
+    } catch (error) {}
   };
 
+  // useEffect that calls the fetch function
   useEffect(() => {
     fetchData();
   }, []);
 
-  return <h2 className='text-center'>interceptors</h2>;
+  // Returned JSX
+  return <h2 className="text-center">interceptors</h2>;
 };
+
 export default Interceptors;
