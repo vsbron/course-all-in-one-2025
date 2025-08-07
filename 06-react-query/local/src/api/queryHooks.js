@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 
-import axiosFetch from "./utils";
+import { getTasks } from "./functions";
 
 export function useTasks() {
   // Getting the query function
   const { data, isLoading, error } = useQuery({
     queryKey: ["tasks"],
-    queryFn: () => axiosFetch("/"),
+    queryFn: getTasks,
   });
 
   // Returning all the values
