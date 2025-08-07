@@ -6,8 +6,10 @@ function Items() {
   // Getting the data from the server
   const { data, isLoading, error } = useTasks();
 
-  // Guard clause
+  // Guard clauses
   if (isLoading) return <p style={{ marginTop: "1rem" }}>Loading...</p>;
+  if (error)
+    return <p style={{ marginTop: "1rem" }}>Error: {error.response.data}</p>;
 
   // Returned JSX
   return (
