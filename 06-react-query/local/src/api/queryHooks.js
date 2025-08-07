@@ -1,12 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getTasks } from "./functions";
+import { createTask, getTasks } from "./functions";
 
 export function useTasks() {
-  // Getting the query function
+  // Getting the data from query function
   const { data, isLoading, error } = useQuery({
     queryKey: ["tasks"],
     queryFn: getTasks,
+  });
+
+  // Returning all the values
+  return { data, isLoading, error };
+}
+
+export function useCreateTask(task) {
+  // Getting the data from query function
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["tasks", task],
+    queryFn: () => createTask(task),
   });
 
   // Returning all the values

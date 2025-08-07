@@ -1,10 +1,16 @@
 import SingleItem from "./SingleItem";
 
-import { useTasks } from "./api/queryHooks";
+import { useCreateTask, useTasks } from "./api/queryHooks";
 
 function Items() {
   // Getting the data from the server
   const { data, isLoading, error } = useTasks();
+
+  const {
+    data: data1,
+    isLoading: isLoading1,
+    error: error1,
+  } = useCreateTask({ title: "Test" });
 
   // Guard clauses
   if (isLoading) return <p style={{ marginTop: "1rem" }}>Loading...</p>;
