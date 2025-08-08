@@ -11,9 +11,10 @@ function Form() {
   });
 
   // Form submit handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createTask();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default behavior
+    await createTask(); // Create task
+    setNewItemName(""); // Reset the form field
   };
 
   // Returned JSX
