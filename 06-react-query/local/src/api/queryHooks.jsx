@@ -14,13 +14,13 @@ export function useTasks() {
   return { data, isLoading, error };
 }
 
-export function useCreateTask(task) {
+export function useCreateTask() {
   // Getting the query client from the hook
   const queryClient = useQueryClient();
 
   // Getting the data from query function
   const { mutate, isPending } = useMutation({
-    mutationFn: () => createTask(task),
+    mutationFn: (task) => createTask(task),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       toast.success("Task added");
@@ -34,13 +34,13 @@ export function useCreateTask(task) {
   return { mutate, isPending };
 }
 
-export function useEditTask(id, isDone) {
+export function useEditTask() {
   // Getting the query client from the hook
   const queryClient = useQueryClient();
 
   // Getting the data from query function
   const { mutate, isPending } = useMutation({
-    mutationFn: () => editTask(id, isDone),
+    mutationFn: ({ id, isDone }) => editTask({ id, isDone }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       toast.success("Task updated");
@@ -54,13 +54,13 @@ export function useEditTask(id, isDone) {
   return { mutate, isPending };
 }
 
-export function useDeleteTask(id) {
+export function useDeleteTask() {
   // Getting the query client from the hook
   const queryClient = useQueryClient();
 
   // Getting the data from query function
   const { mutate, isPending } = useMutation({
-    mutationFn: () => deleteTask(id),
+    mutationFn: (id) => deleteTask(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       toast.success("Task deleted");

@@ -2,11 +2,8 @@ import { useDeleteTask, useEditTask } from "./api/queryHooks";
 
 function SingleItem({ item }) {
   // Getting the data from the server
-  const { mutate: editTask, isPendingEdit } = useEditTask(
-    item.id,
-    !item.isDone
-  );
-  const { mutate: deleteTask, isPendingDelete } = useDeleteTask(item.id);
+  const { mutate: editTask, isPendingEdit } = useEditTask();
+  const { mutate: deleteTask, isPendingDelete } = useDeleteTask();
 
   // Returned JSX
   return (
@@ -14,7 +11,7 @@ function SingleItem({ item }) {
       <input
         type="checkbox"
         checked={item.isDone}
-        onChange={editTask}
+        onChange={() => editTask({ id: item.id, isDone: !item.isDone })}
         disabled={isPendingEdit}
       />
       <p
@@ -28,7 +25,7 @@ function SingleItem({ item }) {
       <button
         className="btn remove-btn"
         type="button"
-        onClick={deleteTask}
+        onClick={() => deleteTask(item.id)}
         disabled={isPendingDelete}
       >
         delete
