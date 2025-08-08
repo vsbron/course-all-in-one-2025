@@ -1,8 +1,12 @@
-import { useEditTask } from "./api/queryHooks";
+import { useDeleteTask, useEditTask } from "./api/queryHooks";
 
 function SingleItem({ item }) {
   // Getting the data from the server
-  const { mutate, isPending } = useEditTask(item.id, !item.isDone);
+  const { mutate: editTask, isPendingEdit } = useEditTask(
+    item.id,
+    !item.isDone
+  );
+  const { mutate: deleteTask, isPendingDelete } = useDeleteTask(item.id);
 
   // Returned JSX
   return (
@@ -10,8 +14,8 @@ function SingleItem({ item }) {
       <input
         type="checkbox"
         checked={item.isDone}
-        onChange={() => mutate()}
-        disabled={isPending}
+        onChange={editTask}
+        disabled={isPendingEdit}
       />
       <p
         style={{
@@ -24,7 +28,8 @@ function SingleItem({ item }) {
       <button
         className="btn remove-btn"
         type="button"
-        onClick={() => console.log("delete task")}
+        onClick={deleteTask}
+        disabled={isPendingDelete}
       >
         delete
       </button>

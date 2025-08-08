@@ -17,3 +17,9 @@ export const editTask = async (id, isDone) => {
   const { data } = await axiosFetch.patch(`/${id}`, { isDone: isDone });
   return data;
 };
+
+// DELETE function to delete the task
+export const deleteTask = async (id) => {
+  const { data } = await axiosFetch.delete(`/${id}`);
+  return data;
+};
