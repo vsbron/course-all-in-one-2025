@@ -1,6 +1,16 @@
+import Gallery from "./Gallery";
+import SearchForm from "./SearchForm";
+import ThemeToggle from "./ThemeToggle";
+
 function App() {
   // Returned JSX
-  return <h1>Unsplash Images Starter</h1>;
+  return (
+    <main>
+      <ThemeToggle />
+      <SearchForm />
+      <Gallery />
+    </main>
+  );
 }
 
 export default App;
