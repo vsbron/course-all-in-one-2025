@@ -1,6 +1,6 @@
 function SearchForm() {
   // Returned JSX
-  return <div></div>;
+  return <div>Search Form</div>;
 }
 
 export default SearchForm;

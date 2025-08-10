@@ -1,6 +1,6 @@
 function ThemeToggle() {
   // Returned JSX
-  return <div></div>;
+  return <div>Theme Toggle</div>;
 }
 
 export default ThemeToggle;

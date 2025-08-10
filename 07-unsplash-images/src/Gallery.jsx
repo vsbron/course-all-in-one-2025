@@ -1,6 +1,6 @@
 function Gallery() {
   // Returned JSX
-  return <div></div>;
+  return <div>Gallery</div>;
 }
 
 export default Gallery;
