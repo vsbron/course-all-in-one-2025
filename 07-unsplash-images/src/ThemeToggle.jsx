@@ -9,7 +9,7 @@ function ThemeToggle() {
   // Returned JSX
   return (
     <section className="toggle-container">
-      <button className="dark-toggle">
+      <button className="dark-toggle" onClick={toggleDarkTheme}>
         {isDarkTheme ? (
           <BsFillMoonFill className="toggle-icon" />
         ) : (

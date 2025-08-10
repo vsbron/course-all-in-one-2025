@@ -10,7 +10,11 @@ export const AppProvider = ({ children }) => {
 
   // Theme toggle function
   const toggleDarkTheme = () => {
+    // Invert the dark mode state
     setIsDarkTheme((dark) => !dark);
+
+    // Select body element and toggle class
+    document.body.classList.toggle("dark-theme", !isDarkTheme);
   };
 
   // Returned Provider
