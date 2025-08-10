@@ -9,8 +9,6 @@ function SearchForm() {
 
     // Guard clause
     if (!searchValue) return;
-
-    console.log(searchValue);
   };
 
   // Returned JSX
