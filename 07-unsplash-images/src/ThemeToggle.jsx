@@ -1,6 +1,23 @@
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+
+import { useAppContext } from "./AppContext";
+
 function ThemeToggle() {
+  // Get the dark theme and the toggle from the context
+  const { isDarkTheme, toggleDarkTheme } = useAppContext();
+
   // Returned JSX
-  return <div>Theme Toggle</div>;
+  return (
+    <section className="toggle-container">
+      <button className="dark-toggle">
+        {isDarkTheme ? (
+          <BsFillMoonFill className="toggle-icon" />
+        ) : (
+          <BsFillSunFill className="toggle-icon" />
+        )}
+      </button>
+    </section>
+  );
 }
 
 export default ThemeToggle;

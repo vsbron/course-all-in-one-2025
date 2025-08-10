@@ -1,12 +1,24 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 // Create context
 const AppContext = createContext();
 
 // Create provider
 export const AppProvider = ({ children }) => {
+  // Create state value for dark theme
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  // Theme toggle function
+  const toggleDarkTheme = () => {
+    setIsDarkTheme((dark) => !dark);
+  };
+
   // Returned Provider
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ isDarkTheme, toggleDarkTheme }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 // Create the custom hook
@@ -18,8 +30,8 @@ export const useAppContext = () => {
     throw new Error("useAppContext must be used within an AppProvider");
 
   // Destructuring the context for the values
-  const {} = context;
+  const { isDarkTheme, toggleDarkTheme } = context;
 
   // Return values
-  return {};
+  return { isDarkTheme, toggleDarkTheme };
 };
