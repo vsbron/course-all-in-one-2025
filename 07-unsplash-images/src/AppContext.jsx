@@ -5,13 +5,16 @@ const AppContext = createContext();
 
 // Checking whether user prefers dark mode or not
 const getInitialDarkMode = () => {
-  // Check the scheme theme
-  const prefersDarkMode = window.matchMedia(
-    "(prefers-color-scheme:dark)"
-  ).matches;
+  // Get the dark theme setting from local storage
+  const storedTheme = localStorage.getItem("darkTheme");
 
-  // Return the boolean
-  return prefersDarkMode;
+  // Check if there's a value and return the boolean accordingly
+  if (storedTheme !== null) {
+    return storedTheme === "true";
+  }
+
+  // If nothing in storage, return the preferred scheme
+  return window.matchMedia("(prefers-color-scheme: dark)").matches; // fallback
 };
 
 // Create provider
@@ -23,7 +26,10 @@ export const AppProvider = ({ children }) => {
   // Theme toggle function
   const toggleDarkTheme = () => {
     // Invert the dark mode state
-    setIsDarkTheme((dark) => !dark);
+    setIsDarkTheme((isDark) => !isDark);
+
+    // Set the local storage
+    localStorage.setItem("darkTheme", !isDarkTheme);
   };
 
   // useEffect function that toggles the dark mode based on the state
