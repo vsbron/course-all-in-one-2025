@@ -1,3 +1,5 @@
+import "./fetchProjects";
+
 function Projects() {
   // Returned JSX
   return (
