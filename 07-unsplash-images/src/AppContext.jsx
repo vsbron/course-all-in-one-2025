@@ -1,22 +1,35 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 // Create context
 const AppContext = createContext();
 
+// Checking whether user prefers dark mode or not
+const getInitialDarkMode = () => {
+  // Check the scheme theme
+  const prefersDarkMode = window.matchMedia(
+    "(prefers-color-scheme:dark)"
+  ).matches;
+
+  // Return the boolean
+  return prefersDarkMode;
+};
+
 // Create provider
 export const AppProvider = ({ children }) => {
   // Create state value for dark theme
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(getInitialDarkMode());
   const [searchTerm, setSearchTerm] = useState("Wrestling");
 
   // Theme toggle function
   const toggleDarkTheme = () => {
     // Invert the dark mode state
     setIsDarkTheme((dark) => !dark);
-
-    // Select body element and toggle class
-    document.body.classList.toggle("dark-theme", !isDarkTheme);
   };
+
+  // useEffect function that toggles the dark mode based on the state
+  useEffect(() => {
+    document.body.classList.toggle("dark-theme", isDarkTheme);
+  }, [isDarkTheme]);
 
   // Returned Provider
   return (
