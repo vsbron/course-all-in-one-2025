@@ -1,16 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useAppContext } from "./AppContext";
 
 // Set the URL for Unsplash
 const url = "https://api.unsplash.com/search/photos?client_id=";
 
 function Gallery() {
+  // Getting the searchTerm from context
+  const { searchTerm } = useAppContext();
+
   // Fetching the data
   const { isLoading, data, error } = useQuery({
-    queryKey: ["images"],
+    queryKey: ["images", searchTerm],
     queryFn: async () => {
       const result = await axios.get(
-        `${url}${import.meta.env.VITE_UNSPLASH_PUBLIC_KEY}&query=Wrestling`
+        `${url}${import.meta.env.VITE_UNSPLASH_PUBLIC_KEY}&query=${searchTerm}`
       );
       return result.data;
     },

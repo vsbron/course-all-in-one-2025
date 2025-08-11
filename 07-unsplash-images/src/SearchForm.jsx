@@ -1,4 +1,9 @@
+import { useAppContext } from "./AppContext";
+
 function SearchForm() {
+  // Getting the searchTerm setter from context
+  const { setSearchTerm } = useAppContext();
+
   // Form submit handler
   const submitHandler = (e) => {
     // Prevent default behavior
@@ -9,6 +14,9 @@ function SearchForm() {
 
     // Guard clause
     if (!searchValue) return;
+
+    // Setting the state
+    setSearchTerm(searchValue);
   };
 
   // Returned JSX

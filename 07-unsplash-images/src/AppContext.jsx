@@ -7,6 +7,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   // Create state value for dark theme
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("Wrestling");
 
   // Theme toggle function
   const toggleDarkTheme = () => {
@@ -19,7 +20,9 @@ export const AppProvider = ({ children }) => {
 
   // Returned Provider
   return (
-    <AppContext.Provider value={{ isDarkTheme, toggleDarkTheme }}>
+    <AppContext.Provider
+      value={{ isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm }}
+    >
       {children}
     </AppContext.Provider>
   );
@@ -34,8 +37,8 @@ export const useAppContext = () => {
     throw new Error("useAppContext must be used within an AppProvider");
 
   // Destructuring the context for the values
-  const { isDarkTheme, toggleDarkTheme } = context;
+  const { isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm } = context;
 
   // Return values
-  return { isDarkTheme, toggleDarkTheme };
+  return { isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm };
 };
