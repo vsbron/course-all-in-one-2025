@@ -17,13 +17,7 @@ const router = createBrowserRouter([
 
 function App() {
   // Returned JSX
-  return (
-    <RouterProvider router={router}>
-      <main>
-        <h1>MixMaster</h1>
-      </main>
-    </RouterProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
