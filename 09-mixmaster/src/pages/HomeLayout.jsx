@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
+import Navbar from "../Navbar";
 
 function HomeLayout() {
   // Returned JSX
   return (
-    <div>
-      <nav>Navbar</nav>
+    <>
+      <Navbar />
       <Outlet />
-    </div>
+    </>
   );
 }
 
