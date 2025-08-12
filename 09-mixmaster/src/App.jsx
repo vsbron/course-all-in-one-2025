@@ -11,8 +11,16 @@ import {
 
 // Create react router
 const router = createBrowserRouter([
-  { path: "/", element: <HomeLayout /> },
-  { path: "/about", element: <About /> },
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      { index: true, element: <Landing /> },
+      { path: "cocktail", element: <Cocktail /> },
+      { path: "newsletter", element: <Newsletter /> },
+      { path: "about", element: <About /> },
+    ],
+  },
 ]);
 
 function App() {
