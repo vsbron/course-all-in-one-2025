@@ -1,6 +1,13 @@
+import { Link } from "react-router-dom";
+
 function HomeLayout() {
   // Returned JSX
-  return <h1>HomeLayout</h1>;
+  return (
+    <div>
+      <h1>Home Layout</h1>
+      <Link to="/about">About</Link>
+    </div>
+  );
 }
 
 export default HomeLayout;
