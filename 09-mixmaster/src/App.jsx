@@ -1,4 +1,10 @@
-const App = () => {
-  return <h2>mixmaster starter</h2>;
-};
+function App() {
+  // Returned JSX
+  return (
+    <main>
+      <h1>Mixmaster</h1>
+    </main>
+  );
+}
+
 export default App;
