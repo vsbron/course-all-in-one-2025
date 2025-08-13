@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { loader as landingLoader } from "./pages/Landing";
+import { loader as cocktailLoader } from "./pages/Cocktail";
 
 import {
   About,
@@ -25,7 +26,12 @@ const router = createBrowserRouter([
         errorElement: <SinglePageError />,
         loader: landingLoader,
       },
-      { path: "cocktail/:id", element: <Cocktail /> },
+      {
+        path: "cocktail/:id",
+        element: <Cocktail />,
+        errorElement: <SinglePageError />,
+        loader: cocktailLoader,
+      },
       { path: "newsletter", element: <Newsletter /> },
       { path: "about", element: <About /> },
     ],
