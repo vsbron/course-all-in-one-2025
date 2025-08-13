@@ -9,6 +9,7 @@ import {
   Error,
   Newsletter,
   Cocktail,
+  SinglePageError,
 } from "./pages";
 
 // Create react router
@@ -18,7 +19,12 @@ const router = createBrowserRouter([
     element: <HomeLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <Landing />, loader: landingLoader },
+      {
+        index: true,
+        element: <Landing />,
+        errorElement: <SinglePageError />,
+        loader: landingLoader,
+      },
       { path: "cocktail", element: <Cocktail /> },
       { path: "newsletter", element: <Newsletter /> },
       { path: "about", element: <About /> },
