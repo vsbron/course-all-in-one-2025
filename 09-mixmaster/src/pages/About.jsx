@@ -17,6 +17,7 @@ function About() {
   );
 }
 
+// Styled components
 const StyledAbout = styled.div`
   p {
     line-height: 2;
