@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
+import CocktailList from "../components/CocktailList";
 
 // Fetch URL
 const cocktailFetchUrl =
@@ -21,10 +22,12 @@ function Landing() {
   // Get the data from the loader
   const { drinks, searchTerm } = useLoaderData();
 
-  console.log(drinks);
-
   // Returned JSX
-  return <h1>Landing</h1>;
+  return (
+    <>
+      <CocktailList drinks={drinks} />
+    </>
+  );
 }
 
 export default Landing;
