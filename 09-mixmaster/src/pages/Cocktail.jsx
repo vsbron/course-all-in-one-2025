@@ -30,6 +30,13 @@ function Cocktail() {
     strInstructions: instructions,
   } = data.drinks[0];
 
+  // Pull out the ingredients from the drink object
+  const validIngredients = Object.keys(data.drinks[0])
+    .filter(
+      (key) => key.startsWith("strIngredient") && data.drinks[0][key] !== null
+    )
+    .map((key) => data.drinks[0][key]);
+
   // Returned JSX
   return (
     <StyledCocktail>
@@ -53,6 +60,16 @@ function Cocktail() {
           </p>
           <p>
             <span className="drink-data">Glass: </span> {glass}
+          </p>
+          <p>
+            <span className="drink-data">Ingredients: </span>
+            {validIngredients.map((item, index) => (
+              <span className="ing" key={item}>
+                {item}
+                {index < validIngredients.length - 1 ? ", " : ""}
+              </span>
+            ))}
+            {/* {validIngredients.join(", ")} */}
           </p>
           <p>
             <span className="drink-data">Instructions: </span> {instructions}
