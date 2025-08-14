@@ -42,7 +42,7 @@ function Newsletter() {
           className="form-input"
           name="name"
           id="name"
-          defaultValue="John"
+          required
         />
       </div>
       {/* Last name */}
@@ -55,7 +55,7 @@ function Newsletter() {
           className="form-input"
           name="lastName"
           id="lastName"
-          defaultValue="Smith"
+          required
         />
       </div>
       {/* Email */}
@@ -68,6 +68,7 @@ function Newsletter() {
           className="form-input"
           name="email"
           id="email"
+          required
           defaultValue="test@test.com"
         />
       </div>
