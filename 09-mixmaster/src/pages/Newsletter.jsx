@@ -1,4 +1,4 @@
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useNavigation } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -26,6 +26,10 @@ export const action = async ({ request }) => {
 
 // The Newsletter component
 function Newsletter() {
+  // Get the navigation object from the hook
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   // Returned JSX
   return (
     <Form className="form" method="post">
@@ -76,8 +80,9 @@ function Newsletter() {
         type="submit"
         className="btn btn-block"
         style={{ marginTop: "0.5rem" }}
+        disabled={isSubmitting}
       >
-        Submit
+        {isSubmitting ? "Submitting" : "Submit"}
       </button>
     </Form>
   );
