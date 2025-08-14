@@ -20,6 +20,22 @@ function Cocktail() {
   // Get the data from the loader
   const { id, data } = useLoaderData();
 
+  // Guard clause
+  if (!data)
+    return (
+      <>
+        <h3>Could not find the drink</h3>
+        <p style={{ margin: "1.5rem 0 1rem" }}>
+          There was some kind of error. Please try again later...
+        </p>
+        <p>
+          <Link to="/" style={{ color: "var(--primary-500)" }}>
+            &laquo; Go back
+          </Link>
+        </p>
+      </>
+    );
+
   // Get the drink props from the fetched data
   const {
     strDrink: name,
@@ -63,13 +79,13 @@ function Cocktail() {
           </p>
           <p>
             <span className="drink-data">Ingredients: </span>
-            {validIngredients.map((item, index) => (
+            {/* {validIngredients.map((item, index) => (
               <span className="ing" key={item}>
                 {item}
                 {index < validIngredients.length - 1 ? ", " : ""}
               </span>
-            ))}
-            {/* {validIngredients.join(", ")} */}
+            ))} */}
+            {validIngredients.join(", ")}
           </p>
           <p>
             <span className="drink-data">Instructions: </span> {instructions}
