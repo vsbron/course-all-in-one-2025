@@ -11,12 +11,17 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  // Send the form data as the POST request
-  const response = await axios.post(newsletterUrl, data);
-  toast.success(response.data.msg);
+  try {
+    // Send the form data as the POST request
+    const response = await axios.post(newsletterUrl, data);
+    toast.success(response.data.msg);
 
-  // Return null
-  return redirect("/");
+    // Return null
+    return redirect("/");
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
 };
 
 // The Newsletter component
@@ -37,7 +42,6 @@ function Newsletter() {
           className="form-input"
           name="name"
           id="name"
-          required
           defaultValue="John"
         />
       </div>
@@ -51,7 +55,6 @@ function Newsletter() {
           className="form-input"
           name="lastName"
           id="lastName"
-          required
           defaultValue="Smith"
         />
       </div>
@@ -65,7 +68,6 @@ function Newsletter() {
           className="form-input"
           name="email"
           id="email"
-          required
           defaultValue="test@test.com"
         />
       </div>
