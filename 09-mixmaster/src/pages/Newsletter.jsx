@@ -1,14 +1,25 @@
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
+// The Newsletter fetch URL
+const newsletterUrl = "https://www.course-api.com/cocktails-newsletter";
+
+// Create the action form the submitted form
 export const action = async ({ request }) => {
   // Get the form data and convert it to object
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
+  // Send the form data as the POST request
+  const response = await axios.post(newsletterUrl, data);
+  toast.success(response.data.msg);
+
   // Return null
-  return null;
+  return redirect("/");
 };
 
+// The Newsletter component
 function Newsletter() {
   // Returned JSX
   return (
