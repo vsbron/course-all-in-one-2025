@@ -6,7 +6,7 @@ function Hero() {
   // Returned JSX
   return (
     <section className="bg-emerald-100 py-24">
-      <div className="mx-auto max-w-7xl px-8 grid md:grid-cols-2 items-center gap-8">
+      <div className="align-element grid md:grid-cols-2 items-center gap-8">
         <article>
           <h1 className="text-7xl font-bold tracing-wider mb-4">I'm John</h1>
           <p className="text-3xl text-slate-700 capitalize tracking-wide mb-2">
