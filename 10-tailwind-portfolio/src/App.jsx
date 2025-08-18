@@ -1,6 +1,12 @@
+import Navbar from "./components/Navbar";
+
 function App() {
   // Returned JSX
-  return <h1 className="text-red-300 text-3xl">WebDev portfolio</h1>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 }
 
 export default App;
