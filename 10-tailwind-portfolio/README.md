@@ -22,7 +22,7 @@ npx tailwindcss init -p
 ```js
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
@@ -61,7 +61,7 @@ App.jsx
 
 ```js
 const App = () => {
-  return <h1 className='text-7xl font-bold underline'>Tailwind project</h1>;
+  return <h1 className="text-7xl font-bold underline">Tailwind project</h1>;
 };
 export default App;
 ```
@@ -91,23 +91,23 @@ npm i nanoid react-icons
 - setup return and render in App.jsx
 
 ```js
-import { links } from '../data';
+import { links } from "../data";
 const Navbar = () => {
   return (
-    <nav className='bg-emerald-100 '>
-      <div className='mx-auto max-w-7xl  px-8 py-4 flex flex-col  sm:flex-row sm:gap-x-16 sm:items-center sm:py-8'>
-        <h2 className='text-3xl font-bold'>
+    <nav className="bg-emerald-100 ">
+      <div className="mx-auto max-w-7xl  px-8 py-4 flex flex-col  sm:flex-row sm:gap-x-16 sm:items-center sm:py-8">
+        <h2 className="text-3xl font-bold">
           Web
-          <span className='text-emerald-600'>Dev</span>
+          <span className="text-emerald-600">Dev</span>
         </h2>
-        <div className='flex gap-x-3 '>
+        <div className="flex gap-x-3 ">
           {links.map((link) => {
             const { id, href, text } = link;
             return (
               <a
                 key={id}
                 href={href}
-                className='capitalize text-lg tracking-wide hover:text-emerald-600 duration-300'
+                className="capitalize text-lg tracking-wide hover:text-emerald-600 duration-300"
               >
                 {text}
               </a>
@@ -128,35 +128,35 @@ export default Navbar;
 - render in App.jsx
 
 ```js
-import heroImg from '../assets/hero.svg';
-import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
+import heroImg from "../assets/hero.svg";
+import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 const Hero = () => {
   return (
-    <section className='bg-emerald-100 py-24  '>
-      <div className=' mx-auto max-w-7xl  px-8  grid  md:grid-cols-2 items-center gap-8'>
+    <section className="bg-emerald-100 py-24  ">
+      <div className=" mx-auto max-w-7xl  px-8  grid  md:grid-cols-2 items-center gap-8">
         <article>
-          <h1 className='text-7xl font-bold tracking-wider'>I'm John</h1>
-          <p className='mt-4 text-3xl text-slate-700 capitalize tracking-wide'>
+          <h1 className="text-7xl font-bold tracking-wider">I'm John</h1>
+          <p className="mt-4 text-3xl text-slate-700 capitalize tracking-wide">
             Front-end developer
           </p>
-          <p className='mt-2 text-lg text-slate-700 capitalize tracking-wide'>
+          <p className="mt-2 text-lg text-slate-700 capitalize tracking-wide">
             turning ideas into interactive reality
           </p>
-          <div className='flex gap-x-4 mt-4'>
-            <a href='#'>
-              <FaGithubSquare className='h-8 w-8 text-slate-500 hover:text-black duration-300' />
+          <div className="flex gap-x-4 mt-4">
+            <a href="#">
+              <FaGithubSquare className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
             </a>
-            <a href='#'>
-              <FaLinkedin className='h-8 w-8 text-slate-500 hover:text-black duration-300' />
+            <a href="#">
+              <FaLinkedin className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
             </a>
-            <a href='#'>
-              <FaTwitterSquare className='h-8 w-8 text-slate-500 hover:text-black duration-300' />
+            <a href="#">
+              <FaTwitterSquare className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
             </a>
           </div>
         </article>
 
-        <article className='hidden md:block '>
-          <img src={heroImg} className='h-80 lg:h-96' />
+        <article className="hidden md:block ">
+          <img src={heroImg} className="h-80 lg:h-96" />
         </article>
       </div>
     </section>
@@ -188,15 +188,15 @@ index.css
 Skills.jsx
 
 ```js
-import SkillsCard from './SkillsCard';
-import { skills } from '../data';
-import SectionTitle from './SectionTitle';
+import SkillsCard from "./SkillsCard";
+import { skills } from "../data";
+import SectionTitle from "./SectionTitle";
 const Skills = () => {
   return (
-    <section className='py-20 align-element' id='skills'>
-      <SectionTitle text='tech stack ' />
+    <section className="py-20 align-element" id="skills">
+      <SectionTitle text="tech stack " />
 
-      <div class=' py-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      <div class=" py-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skills.map((skill) => {
           return <SkillsCard key={skill.id} {...skill} />;
         })}
@@ -212,8 +212,8 @@ SectionTitle.jsx
 ```js
 const SectionTitle = ({ text }) => {
   return (
-    <div className='border-b border-gray-200 pb-5'>
-      <h2 className='text-3xl font-medium tracking-wider capitalize'>{text}</h2>
+    <div className="border-b border-gray-200 pb-5">
+      <h2 className="text-3xl font-medium tracking-wider capitalize">{text}</h2>
     </div>
   );
 };
@@ -226,9 +226,9 @@ SkillsCard.jsx
 const SkillsCard = ({ icon, title, text }) => {
   return (
     <article>
-      <span className='h-16 w-16'>{icon}</span>
-      <h4 className='mt-6 font-bold'>{title}</h4>
-      <p className='mt-2 text-slate-500'>{text}</p>
+      <span className="h-16 w-16">{icon}</span>
+      <h4 className="mt-6 font-bold">{title}</h4>
+      <p className="mt-2 text-slate-500">{text}</p>
     </article>
   );
 };
@@ -248,16 +248,16 @@ index.html
 - create About component and render in App.jsx
 
 ```js
-import aboutSvg from '../assets/about.svg';
-import SectionTitle from './SectionTitle';
+import aboutSvg from "../assets/about.svg";
+import SectionTitle from "./SectionTitle";
 const About = () => {
   return (
-    <section class='bg-white py-20' id='about'>
-      <div class='align-element grid  md:grid-cols-2 items-center gap-16'>
-        <img src={aboutSvg} className='w-full h-64' />
+    <section class="bg-white py-20" id="about">
+      <div class="align-element grid  md:grid-cols-2 items-center gap-16">
+        <img src={aboutSvg} className="w-full h-64" />
         <article>
-          <SectionTitle text='code and coffee' />
-          <p className='text-slate-600 mt-8 leading-loose'>
+          <SectionTitle text="code and coffee" />
+          <p className="text-slate-600 mt-8 leading-loose">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
             omnis exercitationem tempora, aliquid deleniti tenetur vero esse
             praesentium eaque dicta fugiat? Molestiae expedita, nulla neque
@@ -280,14 +280,14 @@ export default About;
 Projects.jsx
 
 ```js
-import ProjectsCard from './ProjectsCard';
-import { projects } from '../data';
-import SectionTitle from './SectionTitle';
+import ProjectsCard from "./ProjectsCard";
+import { projects } from "../data";
+import SectionTitle from "./SectionTitle";
 const Projects = () => {
   return (
-    <section className='py-20 align-element' id='projects'>
-      <SectionTitle text='web creations' />
-      <div className='py-16 grid lg:grid-cols-2 xl:grid-cols-3 gap-8'>
+    <section className="py-20 align-element" id="projects">
+      <SectionTitle text="web creations" />
+      <div className="py-16 grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {projects.map((project) => {
           return <ProjectsCard key={project.id} {...project} />;
         })}
@@ -301,25 +301,25 @@ export default Projects;
 ProjectsCard.jsx
 
 ```js
-import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
-import { TbWorldWww } from 'react-icons/tb';
+import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+import { TbWorldWww } from "react-icons/tb";
 const ProjectsCard = ({ url, img, github, title, text }) => {
   return (
-    <article className='bg-white rounded-lg shadow-md block hover:shadow-xl duration-300'>
+    <article className="bg-white rounded-lg shadow-md block hover:shadow-xl duration-300">
       <img
         src={img}
         alt={title}
-        className='w-full object-cover rounded-t-lg h-64 '
+        className="w-full object-cover rounded-t-lg h-64 "
       />
-      <div className='capitalize p-8'>
-        <h2 className='text-xl tracking-wide font-medium'>{title}</h2>
-        <p className='mt-4 text-slate-700 leading-loose'>{text}</p>
-        <div className='mt-4 flex gap-x-4'>
+      <div className="capitalize p-8">
+        <h2 className="text-xl tracking-wide font-medium">{title}</h2>
+        <p className="mt-4 text-slate-700 leading-loose">{text}</p>
+        <div className="mt-4 flex gap-x-4">
           <a href={url}>
-            <TbWorldWww className='h-8 w-8 text-slate-500 hover:text-black duration-300' />
+            <TbWorldWww className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
           </a>
           <a href={github}>
-            <FaGithubSquare className='h-8 w-8 text-slate-500 hover:text-black duration-300' />
+            <FaGithubSquare className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
           </a>
         </div>
       </div>

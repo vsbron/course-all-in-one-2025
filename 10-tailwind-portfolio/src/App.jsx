@@ -1,6 +1,6 @@
 function App() {
   // Returned JSX
-  return <h1 className="text-red-400 text-3xl">WebDev portfolio</h1>;
+  return <h1 className="text-red-300 text-3xl">WebDev portfolio</h1>;
 }
 
 export default App;
