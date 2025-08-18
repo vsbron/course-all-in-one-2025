@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -6,19 +7,34 @@ import styled from "styled-components";
 const singleCocktailUrl =
   "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
-// Create the loader for the component
-export const loader = async ({ params }) => {
-  // Fetch the data using the id
-  const { data } = await axios.get(`${singleCocktailUrl}${params.id}`);
-
-  // Return the data
-  return { id: params.id, data };
+// Query function that fetches and caches the drink query
+const singleCocktailQuery = (id) => {
+  return {
+    queryKey: ["cocktail", id],
+    queryFn: async () => {
+      // Fetch the actual data
+      const { data } = await axios.get(`${singleCocktailUrl}${id}`);
+      return data;
+    },
+  };
 };
+
+// Create the loader for the component
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    // Pre-fetch the data for initial load
+    queryClient.ensureQueryData(singleCocktailQuery(params));
+
+    // Return the id
+    return { id: params.id };
+  };
 
 // The Cocktail component
 function Cocktail() {
-  // Get the data from the loader
-  const { id, data } = useLoaderData();
+  // Get the data from the loader and react query
+  const { id } = useLoaderData();
+  const { data } = useQuery(singleCocktailQuery(id));
 
   // Guard clause
   if (!data)
