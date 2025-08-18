@@ -9,8 +9,10 @@ const cocktailFetchUrl =
   "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
 // Create the loader for the component
-export const loader = async () => {
-  const searchTerm = "margarita";
+export const loader = async ({ request }) => {
+  // Getting the URL and the value of search
+  const url = new URL(request.url);
+  const searchTerm = url.searchParams.get("search") || "";
 
   // Fetch the data
   const response = await axios.get(`${cocktailFetchUrl}${searchTerm}`);
@@ -27,7 +29,7 @@ function Landing() {
   // Returned JSX
   return (
     <>
-      <SearchForm />
+      <SearchForm searchTerm={searchTerm} />
       <CocktailList drinks={drinks} />
     </>
   );
