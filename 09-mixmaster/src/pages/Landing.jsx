@@ -1,6 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
+
 import CocktailList from "../components/CocktailList";
+import SearchForm from "../components/SearchForm";
 
 // Fetch URL
 const cocktailFetchUrl =
@@ -25,6 +27,7 @@ function Landing() {
   // Returned JSX
   return (
     <>
+      <SearchForm />
       <CocktailList drinks={drinks} />
     </>
   );
