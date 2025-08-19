@@ -1,7 +1,7 @@
 import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 
-function ProjectsCard({ img, url, github, title, text }) {
+function ProjectsCard({ img, url, github, linkedin, twitter, title, text }) {
   // Returned JSX
   return (
     <article className="bg-white rounded-lg shadow-md hover:shadow-xl duration-300">
@@ -17,9 +17,21 @@ function ProjectsCard({ img, url, github, title, text }) {
           <a href={url}>
             <TbWorldWww className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
           </a>
-          <a href={github}>
-            <FaGithubSquare className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
-          </a>
+          {github && (
+            <a href={github}>
+              <FaGithubSquare className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
+            </a>
+          )}
+          {linkedin && (
+            <a href={linkedin}>
+              <FaLinkedin className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
+            </a>
+          )}
+          {twitter && (
+            <a href={twitter}>
+              <FaTwitterSquare className="h-8 w-8 text-slate-500 hover:text-black duration-300" />
+            </a>
+          )}
         </div>
       </div>
     </article>
