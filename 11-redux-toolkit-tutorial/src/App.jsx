@@ -1,6 +1,12 @@
+import Navbar from "./components/Navbar";
+
 function App() {
   // Returned JSX
-  return <div>Redux Toolkit Tutorial</div>;
+  return (
+    <main>
+      <Navbar />
+    </main>
+  );
 }
 
 export default App;
