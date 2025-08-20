@@ -8,6 +8,7 @@ import Modal from "./components/Modal";
 
 function App() {
   // Get the cart Items from redux store and dispatch function
+  const { isOpen } = useSelector((store) => store.modal);
   const { cartItems } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ function App() {
   // Returned JSX
   return (
     <main>
-      <Modal />
+      {isOpen && <Modal />}
       <Navbar />
       <CartContainer />
     </main>
