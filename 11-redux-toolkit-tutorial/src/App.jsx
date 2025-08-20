@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import CartContainer from "./components/CartContainer";
 import Navbar from "./components/Navbar";
 import { calculateTotals } from "./features/cart/cartSlice";
+import Modal from "./components/Modal";
 
 function App() {
   // Get the cart Items from redux store and dispatch function
@@ -18,6 +19,7 @@ function App() {
   // Returned JSX
   return (
     <main>
+      <Modal />
       <Navbar />
       <CartContainer />
     </main>
