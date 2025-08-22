@@ -1,13 +1,13 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 
 import NavLinks from "./NavLinks";
-import { useState } from "react";
 
 function Navbar() {
   // Set state value for theme
-  const [theme, setTheme] = useState(false);
+  const [_, setTheme] = useState(false);
 
   // Theme toggle handle
   const handleTheme = () => {
