@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
+import { Header } from "../components";
 
 function HomeLayout() {
   // Returned JSX
   return (
     <>
-      <nav>
-        <span className="text-4xl text-primary">Comfy</span>
-      </nav>
+      <Header />
       <section className="align-element py-20 btn-primary">
         <Outlet />
       </section>
