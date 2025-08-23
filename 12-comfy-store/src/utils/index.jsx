@@ -23,3 +23,15 @@ export const formatPrice = (price) => {
   // Return the new value
   return dollarsAmount;
 };
+
+// Helper function to generate amount options
+export const generateAmountOptions = (number) => {
+  return Array.from({ length: number }, (_, index) => {
+    const amount = index + 1;
+    return (
+      <option key={index} value={amount}>
+        {amount}
+      </option>
+    );
+  });
+};

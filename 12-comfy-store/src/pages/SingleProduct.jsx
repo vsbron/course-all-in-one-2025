@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 
-import { customFetch, formatPrice } from "../utils";
+import { useState } from "react";
+import { customFetch, formatPrice, generateAmountOptions } from "../utils";
 
 // Set up the loader
 // eslint-disable-next-line react-refresh/only-export-components
@@ -16,6 +17,15 @@ function SingleProduct() {
   const { image, title, price, description, colors, company } =
     product.attributes;
   const dollarsAmount = formatPrice(price);
+
+  // Set the state value for product color and amount
+  const [productColor, setProductColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  // Change amount handler
+  const handleAmount = (e) => {
+    setAmount(parseInt(e.target.value));
+  };
 
   // Returned JSX
   return (
@@ -45,7 +55,51 @@ function SingleProduct() {
             {company}
           </h4>
           <p className="text-xl mb-6">{dollarsAmount}</p>
-          <p className="leading-8">{description}</p>
+          <p className="leading-8 mb-6">{description}</p>
+          {/* COLORS */}
+          <div className="mb-4">
+            <h4 className="font-medium tracking-wider capitalize mb-2">
+              Colors
+            </h4>
+            <div>
+              {colors.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  className={`badge w-6 h-6 mr-2 cursor-pointer ${
+                    color === productColor && "border-2 border-secondary"
+                  }`}
+                  style={{ background: color }}
+                  onClick={() => setProductColor(color)}
+                ></button>
+              ))}
+            </div>
+          </div>
+          {/* AMOUNT */}
+          <div className="w-full max-w-xs mb-10">
+            <label className="label" htmlFor="amount">
+              <h4 className="font-medium tracking-wider capitalize text-base-content mb-2">
+                Amount
+              </h4>
+            </label>
+            <select
+              id="amount"
+              className="select select-secondary select-bordered select-md"
+              value={amount}
+              onChange={handleAmount}
+            >
+              {generateAmountOptions(3)}
+            </select>
+          </div>
+          {/* CART BUTTON */}
+          <div>
+            <button
+              className="btn btn-secondary btn-md uppercase"
+              onClick={() => console.log("Added to bag")}
+            >
+              Add to Bag
+            </button>
+          </div>
         </div>
       </div>
     </section>
