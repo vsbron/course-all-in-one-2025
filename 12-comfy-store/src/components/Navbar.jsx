@@ -8,8 +8,13 @@ import NavLinks from "./NavLinks";
 // Set up the themes object
 const themes = { dracula: "dracula", winter: "winter" };
 
-// Get the saved theme to local storage
-const getTheme = () => localStorage.getItem("theme") || "winter";
+// Get the saved theme from local storage or assign the preferred OS theme
+const getTheme = () => {
+  const defTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dracula"
+    : "winter";
+  return localStorage.getItem("theme") || defTheme;
+};
 
 // The component
 function Navbar() {
