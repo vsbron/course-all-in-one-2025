@@ -6,9 +6,8 @@ import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";
 
 function ProductsContainer() {
-  // Get the meta data from the loader hook
+  // Get the meta data and products amount from the loader hook
   const { meta } = useLoaderData();
-  console.log(meta);
   const totalProducts = meta.pagination.total;
 
   // Set state value for the products layout
