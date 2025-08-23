@@ -1,6 +1,6 @@
 import { Form, useLoaderData, Link } from "react-router-dom";
 
-import { FormInput, FormSelect } from "./";
+import { FormCheckbox, FormInput, FormRange, FormSelect } from "./";
 
 function Filters() {
   // Get the meta data from the loader hook
@@ -37,6 +37,10 @@ function Filters() {
         list={["A-Z", "Z-A", "High price to Low", "Low price to High"]}
         size="select-sm"
       />
+      {/* PRICE */}
+      <FormRange label="select price" name="price" size="range-sm" />
+      {/* SHIPPING */}
+      <FormCheckbox name="shipping" label="Free shipping" size="checkbox-sm" />
       {/* BUTTONS */}
       <button type="submit" className="btn btn-primary btn-sm uppercase">
         Search
