@@ -1,6 +1,12 @@
+import { Hero } from "../components";
+
 function Landing() {
   // Returned JSX
-  return <div>Landing</div>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }
 
 export default Landing;
