@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 // Setting the initial state
 const defaultState = {
@@ -17,7 +17,22 @@ const cartSlice = createSlice({
   initialState: defaultState,
   reducers: {
     addItem: (state, action) => {
-      state.cartItems = [...state.cartItems, action.payload];
+      // Destructure the product
+      const { product } = action.payload;
+
+      // Find the item, increase amount if found, add item if not
+      const item = state.cartItems.find((i) => i.cartID === product.cartID);
+      item ? (item.amount += product.amount) : state.cartItems.push(product);
+
+      // Update cart stats
+      state.numItemsInCart += product.amount;
+      state.cartTotal += product.amount * product.price;
+      state.tax = 0.1 * state.cartTotal;
+      state.orderTotal = state.cartTotal + state.shipping + state.tax;
+
+      // Save cart in the local storage
+      localStorage.setItem("cart", JSON.stringify(state));
+      toast.success("Item added to cart");
     },
     editItem: (state, action) => {
       console.log(action.payload);

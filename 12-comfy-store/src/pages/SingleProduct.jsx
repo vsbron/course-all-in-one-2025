@@ -35,7 +35,7 @@ function SingleProduct() {
 
   // Set the new product object
   const cartProduct = {
-    cartId: product.id + productColor,
+    cartID: product.id + productColor,
     productID: product.id,
     image,
     title,
