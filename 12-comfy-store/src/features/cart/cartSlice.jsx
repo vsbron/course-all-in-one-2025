@@ -11,10 +11,15 @@ const defaultState = {
   orderTotal: 0,
 };
 
+// Function that sets the cart on page load
+const getCartFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("cart")) || defaultState;
+};
+
 // Create the cart slice
 const cartSlice = createSlice({
   name: "cart",
-  initialState: defaultState,
+  initialState: getCartFromLocalStorage(),
   reducers: {
     addItem: (state, action) => {
       // Destructure the product
@@ -27,21 +32,41 @@ const cartSlice = createSlice({
       // Update cart stats
       state.numItemsInCart += product.amount;
       state.cartTotal += product.amount * product.price;
+
+      // Call the helper reducer
+      cartSlice.caseReducers.calculateTotals(state);
+
+      // Display the toast message
+      toast.success("Item added to cart");
+    },
+    editItem: (state, action) => {
+      console.log(action.payload);
+
+      // Call the helper reducer
+      cartSlice.caseReducers.calculateTotals(state);
+
+      // Display the toast message
+      toast.success("Item edited successfully");
+    },
+    removeItem: (state, action) => {
+      console.log(action.payload);
+
+      // Call the helper reducer
+      cartSlice.caseReducers.calculateTotals(state);
+
+      // Display the toast message
+      toast.success("Item was removed from the cart");
+    },
+    clearCart: (state) => {
+      console.log(state);
+    },
+    calculateTotals: (state) => {
+      // Calculate tax and total amount
       state.tax = 0.1 * state.cartTotal;
       state.orderTotal = state.cartTotal + state.shipping + state.tax;
 
       // Save cart in the local storage
       localStorage.setItem("cart", JSON.stringify(state));
-      toast.success("Item added to cart");
-    },
-    editItem: (state, action) => {
-      console.log(action.payload);
-    },
-    removeItem: (state, action) => {
-      console.log(action.payload);
-    },
-    clearCart: (state) => {
-      console.log(state);
     },
   },
 });
