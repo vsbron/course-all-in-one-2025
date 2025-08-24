@@ -8,9 +8,15 @@ function PaginationContainer() {
   // Construct the array with page numbers
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
 
+  // Get the query params, pathname and navigate object
+  const { search, pathname } = useLocation();
+  const navigate = useNavigate();
+
   // Page change handler function
   const handlePageChange = (pageNumber) => {
-    console.log(pageNumber);
+    const searchParams = new URLSearchParams(search);
+    searchParams.set("page", pageNumber);
+    navigate(`${pathname}?${searchParams.toString()}`);
   };
 
   // Guard clause
@@ -23,7 +29,8 @@ function PaginationContainer() {
         {/* PREV */}
         <button
           className="btn btn-xs sm:btn-md join-item uppercase bg-base-200 hover:bg-base-300 border-none"
-          onClick={() => handlePageChange("prev")}
+          onClick={() => handlePageChange(page - 1)}
+          disabled={page === 1}
         >
           Prev
         </button>
@@ -42,7 +49,8 @@ function PaginationContainer() {
         {/* NEXT */}
         <button
           className="btn btn-xs sm:btn-md join-item uppercase bg-base-200 hover:bg-base-300 border-none"
-          onClick={() => handlePageChange("next")}
+          onClick={() => handlePageChange(page + 1)}
+          disabled={page === pageCount}
         >
           Next
         </button>
