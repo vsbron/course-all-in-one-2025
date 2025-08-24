@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["backroads"]
+  "cSpell.words": ["backroads"],
+  "postman.settings.dotenv-detection-notification-visibility": false
 }

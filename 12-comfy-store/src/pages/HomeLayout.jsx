@@ -1,14 +1,18 @@
-import { Outlet } from "react-router-dom";
-import { Header, Navbar } from "../components";
+import { Outlet, useNavigation } from "react-router-dom";
+import { Header, Navbar, Loading } from "../components";
 
 function HomeLayout() {
+  const navigation = useNavigation();
+
+  const isPageLoading = navigation.state === "loading";
+
   // Returned JSX
   return (
     <>
       <Header />
       <Navbar />
       <section className="align-element py-20 btn-primary">
-        <Outlet />
+        {isPageLoading ? <Loading /> : <Outlet />}
       </section>
     </>
   );
