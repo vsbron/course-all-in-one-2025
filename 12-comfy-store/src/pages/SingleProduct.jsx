@@ -1,6 +1,9 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useLoaderData } from "react-router-dom";
 
-import { useState } from "react";
+import { addItem } from "../features/cart/cartSlice";
+
 import { customFetch, formatPrice, generateAmountOptions } from "../utils";
 
 // Set up the loader
@@ -25,6 +28,26 @@ function SingleProduct() {
   // Change amount handler
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
+  };
+
+  // Get the dispatch function
+  const dispatch = useDispatch();
+
+  // Set the new product object
+  const cartProduct = {
+    cartId: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    company,
+    productColor,
+    amount,
+  };
+
+  // Set a function that calls dispatch and passes a new product
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
   };
 
   // Returned JSX
@@ -95,7 +118,7 @@ function SingleProduct() {
           <div>
             <button
               className="btn btn-secondary btn-md uppercase"
-              onClick={() => console.log("Added to bag")}
+              onClick={addToCart}
             >
               Add to Bag
             </button>
