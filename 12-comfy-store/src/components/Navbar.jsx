@@ -1,40 +1,23 @@
-import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 
 import NavLinks from "./NavLinks";
-import { useSelector } from "react-redux";
-
-// Set up the themes object
-const themes = { dracula: "dracula", winter: "winter" };
-
-// Get the saved theme from local storage or assign the preferred OS theme
-const getTheme = () => {
-  const defTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dracula"
-    : "winter";
-  return localStorage.getItem("theme") || defTheme;
-};
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../features/user/userSlice";
 
 // The component
 function Navbar() {
-  // Set state value for theme
-  const [theme, setTheme] = useState(getTheme);
+  // Get the dispatch function from the hook
+  const dispatch = useDispatch();
+
+  // Get the current theme value of user
+  const { theme } = useSelector((state) => state.user);
 
   // Theme toggle handle
   const handleTheme = () => {
-    // Get the themes value and set the new theme
-    const { winter, dracula } = themes;
-    const newTheme = theme === winter ? dracula : winter;
-    setTheme(newTheme);
+    dispatch(toggleTheme());
   };
-
-  // useEffect function that applies theme to html and saves it to local storage
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
 
   // Get the items num from the store
   const numItemsInCart = useSelector((state) => state.cart.numItemsInCart);
