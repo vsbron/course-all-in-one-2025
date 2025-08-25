@@ -40,16 +40,36 @@ const cartSlice = createSlice({
       toast.success("Item added to cart");
     },
     editItem: (state, action) => {
-      console.log(action.payload);
+      // Get the id and the amount from the payload and get the product
+      const { cartID, amount } = action.payload;
+      const item = state.cartItems.find((i) => i.cartID === cartID);
+
+      // Update the items amount in the cart
+      state.numItemsInCart += amount - item.amount;
+      state.cartTotal += item.price * (amount - item.amount);
+
+      // Update the amount after the calculations
+      item.amount = amount;
 
       // Call the helper reducer
       cartSlice.caseReducers.calculateTotals(state);
 
       // Display the toast message
-      toast.success("Item edited successfully");
+      toast.success("Cart updated");
     },
     removeItem: (state, action) => {
-      console.log(action.payload);
+      // Get the item's id and the product
+      const { cartID } = action.payload;
+      const product = state.cartItems.find((i) => i.cartID === cartID);
+
+      // Filter out deleted product and update the cart
+      state.cartItems = state.cartItems.filter(
+        (item) => item.cartID !== cartID
+      );
+
+      // Update cart stats
+      state.numItemsInCart -= product.amount;
+      state.cartTotal -= product.amount * product.price;
 
       // Call the helper reducer
       cartSlice.caseReducers.calculateTotals(state);
@@ -57,8 +77,15 @@ const cartSlice = createSlice({
       // Display the toast message
       toast.success("Item was removed from the cart");
     },
-    clearCart: (state) => {
-      console.log(state);
+    clearCart: () => {
+      // Set the default state to the local storage
+      localStorage.setItem("cart", JSON.stringify(defaultState));
+
+      // Display the toast message
+      toast.success("Cart was cleared");
+
+      // Reset the cart
+      return defaultState;
     },
     calculateTotals: (state) => {
       // Calculate tax and total amount
