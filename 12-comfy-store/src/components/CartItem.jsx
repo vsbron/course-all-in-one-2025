@@ -11,6 +11,14 @@ function CartItem({ cartItem }) {
   // Get the dispatch function from the hook
   const dispatch = useDispatch();
 
+  // Create handler functions
+  const handleEditAmount = (e) => {
+    dispatch(editItem({ cartID, amount: parseInt(e.target.value) }));
+  };
+  const handleRemoveItem = () => {
+    dispatch(removeItem({ cartID }));
+  };
+
   // Returned JSX
   return (
     <article
@@ -40,7 +48,7 @@ function CartItem({ cartItem }) {
           ></span>
         </p>
       </div>
-      <div className="sm:ml-24">
+      <div className="sm:ml-12">
         {/* AMOUNT */}
         <div className="form-control max-w-xs mb-2">
           <label htmlFor="amount" className="label p-0">
@@ -51,12 +59,18 @@ function CartItem({ cartItem }) {
             id="amount"
             className="mt-2 select select-base select-bordered select-xs max-w-[4rem]"
             value={amount}
+            onChange={handleEditAmount}
           >
-            {generateAmountOptions(amount + 5)}
+            {generateAmountOptions(9)}
           </select>
         </div>
         {/* REMOVE */}
-        <button className="link link-primary link-hover text-sm">Remove</button>
+        <button
+          className="link link-primary link-hover text-sm"
+          onClick={handleRemoveItem}
+        >
+          Remove
+        </button>
       </div>
       {/* PRICE */}
       <p className="font-medium sm:ml-auto">{formatPrice(price)}</p>
