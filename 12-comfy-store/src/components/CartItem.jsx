@@ -1,6 +1,67 @@
-function CartItem() {
+import { useDispatch } from "react-redux";
+
+import { removeItem, editItem } from "../features/cart/cartSlice";
+import { formatPrice, generateAmountOptions } from "../utils";
+
+function CartItem({ cartItem }) {
+  // Destructuring the item
+  const { cartID, title, price, image, amount, company, productColor } =
+    cartItem;
+
+  // Get the dispatch function from the hook
+  const dispatch = useDispatch();
+
   // Returned JSX
-  return <h1 className="text-3xl">CartItem</h1>;
+  return (
+    <article
+      key={cartID}
+      className="mb-12 flex flex-col gap-y-4 sm:flex-row flex-wrap border-b border-base-300 pb-6 last:border-b-0"
+    >
+      {/* IMAGE */}
+      <img
+        src={image}
+        alt={title}
+        className="h-24 w-24 rounded-lg sm:h-32 sm:w-32 object-cover"
+      />
+      {/* INFO */}
+      <div className="sm:ml-16 sm:w-48">
+        {/* TITLE */}
+        <h3 className="capitalize font-medium mb-2">{title}</h3>
+        {/* COMPANY */}
+        <h4 className="capitalize text-sm text-neutral-content mb-4">
+          {company}
+        </h4>
+        {/* COLOR */}
+        <p className="text-sm capitalize flex items-center gap-x-2">
+          Color:{" "}
+          <span
+            className="badge badge-sm"
+            style={{ backgroundColor: productColor }}
+          ></span>
+        </p>
+      </div>
+      <div className="sm:ml-24">
+        {/* AMOUNT */}
+        <div className="form-control max-w-xs mb-2">
+          <label htmlFor="amount" className="label p-0">
+            <span className="label-text">Amount</span>
+          </label>
+          <select
+            name="amount"
+            id="amount"
+            className="mt-2 select select-base select-bordered select-xs max-w-[4rem]"
+            value={amount}
+          >
+            {generateAmountOptions(amount + 5)}
+          </select>
+        </div>
+        {/* REMOVE */}
+        <button className="link link-primary link-hover text-sm">Remove</button>
+      </div>
+      {/* PRICE */}
+      <p className="font-medium sm:ml-auto">{formatPrice(price)}</p>
+    </article>
+  );
 }
 
 export default CartItem;
