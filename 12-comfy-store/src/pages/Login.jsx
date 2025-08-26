@@ -1,14 +1,34 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { FormInput, SubmitBtn } from "../components";
+import { customFetch } from "../utils";
+
+import { loginUser } from "../features/user/userSlice";
 
 // Create the action function
 // eslint-disable-next-line react-refresh/only-export-components
-export const action = (store) => async () => {
-  console.log(store);
+export const action =
+  (store) =>
+  async ({ request }) => {
+    // Get the form data
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
 
-  return null;
-};
+    // Send a post request to log in
+    try {
+      const response = await customFetch.post("/auth/local", data);
+      store.dispatch(loginUser(response.data));
+      toast.success("Logged in successfully");
+      return redirect("/");
+    } catch (err) {
+      const errorMessage =
+        err?.response?.data?.error?.message ||
+        "Please double-check your credentials";
+      toast.error(errorMessage);
+      return null;
+    }
+  };
 
 // The Login component
 function Login() {
