@@ -1,11 +1,11 @@
 import { Form, Link, redirect, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 import { FormInput, SubmitBtn } from "../components";
 import { customFetch } from "../utils";
 
 import { loginUser } from "../features/user/userSlice";
-import { useDispatch } from "react-redux";
 
 // Create the action function
 // eslint-disable-next-line react-refresh/only-export-components
