@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { CartItemsList, SectionTitle, CartTotals } from "../components";
 
 function Cart() {
-  // Temp user logic
-  const user = null;
+  // Get the user object from redux
+  const { user } = useSelector((state) => state.user);
 
   // Get the total number of items in the cart
   const numItemsInCart = useSelector((state) => state.cart.numItemsInCart);
