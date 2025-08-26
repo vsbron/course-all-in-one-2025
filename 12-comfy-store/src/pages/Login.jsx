@@ -1,10 +1,11 @@
-import { Form, Link, redirect } from "react-router-dom";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { FormInput, SubmitBtn } from "../components";
 import { customFetch } from "../utils";
 
 import { loginUser } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
 
 // Create the action function
 // eslint-disable-next-line react-refresh/only-export-components
@@ -32,6 +33,31 @@ export const action =
 
 // The Login component
 function Login() {
+  // Get the dispatch and navigate functions from the hooks
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Handle the guest user log in
+  const handleGuestUser = async () => {
+    try {
+      // Send a post response with hard coded values
+      const response = await customFetch.post("/auth/local", {
+        identifier: "test@test.com",
+        password: "secret",
+      });
+
+      // Dispatch the logInUser reducer
+      dispatch(loginUser(response.data));
+
+      // Display success message and redirect user to the home page
+      toast.success("Welcome guest user");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      toast.err("Guest user login error. Please try again");
+    }
+  };
+
   // Returned JSX
   return (
     <section className="h-screen grid place-items-center">
@@ -55,7 +81,11 @@ function Login() {
         <div className="mt-4">
           <SubmitBtn text="Login" />
         </div>
-        <button type="button" className="btn btn-secondary btn-block">
+        <button
+          type="button"
+          className="btn btn-secondary btn-block"
+          onClick={handleGuestUser}
+        >
           Guest User
         </button>
         <p className="text-center">
