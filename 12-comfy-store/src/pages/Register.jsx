@@ -1,7 +1,8 @@
-import { FormInput, SubmitBtn } from "../components";
 import { Form, Link, redirect } from "react-router-dom";
-import { customFetch } from "../utils";
 import { toast } from "react-toastify";
+
+import { FormInput, SubmitBtn } from "../components";
+import { customFetch } from "../utils";
 
 // Create the action function
 // eslint-disable-next-line react-refresh/only-export-components
@@ -12,7 +13,7 @@ export const action = async ({ request }) => {
 
   try {
     // Send a post request to register
-    const response = await customFetch.post("/auth/local/register", data);
+    const _ = await customFetch.post("/auth/local/register", data);
     toast.success("Account created successfully");
     return redirect("/login");
   } catch (e) {
