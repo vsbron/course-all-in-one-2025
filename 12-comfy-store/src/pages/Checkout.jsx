@@ -1,6 +1,22 @@
 import { useSelector } from "react-redux";
 
 import { CheckoutForm, SectionTitle, CartTotals } from "../components";
+import { toast } from "react-toastify";
+import { redirect } from "react-router-dom";
+
+// Set the loader
+// eslint-disable-next-line react-refresh/only-export-components
+export const loader = (store) => () => {
+  // Get the user info from the store
+  const user = store.getState().user.user;
+
+  // If no user redirect to login page
+  if (!user) {
+    toast.warn("You must be logged in to checkout");
+    return redirect("/login");
+  }
+  return null;
+};
 
 function Checkout() {
   // Get the total number of items in the cart
