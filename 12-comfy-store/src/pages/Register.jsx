@@ -1,6 +1,13 @@
 import { FormInput, SubmitBtn } from "../components";
 import { Form, Link } from "react-router-dom";
 
+// Create the action function
+// eslint-disable-next-line react-refresh/only-export-components
+export const action = async () => {
+  return null;
+};
+
+// The Register component
 function Register() {
   // Returned JSX
   return (
