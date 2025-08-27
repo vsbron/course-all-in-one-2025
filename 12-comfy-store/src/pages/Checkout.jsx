@@ -1,8 +1,8 @@
+import { redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import { CheckoutForm, SectionTitle, CartTotals } from "../components";
-import { toast } from "react-toastify";
-import { redirect } from "react-router-dom";
 
 // Set the loader
 // eslint-disable-next-line react-refresh/only-export-components
