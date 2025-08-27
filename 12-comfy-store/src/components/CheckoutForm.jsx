@@ -8,10 +8,53 @@ import { customFetch, formatPrice } from "../utils";
 
 // Set up the action
 // eslint-disable-next-line react-refresh/only-export-components
-export const action = (store) => async () => {
-  console.log(store);
-  return null;
-};
+export const action =
+  (store) =>
+  async ({ request }) => {
+    // Get the form data and pull the name and the address
+    const formData = await request.formData();
+    const { name, address } = Object.fromEntries(formData);
+
+    // Get the user and cart constants
+    const user = store.getState().user.user;
+    const { cartItems, orderTotal, numItemsInCart } = store.getState().cart;
+
+    // Build the object for sending the order
+    const info = {
+      address,
+      cartItems,
+      chargeTotal: orderTotal,
+      name,
+      numItemsInCart,
+      orderTotal: formatPrice(orderTotal),
+    };
+
+    try {
+      const response = await customFetch.post(
+        "/orders",
+        { data: info },
+        { headers: { Authorization: `Bearer ${user.token}` } }
+      );
+
+      // Clear the cart and display the success message
+      store.dispatch(clearCart());
+      toast.success("Order placed successfully");
+
+      console.log(response);
+
+      // Redirect user to orders
+      return redirect("/orders");
+    } catch (err) {
+      console.log(err);
+      // If not, generate error message and toast it
+      const errorMessage =
+        err?.response?.data?.error?.message ||
+        "There was an error placing your order";
+      toast.error(errorMessage);
+    }
+
+    return info;
+  };
 
 // The CheckoutForm component
 function CheckoutForm() {
