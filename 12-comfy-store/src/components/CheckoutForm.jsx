@@ -30,7 +30,7 @@ export const action =
     };
 
     try {
-      const response = await customFetch.post(
+      const _ = await customFetch.post(
         "/orders",
         { data: info },
         { headers: { Authorization: `Bearer ${user.token}` } }
@@ -39,13 +39,9 @@ export const action =
       // Clear the cart and display the success message
       store.dispatch(clearCart());
       toast.success("Order placed successfully");
-
-      console.log(response);
-
       // Redirect user to orders
       return redirect("/orders");
     } catch (err) {
-      console.log(err);
       // If not, generate error message and toast it
       const errorMessage =
         err?.response?.data?.error?.message ||
