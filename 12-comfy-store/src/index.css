@@ -8,4 +8,7 @@
   .align-element {
     @apply mx-auto max-w-6xl px-8;
   }
+  .form-control {
+    @apply flex flex-col gap-y-1;
+  }
 }
