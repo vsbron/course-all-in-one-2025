@@ -2,7 +2,7 @@ import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { customFetch } from "../utils";
-import { OrdersList, PaginationContainer, SectionTitle } from "../components";
+import { OrdersList, ComplexPaginationContainer, SectionTitle } from "../components";
 
 // Set the loader
 // eslint-disable-next-line react-refresh/only-export-components
@@ -59,7 +59,7 @@ function Orders() {
     <>
       <SectionTitle text="Your orders" />
       <OrdersList />
-      <PaginationContainer />
+      <ComplexPaginationContainer />
     </>
   );
 }
