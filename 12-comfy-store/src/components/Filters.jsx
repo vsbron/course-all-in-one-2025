@@ -37,7 +37,6 @@ function Filters() {
         size="select-sm"
       />
       {/* ORDER */}
-      {/* TODO: Still not working */}
       <FormSelect
         label="Sort by"
         name="order"

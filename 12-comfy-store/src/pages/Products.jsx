@@ -36,7 +36,36 @@ export const loader =
     );
     const products = response.data.data;
     const meta = response.data.meta;
-    return { products, meta, params };
+
+    // Sort the page
+    let orderedProducts;
+    switch (params.order) {
+      case "A-Z":
+        orderedProducts = [...products].sort((a, b) =>
+          a.attributes.title.localeCompare(b.attributes.title)
+        );
+        break;
+      case "Z-A":
+        orderedProducts = [...products].sort((a, b) =>
+          b.attributes.title.localeCompare(a.attributes.title)
+        );
+        break;
+      case "High price to Low":
+        orderedProducts = [...products].sort(
+          (a, b) => b.attributes.price - a.attributes.price
+        );
+        break;
+      case "Low price to High":
+        orderedProducts = [...products].sort(
+          (a, b) => a.attributes.price - b.attributes.price
+        );
+        break;
+      default:
+        orderedProducts = [...products];
+    }
+
+    // Return the products, meta data and params
+    return { products: orderedProducts, meta, params };
   };
 
 function Products() {
