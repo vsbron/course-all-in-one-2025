@@ -9,7 +9,7 @@ import { customFetch, formatPrice } from "../utils";
 // Set up the action
 // eslint-disable-next-line react-refresh/only-export-components
 export const action =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     // Get the form data and pull the name and the address
     const formData = await request.formData();
@@ -35,6 +35,9 @@ export const action =
         { data: info },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
+
+      // Clear the cached queries
+      queryClient.removeQueries(["orders"]);
 
       // Clear the cart and display the success message
       store.dispatch(clearCart());
