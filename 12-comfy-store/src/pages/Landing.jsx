@@ -1,7 +1,7 @@
 import { FeaturedProducts, Hero } from "../components";
 import { customFetch } from "../utils";
 
-// Set upt the Query function
+// Set up the Query function
 const featuredProductsQuery = {
   queryKey: ["featuredProducts"],
   queryFn: () => customFetch("/products?featured=true"),

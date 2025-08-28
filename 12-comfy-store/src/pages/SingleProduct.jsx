@@ -6,12 +6,22 @@ import { addItem } from "../features/cart/cartSlice";
 
 import { customFetch, formatPrice, generateAmountOptions } from "../utils";
 
+// Set up the Query function
+const singleProductQuery = (id) => {
+  return {
+    queryKey: ["singleProduct", id],
+    queryFn: () => customFetch(`/products/${id}`),
+  };
+};
+
 // Set up the loader
 // eslint-disable-next-line react-refresh/only-export-components
 export const loader =
   (queryClient) =>
   async ({ params }) => {
-    const response = await customFetch(`/products/${params.id}`);
+    const response = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
     const product = response.data.data;
     return { product };
   };
