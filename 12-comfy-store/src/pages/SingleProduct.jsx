@@ -8,11 +8,13 @@ import { customFetch, formatPrice, generateAmountOptions } from "../utils";
 
 // Set up the loader
 // eslint-disable-next-line react-refresh/only-export-components
-export const loader = async ({ params }) => {
-  const response = await customFetch(`/products/${params.id}`);
-  const product = response.data.data;
-  return { product };
-};
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const response = await customFetch(`/products/${params.id}`);
+    const product = response.data.data;
+    return { product };
+  };
 
 function SingleProduct() {
   // Get the product from the hook and destructure it
