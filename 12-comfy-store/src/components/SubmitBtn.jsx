@@ -8,7 +8,7 @@ function SubmitBtn({ text }) {
   // Returned JSX
   return (
     <button
-      className="btn btn-primary btn-block"
+      className="btn btn-primary btn-block uppercase"
       type="submit"
       disabled={isSubmitting}
     >

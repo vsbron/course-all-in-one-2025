@@ -51,6 +51,11 @@ function Register() {
             login
           </Link>
         </p>
+        <p className="text-center text-sm">
+          <Link to="/" className="link link-hover link-primary">
+            &laquo; Back to the Homepage
+          </Link>
+        </p>
       </Form>
     </section>
   );

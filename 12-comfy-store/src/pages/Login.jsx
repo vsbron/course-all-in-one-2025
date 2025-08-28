@@ -83,7 +83,7 @@ function Login() {
         </div>
         <button
           type="button"
-          className="btn btn-secondary btn-block"
+          className="btn btn-secondary btn-block uppercase"
           onClick={handleGuestUser}
         >
           Guest User
@@ -95,6 +95,11 @@ function Login() {
             className="ml-2 link link-hover link-primary capitalize"
           >
             register
+          </Link>
+        </p>
+        <p className="text-center text-sm">
+          <Link to="/" className="link link-hover link-primary">
+            &laquo; Back to the Homepage
           </Link>
         </p>
       </Form>
