@@ -2,12 +2,32 @@ import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { customFetch } from "../utils";
-import { OrdersList, ComplexPaginationContainer, SectionTitle } from "../components";
+import {
+  OrdersList,
+  ComplexPaginationContainer,
+  SectionTitle,
+} from "../components";
+
+// Set up the Query function
+const ordersQuery = (user, params) => {
+  return {
+    queryKey: [
+      "orders",
+      user.username,
+      params.page ? parseInt(params.page) : 1,
+    ],
+    queryFn: () =>
+      customFetch.get("/orders", {
+        params,
+        headers: { Authorization: `Bearer ${user.token}` },
+      }),
+  };
+};
 
 // Set the loader
 // eslint-disable-next-line react-refresh/only-export-components
 export const loader =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     // Get the user info from the store
     const user = store.getState().user.user;
@@ -25,10 +45,9 @@ export const loader =
 
     try {
       // Fetch all the orders
-      const response = await customFetch.get("/orders", {
-        params,
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
+      const response = await queryClient.ensureQueryData(
+        ordersQuery(user, params)
+      );
 
       // Return the orders and meta data
       return { orders: response.data.data, meta: response.data.meta };
@@ -38,7 +57,7 @@ export const loader =
         err?.response?.data?.error?.message ||
         "There was an error placing your order";
       toast.error(errorMessage);
-      if (err.response.status === 401 || err.response.status === 403)
+      if (err?.response?.status === 401 || err?.response?.status === 403)
         return redirect("/login");
       return null;
     }
