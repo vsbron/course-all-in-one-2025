@@ -1,45 +1,25 @@
 // Testing log
 console.log("typescript tutorial");
 
-// 3. Unions and any type
-// Unions
-let tax: number | string = 10;
-tax = 100;
-tax = "1000";
+// 4. Arrays and Objects
+let prices4: number[] = [100, 75, 42, 34];
+prices4.push(3);
+// prices4.push("Hello"); Not allowed because type is NUMBERS ARRAY
 
-// Literal values
-let requestStatus: "pending" | "success" | "error" = "pending";
-requestStatus = "success";
-requestStatus = "error";
-// requestStatus = "random"; Not allowed because its possible values are literal
+let fruit4: string[] = ["apple", "orange"];
+fruit4.push("lemon");
+// fruit4.push(3); Not allowed because type is STRING ARRAY
 
-// Type: any (not recommended to use. Only as a last resort)
-let notSure: any = 4;
-notSure = "maybe a string instead";
-notSure = false;
+// let randomValues4: [] = ["hello"];  Not allowed because type is EMPTY ARRAY
+let emptyValues4 = []; // Assigns type of any[]
 
-// Books example
-const books = ["1984", "Brave New World", "Fahrenheit 451"];
-let foundBook: string | undefined; // Will be any by default if we're not gonna assign the type
+let names4 = ["Peters", "Susan", 1]; // Assigns (string | number)[] type automatically
+let array4: (string | boolean)[] = ["apple", true, "orange", false]; // Same thing but manually
 
-// Loop through the books, look for 1984
-for (let book of books) {
-  if ((book = "1984")) {
-    foundBook = book;
-    break;
-  }
-}
-console.log(foundBook);
-
-// Discount example
-let discount: number | string = 20;
-discount = "20%";
-// discount = true; Not allowed because type is NUMBER or STRING
-
-let orderStatus: "processing" | "shipped" | "delivered" = "processing";
-
-orderStatus = "shipped";
-// orderStatus = "cancelled";  Not allowed because its possible values are literal
+// Challenge
+let temperatures4: number[] = [20, 25, 30];
+let colors4: string[] = ["red", "green", "blue"];
+let mixedArray4: (number | string)[] = [1, "two", 3];
 
 /* ---------------------------------------- */
 
@@ -80,3 +60,44 @@ let isAwesome2: boolean = true;
 isAwesome2 = false;
 // isAwesome2 = "shakeAndBake"; Not allowed because type is BOOLEAN
 console.log(isAwesome2);
+
+/* ---------------------------------------- */
+
+// 3. Unions and any type
+// Unions
+let tax3: number | string = 10;
+tax3 = 100;
+tax3 = "1000";
+
+// Literal values
+let requestStatus3: "pending" | "success" | "error" = "pending";
+requestStatus3 = "success";
+requestStatus3 = "error";
+// requestStatus = "random"; Not allowed because its possible values are literal
+
+// Type: any (not recommended to use. Only as a last resort)
+let notSure3: any = 4;
+notSure3 = "maybe a string instead";
+notSure3 = false;
+
+// Books example
+const books3 = ["1984", "Brave New World", "Fahrenheit 451"];
+let foundBook3: string | undefined; // Will be any by default if we're not gonna assign the type
+
+// Loop through the books, look for 1984
+for (let book of books3) {
+  if ((book = "1984")) {
+    foundBook3 = book;
+    break;
+  }
+}
+console.log(foundBook3);
+
+// Discount example
+let discount3: number | string = 20;
+discount3 = "20%";
+// discount = true; Not allowed because type is NUMBER or STRING
+
+let orderStatus3: "processing" | "shipped" | "delivered" = "processing";
+orderStatus3 = "shipped";
+// orderStatus = "cancelled";  Not allowed because its possible values are literal
