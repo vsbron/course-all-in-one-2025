@@ -2,6 +2,7 @@
 console.log("typescript tutorial");
 
 // 4. Arrays and Objects
+// Arrays
 let prices4: number[] = [100, 75, 42, 34];
 prices4.push(3);
 // prices4.push("Hello"); Not allowed because type is NUMBERS ARRAY
@@ -10,7 +11,7 @@ let fruit4: string[] = ["apple", "orange"];
 fruit4.push("lemon");
 // fruit4.push(3); Not allowed because type is STRING ARRAY
 
-// let randomValues4: [] = ["hello"];  Not allowed because type is EMPTY ARRAY
+// let randomValues4: [] = ["hello"]; Not allowed because type is EMPTY ARRAY
 let emptyValues4 = []; // Assigns type of any[]
 
 let names4 = ["Peters", "Susan", 1]; // Assigns (string | number)[] type automatically
@@ -20,6 +21,38 @@ let array4: (string | boolean)[] = ["apple", true, "orange", false]; // Same thi
 let temperatures4: number[] = [20, 25, 30];
 let colors4: string[] = ["red", "green", "blue"];
 let mixedArray4: (number | string)[] = [1, "two", 3];
+
+// Objects
+let car4: { brand: string; year: number } = { brand: "Toyota", year: 2020 };
+car4.brand = "ford";
+// car4.color = "blue"; Not allowed because there is no such property
+
+let newCar4: { brand: string; year: number } = { brand: "Audi", year: 2022 }; // Another instance
+
+// Arrays + Objects
+
+// Create the object
+let book4 = { title: "book", cost: 20 };
+let pen4 = { title: "pen", cost: 10 };
+let notebook4 = { title: "notebook" };
+
+// Add them to the array (cost is optional, title is readonly)
+let items4: { readonly title: string; cost?: number }[] = [
+  book4,
+  pen4,
+  notebook4,
+];
+
+// Challenge
+let bike4: { brand: string; year: number } = { brand: "Yamaha", year: 2010 };
+let laptop4: { brand: string; year: number } = { brand: "Dell", year: 2020 };
+
+let product41 = { title: "shirt", price: 20 };
+let product42 = { title: "panths" };
+
+let products4: { title: string; price?: number }[] = [product41, product42];
+
+console.log(products4);
 
 /* ---------------------------------------- */
 
