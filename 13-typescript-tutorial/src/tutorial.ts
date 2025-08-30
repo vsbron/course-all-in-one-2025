@@ -1,48 +1,40 @@
 // Testing log
 console.log("typescript tutorial");
 
-// 6. Optional and Default values
-
-// OPTIONAL PARAMETER (with fallback of 0)
-function calculatePrice6(price: number, discount?: number): number {
-  return price - (discount || 0);
-}
-// Logging the function result
-console.log(calculatePrice6(100, 20));
-
-// DEFAULT VALUES
-function calculateScore6(
-  initialScore: number,
-  penaltyPoints: number = 0
-): number {
-  return initialScore - penaltyPoints;
+// 7. Objects as parameters
+function createEmployee7({ id }: { id: number }): {
+  id: number;
+  isActive: boolean;
+} {
+  return { id, isActive: id % 2 === 0 };
 }
 
-// Calling the function with and without the penalty
-let scoreAfterPenalty6 = calculateScore6(100, 20);
-let scoreWithoutPenalty6 = calculateScore6(300);
-console.log(scoreAfterPenalty6);
-console.log(scoreWithoutPenalty6);
+const first7 = createEmployee7({ id: 1 });
+const second7 = createEmployee7({ id: 2 });
+console.log(first7);
+console.log(second7);
 
-// Rest operator
-function sum6(message: string, ...numbers: number[]): string {
-  const total = numbers.reduce((acc, cur) => (acc += cur), 0);
-  return `${message} ${total}`;
-}
-console.log(sum6("The total is:", 1, 2, 3, 4));
-
-// VOID
-function logMessage(message: string): void {
-  console.log(message);
-  // return message;  ERROR. Should not return anything because of VOID return type
+// Alternative
+function createStudent7(student: { id: number; name: string }): void {
+  console.log(`Welcome to the course ${student.name.toUpperCase()}`);
 }
 
-// CHALLENGE - UNIONS
-function processInput(input: string | number): void {
-  console.log(typeof input === "number" ? input * 2 : input.toUpperCase());
+createStudent7({ id: 3, name: "John" });
+
+// CHALLENGE
+function processData7(
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+): number | string {
+  if (typeof input === "number") return input * input;
+  return config.reverse
+    ? input.split("").reverse().join("").toUpperCase()
+    : input.toUpperCase();
 }
-processInput(5);
-processInput("hello");
+
+console.log(processData7(3));
+console.log(processData7("Main"));
+console.log(processData7("Jeez", { reverse: true }));
 
 /* ---------------------------------------- */
 
@@ -211,3 +203,48 @@ function checkName5(name: string): boolean {
 checkName5("John");
 checkName5("Will");
 checkName5("Jake");
+
+/* ---------------------------------------- */
+
+// 6. Optional and Default values
+
+// OPTIONAL PARAMETER (with fallback of 0)
+function calculatePrice6(price: number, discount?: number): number {
+  return price - (discount || 0);
+}
+// Logging the function result
+console.log(calculatePrice6(100, 20));
+
+// DEFAULT VALUES
+function calculateScore6(
+  initialScore: number,
+  penaltyPoints: number = 0
+): number {
+  return initialScore - penaltyPoints;
+}
+
+// Calling the function with and without the penalty
+let scoreAfterPenalty6 = calculateScore6(100, 20);
+let scoreWithoutPenalty6 = calculateScore6(300);
+console.log(scoreAfterPenalty6);
+console.log(scoreWithoutPenalty6);
+
+// Rest operator
+function sum6(message: string, ...numbers: number[]): string {
+  const total = numbers.reduce((acc, cur) => (acc += cur), 0);
+  return `${message} ${total}`;
+}
+console.log(sum6("The total is:", 1, 2, 3, 4));
+
+// VOID
+function logMessage(message: string): void {
+  console.log(message);
+  // return message;  ERROR. Should not return anything because of VOID return type
+}
+
+// CHALLENGE - UNIONS
+function processInput(input: string | number): void {
+  console.log(typeof input === "number" ? input * 2 : input.toUpperCase());
+}
+processInput(5);
+processInput("hello");
