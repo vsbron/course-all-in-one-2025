@@ -50,6 +50,29 @@ function printStaffDetails8(staff: Staff8): void {
 printStaffDetails8(alice8);
 printStaffDetails8(steve8);
 printStaffDetails8(bob8);
+
+// INTERSECTION TYPE
+type Book8 = { id: number; name: string; price: number };
+type DiscountedBook8 = Book8 & { discount: number };
+
+const book18: Book8 = {
+  id: 2,
+  name: "How to Cook a Dragon",
+  price: 15,
+};
+const book28: Book8 = {
+  id: 3,
+  name: "The Secret Life of Unicorns",
+  price: 18,
+};
+
+const discountedBook8: DiscountedBook8 = {
+  id: 4,
+  name: "Gnomes vs. Goblins: The Ultimate Guide",
+  price: 25,
+  discount: 0.15,
+};
+
 /* ---------------------------------------- */
 
 // 1. Basics
