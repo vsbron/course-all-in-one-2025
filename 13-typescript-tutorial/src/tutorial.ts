@@ -1,6 +1,55 @@
 // Testing log
 console.log("typescript tutorial");
 
+// 8. Type aliases
+console.log(" ");
+console.log("SECTION 8");
+console.log("-----------------------------------");
+
+// Declare type
+type User8 = { id: number; name: string; isActive: boolean };
+
+// Users objects
+const john8: User8 = {
+  id: 1,
+  name: "john",
+  isActive: true,
+};
+const susan8: User8 = {
+  id: 1,
+  name: "susan",
+  isActive: false,
+};
+
+// User function
+function createUser8(user: User8): User8 {
+  console.log(`Hello there ${user.name.toUpperCase()} !!!`);
+  return user;
+}
+
+// CHALLENGE
+
+// Declare Employee, Manager type and Union
+type Employee8 = { id: number; name: string; department: string };
+type Manager8 = { id: number; name: string; employees: Employee8[] };
+type Staff8 = Employee8 | Manager8;
+
+// Create some workers
+const alice8: Employee8 = { id: 1, name: "Alice", department: "Sales" };
+const steve8: Employee8 = { id: 2, name: "Steve", department: "HR" };
+const bob8: Manager8 = { id: 3, name: "Bob", employees: [alice8, steve8] };
+
+function printStaffDetails8(staff: Staff8): void {
+  console.log(
+    "employees" in staff // Checking the needed property in the object
+      ? `${staff.name} is a manager and he manages ${staff.employees.length} employees`
+      : `${staff.name} is an employee in the ${staff.department} department`
+  );
+}
+
+printStaffDetails8(alice8);
+printStaffDetails8(steve8);
+printStaffDetails8(bob8);
 /* ---------------------------------------- */
 
 // 1. Basics
