@@ -1,44 +1,13 @@
 // Testing log
 console.log("typescript tutorial");
 
-// 7. Objects as parameters
-function createEmployee7({ id }: { id: number }): {
-  id: number;
-  isActive: boolean;
-} {
-  return { id, isActive: id % 2 === 0 };
-}
-
-const first7 = createEmployee7({ id: 1 });
-const second7 = createEmployee7({ id: 2 });
-console.log(first7);
-console.log(second7);
-
-// Alternative
-function createStudent7(student: { id: number; name: string }): void {
-  console.log(`Welcome to the course ${student.name.toUpperCase()}`);
-}
-
-createStudent7({ id: 3, name: "John" });
-
-// CHALLENGE
-function processData7(
-  input: string | number,
-  config: { reverse: boolean } = { reverse: false }
-): number | string {
-  if (typeof input === "number") return input * input;
-  return config.reverse
-    ? input.split("").reverse().join("").toUpperCase()
-    : input.toUpperCase();
-}
-
-console.log(processData7(3));
-console.log(processData7("Main"));
-console.log(processData7("Jeez", { reverse: true }));
-
 /* ---------------------------------------- */
 
 // 1. Basics
+console.log(" ");
+console.log("SECTION 1");
+console.log("-----------------------------------");
+
 // Declare interface
 interface someValue1 {
   name: string;
@@ -57,6 +26,10 @@ console.log(someObj1);
 /* ---------------------------------------- */
 
 // 2. Assigning types with annotations
+console.log(" ");
+console.log("SECTION 2");
+console.log("-----------------------------------");
+
 // STRING
 let awesomeName2: string = "shakeAndBake";
 awesomeName2 = "something";
@@ -79,6 +52,10 @@ console.log(isAwesome2);
 /* ---------------------------------------- */
 
 // 3. Unions and any type
+console.log(" ");
+console.log("SECTION 3");
+console.log("-----------------------------------");
+
 // UNIONS
 let tax3: number | string = 10;
 tax3 = 100;
@@ -120,6 +97,10 @@ orderStatus3 = "shipped";
 /* ---------------------------------------- */
 
 // 4. Arrays and Objects
+console.log(" ");
+console.log("SECTION 4");
+console.log("-----------------------------------");
+
 // ARRAYS
 let prices4: number[] = [100, 75, 42, 34];
 prices4.push(3);
@@ -174,6 +155,10 @@ console.log(products4);
 /* ---------------------------------------- */
 
 // 5. Functions
+console.log(" ");
+console.log("SECTION 5");
+console.log("-----------------------------------");
+
 // ARGUMENTS
 function sayHi5(name: string) {
   console.log(`Hello there ${name.toUpperCase()}`);
@@ -207,6 +192,9 @@ checkName5("Jake");
 /* ---------------------------------------- */
 
 // 6. Optional and Default values
+console.log(" ");
+console.log("SECTION 6");
+console.log("-----------------------------------");
 
 // OPTIONAL PARAMETER (with fallback of 0)
 function calculatePrice6(price: number, discount?: number): number {
@@ -248,3 +236,44 @@ function processInput(input: string | number): void {
 }
 processInput(5);
 processInput("hello");
+
+/* ---------------------------------------- */
+
+// 7. Objects as parameters
+console.log(" ");
+console.log("SECTION 7");
+console.log("-----------------------------------");
+
+function createEmployee7({ id }: { id: number }): {
+  id: number;
+  isActive: boolean;
+} {
+  return { id, isActive: id % 2 === 0 };
+}
+
+const first7 = createEmployee7({ id: 1 });
+const second7 = createEmployee7({ id: 2 });
+console.log(first7);
+console.log(second7);
+
+// Alternative
+function createStudent7(student: { id: number; name: string }): void {
+  console.log(`Welcome to the course ${student.name.toUpperCase()}`);
+}
+
+createStudent7({ id: 3, name: "John" });
+
+// CHALLENGE
+function processData7(
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+): number | string {
+  if (typeof input === "number") return input * input;
+  return config.reverse
+    ? input.split("").reverse().join("").toUpperCase()
+    : input.toUpperCase();
+}
+
+console.log(processData7(3));
+console.log(processData7("Main"));
+console.log(processData7("Jeez", { reverse: true }));
