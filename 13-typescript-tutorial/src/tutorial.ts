@@ -1,27 +1,81 @@
 // Testing log
 console.log("typescript tutorial");
-/* ---------------------------------------- */
 
-// 13. Modules
+// 14. Type Guards
 console.log(" ");
-console.log("SECTION 13");
+console.log("SECTION 14");
 console.log("-----------------------------------");
 
-import newStudent13, {
-  sayHello13,
-  person13,
-  type Student13,
-} from "./actions13";
+// Challenge 1 starter code
+type ValueType14 = string | number | boolean;
+let value14: ValueType14;
+const random14 = Math.random();
+value14 = random14 <= 0.33 ? "Hello" : random14 <= 0.67 ? 123.456 : true;
 
-sayHello13("TypeScript");
-console.log(newStudent13);
-console.log(person13);
+// Solution
+function checkValue14(param: ValueType14): void {
+  if (typeof param === "string") {
+    return console.log(param.toLowerCase());
+  }
+  if (typeof param === "number") {
+    return console.log(param.toFixed(2));
+  }
+  return console.log("boolean: " + param);
+}
 
-const anotherStudent13: Student13 = {
-  name: "Bob",
-  age: 23,
-};
-console.log(anotherStudent13);
+checkValue14(value14);
+
+// Challenge 2 starter code
+
+type Dog14 = { type: "Dog"; name: string; bark: () => void };
+type Cat14 = { type: "Cat"; name: string; meow: () => void };
+type Animal14 = Dog14 | Cat14;
+
+// Solution
+function makeSound141(animal: Animal14): void {
+  if (animal.type === "Dog") {
+    animal.bark();
+  } else {
+    animal.meow();
+  }
+}
+function makeSound142(animal: Animal14): void {
+  if ("bark" in animal) {
+    animal.bark();
+  } else {
+    animal.meow();
+  }
+}
+
+// Challenge 3
+function printLength14(str: string | null | undefined): void {
+  if (str) return console.log(str.length);
+  return console.log("No string provided");
+}
+
+printLength14("Hello hello, why'd you come right in?");
+printLength14(undefined);
+printLength14(null);
+
+// Instance of
+try {
+  throw new Error("This is error");
+} catch (err) {
+  if (err instanceof Error)
+    console.log(`Caught an Error object: ${err.message}`);
+  console.log(`Unknown error ${err}`);
+}
+
+function checkInput14(input: Date | string): string {
+  // If it's a date - print the year
+  if (input instanceof Date) return input.getFullYear().toString();
+  return "Just an input " + input; // Just return the input otherwise
+}
+
+const year14 = checkInput14(new Date());
+const string14 = checkInput14("2020-05-05");
+console.log(year14);
+console.log(string14);
 
 /* ---------------------------------------- */
 
@@ -672,3 +726,26 @@ function checkTheme(theme: Theme): void {
 // console.log(getColorName12(Color12.Red));
 // console.log(getColorName12(Color12.Blue));
 // console.log(getColorName12(Color12.Green)); // Fails silently because it's not in the switch case and there's no Default case
+
+/* ---------------------------------------- */
+
+// 13. Modules
+console.log(" ");
+console.log("SECTION 13");
+console.log("-----------------------------------");
+
+import newStudent13, {
+  sayHello13,
+  person13,
+  type Student13,
+} from "./actions13";
+
+sayHello13("TypeScript");
+console.log(newStudent13);
+console.log(person13);
+
+const anotherStudent13: Student13 = {
+  name: "Bob",
+  age: 23,
+};
+console.log(anotherStudent13);
