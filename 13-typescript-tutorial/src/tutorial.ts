@@ -3,116 +3,27 @@ console.log("typescript tutorial");
 
 /* ---------------------------------------- */
 
-// 10. Advanced Interfaces
+// 11. Tuples and Enums
 console.log(" ");
-console.log("SECTION 10");
+console.log("SECTION 11");
 console.log("-----------------------------------");
 
-// Create some interfaces
-interface IPerson10 {
-  name: string;
-  getDetails(): string;
-}
-// Adds up to existing interface
-interface IPerson10 {
-  age: number;
-}
-interface IDogOwner10 {
-  dogName: string;
-  getDogDetails(): string;
+// Create objects with Tuple types
+let person11: [string, number] = ["John", 25];
+let date11: readonly [number, number, number] = [31, 8, 2025];
+// date11.push(34);  Still works if no "readonly" parameter above
+
+// Creating function with Tuple type
+function getPerson11(): [string, number] {
+  return ["Jake", 25];
 }
 
-// Create objects
-const person10: IPerson10 = {
-  name: "John",
-  age: 30,
-  getDetails() {
-    return `Name: ${this.name}, Age ${this.age}`;
-  },
-};
+let randomPerson11 = getPerson11();
+console.log(randomPerson11[0]);
+console.log(randomPerson11[1]);
 
-// Create extending interface
-interface IEmployee10 extends IPerson10 {
-  employeeId: number;
-}
-// Create object based on new interface
-const employee10: IEmployee10 = {
-  name: "Jane",
-  age: 28,
-  employeeId: 123,
-  getDetails() {
-    return `Name: ${this.name}, Age: ${this.age}, Employee ID: ${this.employeeId}`;
-  },
-};
-
-// Extending multiple interfaces
-interface IManager10 extends IPerson10, IDogOwner10 {
-  managePeople(): void;
-}
-// Create manager object with new interface
-const manager10: IManager10 = {
-  name: "Bob",
-  age: 35,
-  dogName: "Rex",
-  getDetails() {
-    return `Name: ${this.name}, Age: ${this.age}`;
-  },
-  getDogDetails() {
-    return `Dog name: ${this.dogName}`;
-  },
-  managePeople() {
-    console.log("Managing people");
-  },
-};
-console.log(employee10.getDetails());
-manager10.managePeople();
-
-// CHALLENGE
-function getEmployee(): IPerson10CH | IDogOwner10CH | IManager10CH {
-  const randomNumber = Math.random();
-  if (randomNumber <= 0.33) {
-    return { name: "John" };
-  }
-  if (randomNumber <= 0.67) {
-    return { name: "Jake", dogName: "Rex" };
-  }
-  return {
-    name: "Bob",
-    managePeople() {
-      console.log("Managing people...");
-    },
-    delegateTasks() {
-      console.log("Delegating tasks...");
-    },
-  };
-}
-
-interface IPerson10CH {
-  name: string;
-}
-interface IDogOwner10CH extends IPerson10CH {
-  dogName: string;
-}
-interface IManager10CH extends IPerson10CH {
-  managePeople(): void;
-  delegateTasks(): void;
-}
-
-// Get the person from the function and log it
-const employee10CH: IPerson10CH | IDogOwner10CH | IManager10CH = getEmployee();
-console.log(employee10CH);
-
-// Function that returns boolean on whether the object we passed is Manager
-function isManager10(
-  obj: IPerson10CH | IDogOwner10CH | IManager10CH
-): obj is IManager10CH {
-  return "managePeople" in obj;
-}
-
-if (isManager10(employee10CH)) {
-  employee10CH.delegateTasks();
-}
-
+// Tuple with optional value
+let susan11: [string, number?] = ["Susan"];
 /* ---------------------------------------- */
 
 // 1. Basics
@@ -522,3 +433,115 @@ console.log(newPC9.ram);
 newPC9.upgradeRam(32);
 newPC9.storage = 512;
 console.log(newPC9);
+
+/* ---------------------------------------- */
+
+// 10. Advanced Interfaces
+console.log(" ");
+console.log("SECTION 10");
+console.log("-----------------------------------");
+
+// Create some interfaces
+interface IPerson10 {
+  name: string;
+  getDetails(): string;
+}
+// Adds up to existing interface
+interface IPerson10 {
+  age: number;
+}
+interface IDogOwner10 {
+  dogName: string;
+  getDogDetails(): string;
+}
+
+// Create objects
+const person10: IPerson10 = {
+  name: "John",
+  age: 30,
+  getDetails() {
+    return `Name: ${this.name}, Age ${this.age}`;
+  },
+};
+
+// Create extending interface
+interface IEmployee10 extends IPerson10 {
+  employeeId: number;
+}
+// Create object based on new interface
+const employee10: IEmployee10 = {
+  name: "Jane",
+  age: 28,
+  employeeId: 123,
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}, Employee ID: ${this.employeeId}`;
+  },
+};
+
+// Extending multiple interfaces
+interface IManager10 extends IPerson10, IDogOwner10 {
+  managePeople(): void;
+}
+// Create manager object with new interface
+const manager10: IManager10 = {
+  name: "Bob",
+  age: 35,
+  dogName: "Rex",
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  },
+  getDogDetails() {
+    return `Dog name: ${this.dogName}`;
+  },
+  managePeople() {
+    console.log("Managing people");
+  },
+};
+console.log(employee10.getDetails());
+manager10.managePeople();
+
+// CHALLENGE
+function getEmployee(): IPerson10CH | IDogOwner10CH | IManager10CH {
+  const randomNumber = Math.random();
+  if (randomNumber <= 0.33) {
+    return { name: "John" };
+  }
+  if (randomNumber <= 0.67) {
+    return { name: "Jake", dogName: "Rex" };
+  }
+  return {
+    name: "Bob",
+    managePeople() {
+      console.log("Managing people...");
+    },
+    delegateTasks() {
+      console.log("Delegating tasks...");
+    },
+  };
+}
+
+interface IPerson10CH {
+  name: string;
+}
+interface IDogOwner10CH extends IPerson10CH {
+  dogName: string;
+}
+interface IManager10CH extends IPerson10CH {
+  managePeople(): void;
+  delegateTasks(): void;
+}
+
+// Get the person from the function and log it
+const employee10CH: IPerson10CH | IDogOwner10CH | IManager10CH = getEmployee();
+console.log(employee10CH);
+
+// Function that returns boolean on whether the object we passed is Manager
+function isManager10(
+  obj: IPerson10CH | IDogOwner10CH | IManager10CH
+): obj is IManager10CH {
+  return "managePeople" in obj;
+}
+
+if (isManager10(employee10CH)) {
+  employee10CH.delegateTasks();
+}
