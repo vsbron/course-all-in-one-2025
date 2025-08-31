@@ -8,6 +8,7 @@ console.log(" ");
 console.log("SECTION 11");
 console.log("-----------------------------------");
 
+// TUPLES
 // Create objects with Tuple types
 let person11: [string, number] = ["John", 25];
 let date11: readonly [number, number, number] = [31, 8, 2025];
@@ -24,6 +25,28 @@ console.log(randomPerson11[1]);
 
 // Tuple with optional value
 let susan11: [string, number?] = ["Susan"];
+
+// ENUMS
+// enum ServerResponseStatus11 {
+//   Success,
+//   Error,
+// }
+
+// interface IServerResponse11 {
+//   result: ServerResponseStatus11;
+//   data: string[];
+// }
+
+// function getServerResponse11(): IServerResponse11 {
+//   return {
+//     result: ServerResponseStatus11.Success,
+//     data: ["first item", "second item"],
+//   };
+// }
+
+// const response: IServerResponse11 = getServerResponse11();
+// console.log(response);
+
 /* ---------------------------------------- */
 
 // 1. Basics
