@@ -3,49 +3,25 @@ console.log("typescript tutorial");
 
 /* ---------------------------------------- */
 
-// 11. Tuples and Enums
+// 12. Type Assertion
 console.log(" ");
-console.log("SECTION 11");
+console.log("SECTION 12");
 console.log("-----------------------------------");
 
-// TUPLES
-// Create objects with Tuple types
-let person11: [string, number] = ["John", 25];
-let date11: readonly [number, number, number] = [31, 8, 2025];
-// date11.push(34);  Still works if no "readonly" parameter above
+// Create value of any type, then use it with type assertion
+let someValue12: any = "This is a string";
+let strLength12: number = (someValue12 as string).length;
 
-// Creating function with Tuple type
-function getPerson11(): [string, number] {
-  return ["Jake", 25];
-}
+// Create Bird type
+type Bird12 = {
+  name: string;
+};
+// Assume we have a JSON string from an API or local file
+let birdString12 = '{"name": "Eagle"}';
+let dogString12 = '{"breed": "Poodle"}';
 
-let randomPerson11 = getPerson11();
-console.log(randomPerson11[0]);
-console.log(randomPerson11[1]);
-
-// Tuple with optional value
-let susan11: [string, number?] = ["Susan"];
-
-// ENUMS
-// enum ServerResponseStatus11 {
-//   Success,
-//   Error,
-// }
-
-// interface IServerResponse11 {
-//   result: ServerResponseStatus11;
-//   data: string[];
-// }
-
-// function getServerResponse11(): IServerResponse11 {
-//   return {
-//     result: ServerResponseStatus11.Success,
-//     data: ["first item", "second item"],
-//   };
-// }
-
-// const response: IServerResponse11 = getServerResponse11();
-// console.log(response);
+let birdObject12 = JSON.parse(birdString12) as Bird12;
+let dogObject12 = JSON.parse(dogString12) as Bird12; // Careful, as it's allowed, but dog doesn't have name property
 
 /* ---------------------------------------- */
 
@@ -568,3 +544,49 @@ function isManager10(
 if (isManager10(employee10CH)) {
   employee10CH.delegateTasks();
 }
+
+/* ---------------------------------------- */
+
+// 11. Tuples and Enums
+console.log(" ");
+console.log("SECTION 11");
+console.log("-----------------------------------");
+
+// TUPLES
+// Create objects with Tuple types
+let person11: [string, number] = ["John", 25];
+let date11: readonly [number, number, number] = [31, 8, 2025];
+// date11.push(34);  Still works if no "readonly" parameter above
+
+// Creating function with Tuple type
+function getPerson11(): [string, number] {
+  return ["Jake", 25];
+}
+
+let randomPerson11 = getPerson11();
+console.log(randomPerson11[0]);
+console.log(randomPerson11[1]);
+
+// Tuple with optional value
+let susan11: [string, number?] = ["Susan"];
+
+// ENUMS
+// enum ServerResponseStatus11 {
+//   Success,
+//   Error,
+// }
+
+// interface IServerResponse11 {
+//   result: ServerResponseStatus11;
+//   data: string[];
+// }
+
+// function getServerResponse11(): IServerResponse11 {
+//   return {
+//     result: ServerResponseStatus11.Success,
+//     data: ["first item", "second item"],
+//   };
+// }
+
+// const response: IServerResponse11 = getServerResponse11();
+// console.log(response);
