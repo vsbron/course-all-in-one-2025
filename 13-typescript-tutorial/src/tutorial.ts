@@ -23,6 +23,26 @@ let dogString12 = '{"breed": "Poodle"}';
 let birdObject12 = JSON.parse(birdString12) as Bird12;
 let dogObject12 = JSON.parse(dogString12) as Bird12; // Careful, as it's allowed, but dog doesn't have name property
 
+// TYPE - UNKNOWN
+let unknownValue12: unknown;
+
+unknownValue12 = "Hello World";
+unknownValue12 = [1, 2, 3];
+unknownValue12 = 42.334455;
+
+// unknownValue12.toFixed(2);  Causes error because of Unknown type
+if (typeof unknownValue12 === "number") {
+  unknownValue12.toFixed(2);
+}
+
+try {
+  throw new Error("There was an error");
+  // Error is Unknown type
+} catch (error) {
+  if (error instanceof Error) {
+    console.log(error.message);
+  } else console.log(error);
+}
 /* ---------------------------------------- */
 
 // 1. Basics
