@@ -1,77 +1,66 @@
 // Testing log
 console.log("typescript tutorial");
 
-// 8. Type aliases
+/* ---------------------------------------- */
+
+// 9. Interfaces
 console.log(" ");
-console.log("SECTION 8");
+console.log("SECTION 9");
 console.log("-----------------------------------");
 
-// Declare type
-type User8 = { id: number; name: string; isActive: boolean };
-
-// Users objects
-const john8: User8 = {
-  id: 1,
-  name: "john",
-  isActive: true,
-};
-const susan8: User8 = {
-  id: 1,
-  name: "susan",
-  isActive: false,
-};
-
-// User function
-function createUser8(user: User8): User8 {
-  console.log(`Hello there ${user.name.toUpperCase()} !!!`);
-  return user;
+// Creating interface
+interface IBook9 {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  // methods
+  printAuthor(): void;
+  printTitle(message: string): string;
 }
+
+// Create an object based on an interface
+const deepWork9: IBook9 = {
+  isbn: 123,
+  title: "Deep work",
+  author: "Cal Newport",
+  genre: "Self-help",
+  printAuthor() {
+    console.log(this.author);
+  },
+  printTitle(message) {
+    return `${this.title} ${message}`;
+  },
+};
+
+// Call the methods
+deepWork9.printAuthor();
+console.log(deepWork9.printTitle("is awesome book"));
 
 // CHALLENGE
 
-// Declare Employee, Manager type and Union
-type Employee8 = { id: number; name: string; department: string };
-type Manager8 = { id: number; name: string; employees: Employee8[] };
-type Staff8 = Employee8 | Manager8;
-
-// Create some workers
-const alice8: Employee8 = { id: 1, name: "Alice", department: "Sales" };
-const steve8: Employee8 = { id: 2, name: "Steve", department: "HR" };
-const bob8: Manager8 = { id: 3, name: "Bob", employees: [alice8, steve8] };
-
-function printStaffDetails8(staff: Staff8): void {
-  console.log(
-    "employees" in staff // Checking the needed property in the object
-      ? `${staff.name} is a manager and he manages ${staff.employees.length} employees`
-      : `${staff.name} is an employee in the ${staff.department} department`
-  );
+interface IComputer9 {
+  readonly id: number;
+  brand: string;
+  ram: number;
+  storage?: number;
+  upgradeRam(increase: number): number;
 }
 
-printStaffDetails8(alice8);
-printStaffDetails8(steve8);
-printStaffDetails8(bob8);
-
-// INTERSECTION TYPE
-type Book8 = { id: number; name: string; price: number };
-type DiscountedBook8 = Book8 & { discount: number };
-
-const book18: Book8 = {
-  id: 2,
-  name: "How to Cook a Dragon",
-  price: 15,
-};
-const book28: Book8 = {
-  id: 3,
-  name: "The Secret Life of Unicorns",
-  price: 18,
+const newPC9: IComputer9 = {
+  id: 123,
+  brand: "IBM",
+  ram: 32,
+  upgradeRam(amount) {
+    this.ram += amount;
+    return this.ram;
+  },
 };
 
-const discountedBook8: DiscountedBook8 = {
-  id: 4,
-  name: "Gnomes vs. Goblins: The Ultimate Guide",
-  price: 25,
-  discount: 0.15,
-};
+console.log(newPC9.ram);
+newPC9.upgradeRam(32);
+newPC9.storage = 512;
+console.log(newPC9);
 
 /* ---------------------------------------- */
 
@@ -349,3 +338,76 @@ function processData7(
 console.log(processData7(3));
 console.log(processData7("Main"));
 console.log(processData7("Jeez", { reverse: true }));
+
+/* ---------------------------------------- */
+
+// 8. Type aliases
+console.log(" ");
+console.log("SECTION 8");
+console.log("-----------------------------------");
+
+// Declare type
+type User8 = { id: number; name: string; isActive: boolean };
+
+// Users objects
+const john8: User8 = {
+  id: 1,
+  name: "john",
+  isActive: true,
+};
+const susan8: User8 = {
+  id: 1,
+  name: "susan",
+  isActive: false,
+};
+
+// User function
+function createUser8(user: User8): User8 {
+  console.log(`Hello there ${user.name.toUpperCase()} !!!`);
+  return user;
+}
+
+// CHALLENGE
+// Declare Employee, Manager type and Union
+type Employee8 = { id: number; name: string; department: string };
+type Manager8 = { id: number; name: string; employees: Employee8[] };
+type Staff8 = Employee8 | Manager8;
+
+// Create some workers
+const alice8: Employee8 = { id: 1, name: "Alice", department: "Sales" };
+const steve8: Employee8 = { id: 2, name: "Steve", department: "HR" };
+const bob8: Manager8 = { id: 3, name: "Bob", employees: [alice8, steve8] };
+
+function printStaffDetails8(staff: Staff8): void {
+  console.log(
+    "employees" in staff // Checking the needed property in the object
+      ? `${staff.name} is a manager and he manages ${staff.employees.length} employees`
+      : `${staff.name} is an employee in the ${staff.department} department`
+  );
+}
+
+printStaffDetails8(alice8);
+printStaffDetails8(steve8);
+printStaffDetails8(bob8);
+
+// INTERSECTION TYPE
+type Book8 = { id: number; name: string; price: number };
+type DiscountedBook8 = Book8 & { discount: number };
+
+const book18: Book8 = {
+  id: 2,
+  name: "How to Cook a Dragon",
+  price: 15,
+};
+const book28: Book8 = {
+  id: 3,
+  name: "The Secret Life of Unicorns",
+  price: 18,
+};
+
+const discountedBook8: DiscountedBook8 = {
+  id: 4,
+  name: "Gnomes vs. Goblins: The Ultimate Guide",
+  price: 25,
+  discount: 0.15,
+};
