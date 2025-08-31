@@ -43,6 +43,46 @@ try {
     console.log(error.message);
   } else console.log(error);
 }
+
+// TYPE - NEVER
+
+// let someNewValue12: never = 0; Cannot assign value to NEVER
+
+type Theme = "light" | "dark";
+function checkTheme(theme: Theme): void {
+  if (theme === "light") {
+    console.log("Light theme");
+    return;
+  }
+  if (theme === "dark") {
+    console.log("Dark theme");
+    return;
+  }
+  // This one gets NEVER type cause all available options are run down
+  theme;
+}
+
+enum Color12 {
+  Red,
+  Blue,
+  Green,
+}
+
+function getColorName12(color: Color12) {
+  switch (color) {
+    case Color12.Red:
+      return "Red";
+    case Color12.Blue:
+      return "Blue";
+    // default:
+    //   throw new Error(`Unexpected color value: ${color}`);
+  }
+}
+
+console.log(getColorName12(Color12.Red));
+console.log(getColorName12(Color12.Blue));
+console.log(getColorName12(Color12.Green)); // Fails silently because it's not in the switch case and there's no Default case
+
 /* ---------------------------------------- */
 
 // 1. Basics
