@@ -3,64 +3,115 @@ console.log("typescript tutorial");
 
 /* ---------------------------------------- */
 
-// 9. Interfaces
+// 10. Advanced Interfaces
 console.log(" ");
-console.log("SECTION 9");
+console.log("SECTION 10");
 console.log("-----------------------------------");
 
-// Creating interface
-interface IBook9 {
-  readonly isbn: number;
-  title: string;
-  author: string;
-  genre?: string;
-  // methods
-  printAuthor(): void;
-  printTitle(message: string): string;
+// Create some interfaces
+interface IPerson10 {
+  name: string;
+  getDetails(): string;
+}
+// Adds up to existing interface
+interface IPerson10 {
+  age: number;
+}
+interface IDogOwner10 {
+  dogName: string;
+  getDogDetails(): string;
 }
 
-// Create an object based on an interface
-const deepWork9: IBook9 = {
-  isbn: 123,
-  title: "Deep work",
-  author: "Cal Newport",
-  genre: "Self-help",
-  printAuthor() {
-    console.log(this.author);
-  },
-  printTitle(message) {
-    return `${this.title} ${message}`;
+// Create objects
+const person10: IPerson10 = {
+  name: "John",
+  age: 30,
+  getDetails() {
+    return `Name: ${this.name}, Age ${this.age}`;
   },
 };
 
-// Call the methods
-deepWork9.printAuthor();
-console.log(deepWork9.printTitle("is awesome book"));
+// Create extending interface
+interface IEmployee10 extends IPerson10 {
+  employeeId: number;
+}
+// Create object based on new interface
+const employee10: IEmployee10 = {
+  name: "Jane",
+  age: 28,
+  employeeId: 123,
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}, Employee ID: ${this.employeeId}`;
+  },
+};
+
+// Extending multiple interfaces
+interface IManager10 extends IPerson10, IDogOwner10 {
+  managePeople(): void;
+}
+// Create manager object with new interface
+const manager10: IManager10 = {
+  name: "Bob",
+  age: 35,
+  dogName: "Rex",
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  },
+  getDogDetails() {
+    return `Dog name: ${this.dogName}`;
+  },
+  managePeople() {
+    console.log("Managing people");
+  },
+};
+console.log(employee10.getDetails());
+manager10.managePeople();
 
 // CHALLENGE
-
-interface IComputer9 {
-  readonly id: number;
-  brand: string;
-  ram: number;
-  storage?: number;
-  upgradeRam(increase: number): number;
+function getEmployee(): IPerson10CH | IDogOwner10CH | IManager10CH {
+  const randomNumber = Math.random();
+  if (randomNumber <= 0.33) {
+    return { name: "John" };
+  }
+  if (randomNumber <= 0.67) {
+    return { name: "Jake", dogName: "Rex" };
+  }
+  return {
+    name: "Bob",
+    managePeople() {
+      console.log("Managing people...");
+    },
+    delegateTasks() {
+      console.log("Delegating tasks...");
+    },
+  };
 }
 
-const newPC9: IComputer9 = {
-  id: 123,
-  brand: "IBM",
-  ram: 32,
-  upgradeRam(amount) {
-    this.ram += amount;
-    return this.ram;
-  },
-};
+interface IPerson10CH {
+  name: string;
+}
+interface IDogOwner10CH extends IPerson10CH {
+  dogName: string;
+}
+interface IManager10CH extends IPerson10CH {
+  managePeople(): void;
+  delegateTasks(): void;
+}
 
-console.log(newPC9.ram);
-newPC9.upgradeRam(32);
-newPC9.storage = 512;
-console.log(newPC9);
+// Get the person from the function and log it
+const employee10CH: IPerson10CH | IDogOwner10CH | IManager10CH = getEmployee();
+console.log(employee10CH);
+
+// Function that returns boolean on whether the object we passed is Manager
+function isManager10(
+  obj: IPerson10CH | IDogOwner10CH | IManager10CH
+): obj is IManager10CH {
+  return "managePeople" in obj;
+}
+
+if (isManager10(employee10CH)) {
+  employee10CH.delegateTasks();
+}
 
 /* ---------------------------------------- */
 
@@ -411,3 +462,63 @@ const discountedBook8: DiscountedBook8 = {
   price: 25,
   discount: 0.15,
 };
+
+/* ---------------------------------------- */
+
+// 9. Interfaces
+console.log(" ");
+console.log("SECTION 9");
+console.log("-----------------------------------");
+
+// Creating interface
+interface IBook9 {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  // methods
+  printAuthor(): void;
+  printTitle(message: string): string;
+}
+
+// Create an object based on an interface
+const deepWork9: IBook9 = {
+  isbn: 123,
+  title: "Deep work",
+  author: "Cal Newport",
+  genre: "Self-help",
+  printAuthor() {
+    console.log(this.author);
+  },
+  printTitle(message) {
+    return `${this.title} ${message}`;
+  },
+};
+
+// Call the methods
+deepWork9.printAuthor();
+console.log(deepWork9.printTitle("is awesome book"));
+
+// CHALLENGE
+interface IComputer9 {
+  readonly id: number;
+  brand: string;
+  ram: number;
+  storage?: number;
+  upgradeRam(increase: number): number;
+}
+
+const newPC9: IComputer9 = {
+  id: 123,
+  brand: "IBM",
+  ram: 32,
+  upgradeRam(amount) {
+    this.ram += amount;
+    return this.ram;
+  },
+};
+
+console.log(newPC9.ram);
+newPC9.upgradeRam(32);
+newPC9.storage = 512;
+console.log(newPC9);
