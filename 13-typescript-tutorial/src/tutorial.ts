@@ -1,87 +1,27 @@
 // Testing log
 console.log("typescript tutorial");
-
 /* ---------------------------------------- */
 
-// 12. Type Assertion
+// 13. Modules
 console.log(" ");
-console.log("SECTION 12");
+console.log("SECTION 13");
 console.log("-----------------------------------");
 
-// Create value of any type, then use it with type assertion
-let someValue12: any = "This is a string";
-let strLength12: number = (someValue12 as string).length;
+import newStudent13, {
+  sayHello13,
+  person13,
+  type Student13,
+} from "./actions13";
 
-// Create Bird type
-type Bird12 = {
-  name: string;
+sayHello13("TypeScript");
+console.log(newStudent13);
+console.log(person13);
+
+const anotherStudent13: Student13 = {
+  name: "Bob",
+  age: 23,
 };
-// Assume we have a JSON string from an API or local file
-let birdString12 = '{"name": "Eagle"}';
-let dogString12 = '{"breed": "Poodle"}';
-
-let birdObject12 = JSON.parse(birdString12) as Bird12;
-let dogObject12 = JSON.parse(dogString12) as Bird12; // Careful, as it's allowed, but dog doesn't have name property
-
-// TYPE - UNKNOWN
-let unknownValue12: unknown;
-
-unknownValue12 = "Hello World";
-unknownValue12 = [1, 2, 3];
-unknownValue12 = 42.334455;
-
-// unknownValue12.toFixed(2);  Causes error because of Unknown type
-if (typeof unknownValue12 === "number") {
-  unknownValue12.toFixed(2);
-}
-
-try {
-  throw new Error("There was an error");
-  // Error is Unknown type
-} catch (error) {
-  if (error instanceof Error) {
-    console.log(error.message);
-  } else console.log(error);
-}
-
-// TYPE - NEVER
-
-// let someNewValue12: never = 0; Cannot assign value to NEVER
-
-type Theme = "light" | "dark";
-function checkTheme(theme: Theme): void {
-  if (theme === "light") {
-    console.log("Light theme");
-    return;
-  }
-  if (theme === "dark") {
-    console.log("Dark theme");
-    return;
-  }
-  // This one gets NEVER type cause all available options are run down
-  theme;
-}
-
-enum Color12 {
-  Red,
-  Blue,
-  Green,
-}
-
-function getColorName12(color: Color12) {
-  switch (color) {
-    case Color12.Red:
-      return "Red";
-    case Color12.Blue:
-      return "Blue";
-    // default:
-    //   throw new Error(`Unexpected color value: ${color}`);
-  }
-}
-
-console.log(getColorName12(Color12.Red));
-console.log(getColorName12(Color12.Blue));
-console.log(getColorName12(Color12.Green)); // Fails silently because it's not in the switch case and there's no Default case
+console.log(anotherStudent13);
 
 /* ---------------------------------------- */
 
@@ -650,3 +590,85 @@ let susan11: [string, number?] = ["Susan"];
 
 // const response: IServerResponse11 = getServerResponse11();
 // console.log(response);
+
+/* ---------------------------------------- */
+
+// 12. Type Assertion
+console.log(" ");
+console.log("SECTION 12");
+console.log("-----------------------------------");
+
+// Create value of any type, then use it with type assertion
+let someValue12: any = "This is a string";
+let strLength12: number = (someValue12 as string).length;
+
+// Create Bird type
+type Bird12 = {
+  name: string;
+};
+// Assume we have a JSON string from an API or local file
+let birdString12 = '{"name": "Eagle"}';
+let dogString12 = '{"breed": "Poodle"}';
+
+let birdObject12 = JSON.parse(birdString12) as Bird12;
+let dogObject12 = JSON.parse(dogString12) as Bird12; // Careful, as it's allowed, but dog doesn't have name property
+
+// TYPE - UNKNOWN
+let unknownValue12: unknown;
+
+unknownValue12 = "Hello World";
+unknownValue12 = [1, 2, 3];
+unknownValue12 = 42.334455;
+
+// unknownValue12.toFixed(2);  Causes error because of Unknown type
+if (typeof unknownValue12 === "number") {
+  unknownValue12.toFixed(2);
+}
+
+try {
+  throw new Error("There was an error");
+  // Error is Unknown type
+} catch (error) {
+  if (error instanceof Error) {
+    console.log(error.message);
+  } else console.log(error);
+}
+
+// TYPE - NEVER
+
+// let someNewValue12: never = 0; Cannot assign value to NEVER
+
+type Theme = "light" | "dark";
+function checkTheme(theme: Theme): void {
+  if (theme === "light") {
+    console.log("Light theme");
+    return;
+  }
+  if (theme === "dark") {
+    console.log("Dark theme");
+    return;
+  }
+  // This one gets NEVER type cause all available options are run down
+  theme;
+}
+
+// enum Color12 {
+//   Red,
+//   Blue,
+//   Green,
+// }
+
+// function getColorName12(color: Color12) {
+//   switch (color) {
+//     case Color12.Red:
+//       return "Red";
+//     case Color12.Blue:
+//       return "Blue";
+//     // default:
+//     //   throw new Error(`Unexpected color value: ${color}`);
+//   }
+// }
+
+// console.log(getColorName12(Color12.Red));
+// console.log(getColorName12(Color12.Blue));
+// console.log(getColorName12(Color12.Green)); // Fails silently because it's not in the switch case and there's no Default case
