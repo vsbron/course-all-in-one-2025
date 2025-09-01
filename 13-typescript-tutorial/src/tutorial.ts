@@ -3,7 +3,7 @@ console.log("typescript tutorial");
 
 /* ---------------------------------------- */
 
-// 17. Generics - Part 2
+// 17. Data and Declarations
 console.log(" ");
 console.log("SECTION 17");
 console.log("-----------------------------------");
@@ -37,6 +37,49 @@ async function fetchData17(url: string): Promise<Tour17[] | never[]> {
 
 const tours17 = await fetchData17(url17);
 tours17.map((tour) => console.log(tour.name));
+
+// ZOD example
+
+import { z } from "zod";
+
+const tourSchema17 = z.object({
+  id: z.string(),
+  name: z.string(),
+  info: z.string(),
+  image: z.string(),
+  price: z.string(),
+  something: z.string(),
+});
+
+type TourZ17 = z.infer<typeof tourSchema17>;
+
+async function fetchDataZ17(url: string): Promise<TourZ17[] | never[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const rawData = await response.json();
+
+    // Using safeParse to check the data at run time
+    const result = tourSchema17.array().safeParse(rawData);
+    if (!result.success) {
+      throw new Error(`Invalid data: ${result.error}`);
+    }
+    console.log("RESULT!");
+    console.log(result);
+
+    return result.data;
+  } catch (err) {
+    const errorMsg =
+      err instanceof Error ? err.message : "There was an error...";
+    console.log(errorMsg);
+    return [];
+  }
+}
+
+// Throws error because of "something" property
+const toursZ17 = await fetchDataZ17(url17);
 
 /* ---------------------------------------- */
 
