@@ -3,71 +3,47 @@ console.log("typescript tutorial");
 
 /* ---------------------------------------- */
 
-// 15. Type guards (Part 2)
+// 16. Generics
 console.log(" ");
-console.log("SECTION 15");
+console.log("SECTION 16");
 console.log("-----------------------------------");
 
-// Challenge 1 starter code
-type Student15 = { name: string; study: () => void };
-type User15 = { name: string; login: () => void };
-type Person15 = Student15 | User15;
-const randomPerson15 = (): Person15 => {
-  return Math.random() > 0.5
-    ? { name: "John", study: () => console.log("Studying") }
-    : { name: "Mary", login: () => console.log("Logging in") };
-};
-const person15 = randomPerson15();
-
-// Solution
-function isStudent15(person: Person15): person is Student15 {
-  // return "study" in person;
-  return (person as Student15).study !== undefined;
+// Manual approach with no generics
+function createString16(arg: string): string {
+  return arg;
+}
+function createNumber16(arg: number): number {
+  return arg;
 }
 
-if (isStudent15(person15)) {
-  person15.study();
-} else {
-  person15.login();
+// Approach with Generics
+function generateFunction<T>(arg: T): T {
+  return arg;
+}
+const someStringValue16 = generateFunction<string>("Hello world");
+const someNumberValue16 = generateFunction<number>(2);
+
+// Interface with GEnerics
+interface GenericInterface16<T> {
+  value: T;
+  getValue: () => T;
 }
 
-// Challenge 2 starter code
-type IncrementAction15 = {
-  type: "increment";
-  amount: number;
-  timestamp: number;
-  user: string;
+const genericString16: GenericInterface16<string> = {
+  value: "Hello world",
+  getValue() {
+    return this.value;
+  },
 };
 
-type DecrementAction15 = {
-  type: "decrement";
-  amount: number;
-  timestamp: number;
-  user: string;
-};
-
-type Action15 = IncrementAction15 | DecrementAction15;
-
-// Solution
-
-function reducer15(state: number, action: Action15) {
-  switch (action.type) {
-    case "increment":
-      return state + action.amount;
-    case "decrement":
-      return state - action.amount;
-    default:
-      const unexpectedAction: never = action;
-      throw new Error(`Unexpected action: ${unexpectedAction}`);
-  }
+// Async functions with Generics
+async function someFuncStr(): Promise<string> {
+  return "Hello world";
+}
+async function someFuncNum(): Promise<number> {
+  return 123;
 }
 
-const newState15 = reducer15(15, {
-  user: "John",
-  type: "increment",
-  amount: 5,
-  timestamp: 123456,
-});
 /* ---------------------------------------- */
 
 // 1. Basics
@@ -818,3 +794,70 @@ const year14 = checkInput14(new Date());
 const string14 = checkInput14("2020-05-05");
 console.log(year14);
 console.log(string14);
+
+/* ---------------------------------------- */
+
+// 15. Type guards (Part 2)
+console.log(" ");
+console.log("SECTION 15");
+console.log("-----------------------------------");
+
+// Challenge 1 starter code
+type Student15 = { name: string; study: () => void };
+type User15 = { name: string; login: () => void };
+type Person15 = Student15 | User15;
+const randomPerson15 = (): Person15 => {
+  return Math.random() > 0.5
+    ? { name: "John", study: () => console.log("Studying") }
+    : { name: "Mary", login: () => console.log("Logging in") };
+};
+const person15 = randomPerson15();
+
+// Solution
+function isStudent15(person: Person15): person is Student15 {
+  // return "study" in person;
+  return (person as Student15).study !== undefined;
+}
+
+if (isStudent15(person15)) {
+  person15.study();
+} else {
+  person15.login();
+}
+
+// Challenge 2 starter code
+type IncrementAction15 = {
+  type: "increment";
+  amount: number;
+  timestamp: number;
+  user: string;
+};
+
+type DecrementAction15 = {
+  type: "decrement";
+  amount: number;
+  timestamp: number;
+  user: string;
+};
+
+type Action15 = IncrementAction15 | DecrementAction15;
+
+// Solution
+function reducer15(state: number, action: Action15) {
+  switch (action.type) {
+    case "increment":
+      return state + action.amount;
+    case "decrement":
+      return state - action.amount;
+    default:
+      const unexpectedAction: never = action;
+      throw new Error(`Unexpected action: ${unexpectedAction}`);
+  }
+}
+
+const newState15 = reducer15(15, {
+  user: "John",
+  type: "increment",
+  amount: 5,
+  timestamp: 123456,
+});
