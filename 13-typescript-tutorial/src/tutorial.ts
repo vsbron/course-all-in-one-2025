@@ -2,87 +2,19 @@
 console.log("typescript tutorial");
 
 /* ---------------------------------------- */
-
-// 17. Data and Declarations
+// 18. Type assertion
 console.log(" ");
-console.log("SECTION 17");
+console.log("SECTION 18");
 console.log("-----------------------------------");
 
-// Fetch example
-const url17 = "https://www.course-api.com/react-tours-project";
+// Get the button (with non-null assertion and casting)
+const btn18 = document.querySelector<HTMLButtonElement>(".test-btn")!;
+// const btn = document.querySelector(".test-btn")! as HTMLButtonElement; - same thing
 
-type Tour17 = {
-  id: string;
-  name: string;
-  info: string;
-  image: string;
-  price: string;
-};
-
-async function fetchData17(url: string): Promise<Tour17[] | never[]> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    const errorMsg =
-      err instanceof Error ? err.message : "There was an error...";
-    console.log(errorMsg);
-    return [];
-  }
-}
-
-const tours17 = await fetchData17(url17);
-tours17.map((tour) => console.log(tour.name));
-
-// ZOD example
-
-import { z } from "zod";
-
-const tourSchema17 = z.object({
-  id: z.string(),
-  name: z.string(),
-  info: z.string(),
-  image: z.string(),
-  price: z.string(),
-  something: z.string(),
-});
-
-type TourZ17 = z.infer<typeof tourSchema17>;
-
-async function fetchDataZ17(url: string): Promise<TourZ17[] | never[]> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const rawData = await response.json();
-
-    // Using safeParse to check the data at run time
-    const result = tourSchema17.array().safeParse(rawData);
-    if (!result.success) {
-      throw new Error(`Invalid data: ${result.error}`);
-    }
-    console.log("RESULT!");
-    console.log(result);
-
-    return result.data;
-  } catch (err) {
-    const errorMsg =
-      err instanceof Error ? err.message : "There was an error...";
-    console.log(errorMsg);
-    return [];
-  }
-}
-
-// Throws error because of "something" property
-const toursZ17 = await fetchDataZ17(url17);
+// Works because we assigned a type earlier (no need for Guard clause)
+btn18.disabled = true;
 
 /* ---------------------------------------- */
-
 // 1. Basics
 console.log(" ");
 console.log("SECTION 1");
@@ -1015,3 +947,83 @@ const storeNumbers16: StoreData16<number> = {
 const randomStuff16: StoreData16 = {
   data: ["random", 1],
 };
+
+/* ---------------------------------------- */
+
+// 17. Data and Declarations
+console.log(" ");
+console.log("SECTION 17");
+console.log("-----------------------------------");
+
+// Fetch example
+const url17 = "https://www.course-api.com/react-tours-project";
+
+type Tour17 = {
+  id: string;
+  name: string;
+  info: string;
+  image: string;
+  price: string;
+};
+
+async function fetchData17(url: string): Promise<Tour17[] | never[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    const errorMsg =
+      err instanceof Error ? err.message : "There was an error...";
+    console.log(errorMsg);
+    return [];
+  }
+}
+
+const tours17 = await fetchData17(url17);
+tours17.map((tour) => console.log(tour.name));
+
+// ZOD example
+
+import { z } from "zod";
+
+const tourSchema17 = z.object({
+  id: z.string(),
+  name: z.string(),
+  info: z.string(),
+  image: z.string(),
+  price: z.string(),
+  something: z.string(),
+});
+
+type TourZ17 = z.infer<typeof tourSchema17>;
+
+async function fetchDataZ17(url: string): Promise<TourZ17[] | never[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const rawData = await response.json();
+
+    // Using safeParse to check the data at run time
+    const result = tourSchema17.array().safeParse(rawData);
+    if (!result.success) {
+      throw new Error(`Invalid data: ${result.error}`);
+    }
+    console.log("RESULT!");
+    console.log(result);
+
+    return result.data;
+  } catch (err) {
+    const errorMsg =
+      err instanceof Error ? err.message : "There was an error...";
+    console.log(errorMsg);
+    return [];
+  }
+}
+
+// Throws error because of "something" property
+const toursZ17 = await fetchDataZ17(url17);
