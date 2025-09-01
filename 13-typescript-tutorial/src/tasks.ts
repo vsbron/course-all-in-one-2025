@@ -59,7 +59,19 @@ function renderTask(task: Task): void {
   const taskElement = document.createElement("li");
   taskElement.textContent = task.description;
 
+  // Creating checkbox
+  const taskCheckbox = document.createElement("input");
+  taskCheckbox.type = "checkbox";
+  taskCheckbox.checked = task.isCompleted;
+
+  // Toggle checkbox
+  taskCheckbox.addEventListener("change", () => {
+    task.isCompleted = !task.isCompleted;
+    updateStorage();
+  });
+
   // Append the task to the list
+  taskElement?.appendChild(taskCheckbox);
   taskListElement?.appendChild(taskElement);
 }
 
@@ -67,3 +79,5 @@ function renderTask(task: Task): void {
 function updateStorage(): void {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+console.log(tasks);
