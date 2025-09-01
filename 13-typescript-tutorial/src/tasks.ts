@@ -9,8 +9,17 @@ type Task = {
   isCompleted: boolean;
 };
 
-// Initiate the tasks array
-const tasks: Task[] = [];
+// Initiate the tasks array from local storage
+const tasks: Task[] = loadTasks();
+
+// Render tasks if they were loaded from local storage
+tasks.forEach(renderTask);
+
+// Function that tries to load the tasks from the local storage
+function loadTasks(): Task[] {
+  const storedTasks = localStorage.getItem("tasks");
+  return storedTasks ? JSON.parse(storedTasks) : [];
+}
 
 // Add Submit event listener for form
 taskForm?.addEventListener("submit", (e) => {
@@ -28,8 +37,11 @@ taskForm?.addEventListener("submit", (e) => {
 
     // Render tasks
     renderTask(task);
-    // Update local storage
 
+    // Update local storage
+    updateStorage();
+
+    // Clear the inputs
     formInput.value = "";
     return;
   }
@@ -41,11 +53,17 @@ function addTask(task: Task): void {
   tasks.push(task);
 }
 
+// Function that renders the new task on the screen
 function renderTask(task: Task): void {
-  // Create LI element and assign the description to it
+  // Create list item element and assign the description to it
   const taskElement = document.createElement("li");
   taskElement.textContent = task.description;
 
   // Append the task to the list
   taskListElement?.appendChild(taskElement);
+}
+
+// Function that updates the tasks in the local storage
+function updateStorage(): void {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
