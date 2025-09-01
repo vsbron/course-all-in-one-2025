@@ -3,120 +3,40 @@ console.log("typescript tutorial");
 
 /* ---------------------------------------- */
 
-// 16. Generics
+// 17. Generics - Part 2
 console.log(" ");
-console.log("SECTION 16");
+console.log("SECTION 17");
 console.log("-----------------------------------");
 
-// Manual approach with no generics
-function createString16(arg: string): string {
-  return arg;
-}
-function createNumber16(arg: number): number {
-  return arg;
-}
+// Fetch example
+const url17 = "https://www.course-api.com/react-tours-project";
 
-// Approach with Generics
-function generateFunction<T>(arg: T): T {
-  return arg;
-}
-const someStringValue16 = generateFunction<string>("Hello world");
-const someNumberValue16 = generateFunction<number>(2);
-
-// Interface with GEnerics
-interface GenericInterface16<T> {
-  value: T;
-  getValue: () => T;
-}
-
-const genericString16: GenericInterface16<string> = {
-  value: "Hello world",
-  getValue() {
-    return this.value;
-  },
-};
-
-// Async functions with Generics
-async function someFuncStr16(): Promise<string> {
-  return "Hello world";
-}
-async function someFuncNum16(): Promise<number> {
-  return 123;
-}
-
-// Challenge
-function createArray16<T>(length: number, value: T): T[] {
-  let theArray: T[] = [];
-  theArray = Array(length).fill(value);
-  return theArray;
-}
-console.log(createArray16<string>(3, "Hello"));
-console.log(createArray16<number>(4, 100));
-
-// Multiple variable types
-function pair16<T, U>(param1: T, param2: U): [T, U] {
-  return [param1, param2];
-}
-console.log(pair16<number, string>(123, "Hello"));
-
-// Limiting types
-function processValue16<T extends string | number>(value: T): T {
-  console.log(value);
-  return value;
-}
-processValue16("Hello");
-processValue16(12);
-// processValue16(true); Not allowed because type is STRING OR NUMBER only
-
-// More complex example
-type Car16 = {
-  brand: string;
-  model: string;
-};
-
-const car16: Car16 = {
-  brand: "ford",
-  model: "mustang",
-};
-
-type Product16 = {
+type Tour17 = {
+  id: string;
   name: string;
-  price: number;
+  info: string;
+  image: string;
+  price: string;
 };
 
-const product16: Product16 = {
-  name: "shoes",
-  price: 1.99,
-};
-
-type Student16 = {
-  name: string;
-  age: number;
-};
-
-const student16: Student16 = {
-  name: "peter",
-  age: 20,
-};
-
-// function printName16<T extends Student16 | Product16>(input: T): void {
-function printName16<T extends { name: string }>(input: T): void {
-  console.log(input.name);
-}
-printName16(student16);
-
-// Default type
-interface StoreData16<T = any> {
-  data: T[];
+async function fetchData17(url: string): Promise<Tour17[] | never[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    const errorMsg =
+      err instanceof Error ? err.message : "There was an error...";
+    console.log(errorMsg);
+    return [];
+  }
 }
 
-const storeNumbers16: StoreData16<number> = {
-  data: [1, 2, 3, 4],
-};
-
-const randomStuff16: StoreData16 = {
-  data: ["random", 1],
-};
+const tours17 = await fetchData17(url17);
+tours17.map((tour) => console.log(tour.name));
 
 /* ---------------------------------------- */
 
@@ -935,3 +855,120 @@ const newState15 = reducer15(15, {
   amount: 5,
   timestamp: 123456,
 });
+
+/* ---------------------------------------- */
+
+// 16. Generics
+console.log(" ");
+console.log("SECTION 16");
+console.log("-----------------------------------");
+
+// Manual approach with no generics
+function createString16(arg: string): string {
+  return arg;
+}
+function createNumber16(arg: number): number {
+  return arg;
+}
+
+// Approach with Generics
+function generateFunction<T>(arg: T): T {
+  return arg;
+}
+const someStringValue16 = generateFunction<string>("Hello world");
+const someNumberValue16 = generateFunction<number>(2);
+
+// Interface with GEnerics
+interface GenericInterface16<T> {
+  value: T;
+  getValue: () => T;
+}
+
+const genericString16: GenericInterface16<string> = {
+  value: "Hello world",
+  getValue() {
+    return this.value;
+  },
+};
+
+// Async functions with Generics
+async function someFuncStr16(): Promise<string> {
+  return "Hello world";
+}
+async function someFuncNum16(): Promise<number> {
+  return 123;
+}
+
+// Challenge
+function createArray16<T>(length: number, value: T): T[] {
+  let theArray: T[] = [];
+  theArray = Array(length).fill(value);
+  return theArray;
+}
+console.log(createArray16<string>(3, "Hello"));
+console.log(createArray16<number>(4, 100));
+
+// Multiple variable types
+function pair16<T, U>(param1: T, param2: U): [T, U] {
+  return [param1, param2];
+}
+console.log(pair16<number, string>(123, "Hello"));
+
+// Limiting types
+function processValue16<T extends string | number>(value: T): T {
+  console.log(value);
+  return value;
+}
+processValue16("Hello");
+processValue16(12);
+// processValue16(true); Not allowed because type is STRING OR NUMBER only
+
+// More complex example
+type Car16 = {
+  brand: string;
+  model: string;
+};
+
+const car16: Car16 = {
+  brand: "ford",
+  model: "mustang",
+};
+
+type Product16 = {
+  name: string;
+  price: number;
+};
+
+const product16: Product16 = {
+  name: "shoes",
+  price: 1.99,
+};
+
+type Student16 = {
+  name: string;
+  age: number;
+};
+
+const student16: Student16 = {
+  name: "peter",
+  age: 20,
+};
+
+// function printName16<T extends Student16 | Product16>(input: T): void {
+function printName16<T extends { name: string }>(input: T): void {
+  console.log(input.name);
+}
+printName16(student16);
+
+// Default type
+interface StoreData16<T = any> {
+  data: T[];
+}
+
+const storeNumbers16: StoreData16<number> = {
+  data: [1, 2, 3, 4],
+};
+
+const randomStuff16: StoreData16 = {
+  data: ["random", 1],
+};
