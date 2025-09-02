@@ -1,8 +1,46 @@
+import { useState } from "react";
+
 function Component() {
+  // Create state values for controlled inputs
+  const [text, setText] = useState("");
+  const [email, setEmail] = useState("");
+
+  // Email change handler
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  };
+
+  // Form submit handler
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  // Returned JSX
   return (
     <div>
-      <h2>React & Typescript</h2>
-      <h2>Events</h2>
+      <h2>Events example</h2>
+      <form onSubmit={handleSubmit} className="form">
+        <input
+          type="text"
+          className="form-input mb-1"
+          value={text}
+          name="text"
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Text"
+        />
+        <input
+          type="email"
+          className="form-input mb-1"
+          value={email}
+          name="email"
+          onChange={handleEmailChange}
+          placeholder="Email"
+        />
+        <button type="submit" className="btn btn-block">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }

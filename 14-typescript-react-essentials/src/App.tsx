@@ -1,4 +1,4 @@
-import Component from "./03-state";
+import Component from "./04-events";
 
 function App() {
   // Returned JSX
