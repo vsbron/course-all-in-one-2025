@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+// Create Person type
+type Person = {
+  name: string;
+};
+
 function Component() {
   // Create state values for controlled inputs
   const [text, setText] = useState("");
@@ -14,6 +19,18 @@ function Component() {
   // Form submit handler
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // This also works without controlled input elements
+    const formData = new FormData(e.currentTarget);
+    // const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+
+    // Assigning form data to property
+    const text = formData.get("text") as string;
+    const person: Person = { name: text };
+    // const person: Person = { name: data.text as string };
+    console.log(person);
   };
 
   // Returned JSX
