@@ -12,14 +12,28 @@ function ParentComponent() {
 // The component
 function Component() {
   // Get the context from the Context API
-  const { name } = useTheme();
-  console.log(name);
+  const { theme, setTheme } = useTheme();
+  console.log(theme, setTheme);
 
   // Returned JSX
   return (
     <div>
       <h2>React & Typescript</h2>
-      <h2>Context API</h2>
+      <button
+        className="btn btn-center"
+        onClick={() => {
+          if (theme === "dark") {
+            setTheme("system");
+            return;
+          }
+          if (theme === "system") {
+            setTheme("dark");
+            return;
+          }
+        }}
+      >
+        Toggle theme
+      </button>
     </div>
   );
 }

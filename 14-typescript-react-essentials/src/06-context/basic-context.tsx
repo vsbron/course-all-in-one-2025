@@ -1,32 +1,17 @@
 import { createContext, useContext, useState } from "react";
 
-// Create the types for Theme, ThemeProviderState and ThemeProviderProps
-type Theme = "light" | "dark" | "system";
-type ThemeProviderState = {
-  theme: Theme;
-  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
-};
-type ThemeProviderProps = {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-};
-
 // Create the context
-const ThemeContext = createContext<ThemeProviderState | undefined>(undefined);
+const ThemeContext = createContext<{ name: string } | undefined>(undefined);
 
 // Create the provider
-export const ThemeProvider = ({
-  children,
-  defaultTheme = "system",
-}: ThemeProviderProps) => {
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // Create State value for text
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [text, setText] = useState("Hello");
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   // Returned Provider
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ name: text }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -43,8 +28,8 @@ export const useTheme = () => {
     throw new Error("useTheme must be used within the ThemeProvider");
 
   // Destructure the context
-  const { theme, setTheme } = context;
+  const { name } = context;
 
   // Return the values
-  return { theme, setTheme };
+  return { name };
 };
