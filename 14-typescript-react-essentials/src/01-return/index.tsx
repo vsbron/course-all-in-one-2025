@@ -1,4 +1,7 @@
-function Component() {
+import type { JSX } from "react";
+
+function Component(): JSX.Element {
+  // Returned JSX
   return (
     <div>
       <h2>React & Typescript</h2>
