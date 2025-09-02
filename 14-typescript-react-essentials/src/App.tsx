@@ -1,13 +1,10 @@
-import Component from "./02-props";
+import Component from "./03-state";
 
 function App() {
   // Returned JSX
   return (
     <main>
-      <Component name="Peter" id={123}>
-        Hello hello
-      </Component>
-      <Component name="Mary" id={456} />
+      <Component />
     </main>
   );
 }
