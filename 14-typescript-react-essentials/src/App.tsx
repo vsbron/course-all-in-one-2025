@@ -1,11 +1,10 @@
-import Component from "./05-challenge";
+import Component from "./06-context";
 
 function App() {
   // Returned JSX
   return (
     <main>
-      <Component type="basic" name="Susan" />
-      <Component type="advanced" name="Anna" email="anna@gmail.com" />
+      <Component />
     </main>
   );
 }
