@@ -1,4 +1,4 @@
-import Component from "./07-reducers";
+import Component from "./08-fetch-data";
 
 function App() {
   // Returned JSX

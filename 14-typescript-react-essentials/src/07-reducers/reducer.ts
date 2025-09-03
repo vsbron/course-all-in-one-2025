@@ -1,7 +1,7 @@
 // Create the type for the state
 export type CounterState = {
   count: number;
-  status: "Pending" | "active" | "inactive";
+  status: string;
 };
 
 type UpdateCountAction = {
