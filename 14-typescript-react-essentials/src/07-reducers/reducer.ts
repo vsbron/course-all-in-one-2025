@@ -1,13 +1,17 @@
 // Create the type for the state
 export type CounterState = {
   count: number;
-  status: string;
+  status: "Pending" | "active" | "inactive";
 };
 
 type UpdateCountAction = {
   type: "increment" | "decrement" | "reset";
 };
-type CounterAction = UpdateCountAction;
+type SetStatusAction = {
+  type: "setStatus";
+  payload: "active" | "inactive";
+};
+type CounterAction = UpdateCountAction | SetStatusAction;
 
 // Create initial state
 export const initialState = {
@@ -27,7 +31,11 @@ export const counterReducer = (
       return { ...state, count: state.count - 1 };
     case "reset":
       return { ...state, count: 0 };
+    case "setStatus":
+      return { ...state, status: action.payload };
     default:
-      return state;
+      throw new Error(
+        `Unexpected action type: ${action}. Please double check the counter reducer.`
+      );
   }
 };
