@@ -1,4 +1,4 @@
-import Component from "./06-context";
+import Component from "./07-reducers";
 
 function App() {
   // Returned JSX
