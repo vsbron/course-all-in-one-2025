@@ -17,7 +17,7 @@ function List({ tasks, toggleTask }: ListProps) {
           <input
             type="checkbox"
             checked={task.isCompleted}
-            onClick={() => toggleTask(task.id)}
+            onChange={() => toggleTask(task.id)}
           />
         </li>
       ))}
