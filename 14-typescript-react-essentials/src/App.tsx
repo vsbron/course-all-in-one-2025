@@ -1,4 +1,4 @@
-import Component from "./09-rtk";
+import Component from "./10-tasks";
 
 function App() {
   // Returned JSX
