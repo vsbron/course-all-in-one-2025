@@ -14,11 +14,23 @@ function Component() {
     setTasks((curTasks) => [...curTasks, task]);
   };
 
+  // Toggle the completed status of the task
+  const toggleTask = (id: string) => {
+    setTasks((curTasks) =>
+      curTasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, isCompleted: !task.isCompleted };
+        }
+        return task;
+      })
+    );
+  };
+
   // Returned JSX
   return (
     <section>
       <Form addTask={addTask} />
-      <List />
+      <List tasks={tasks} toggleTask={toggleTask} />
     </section>
   );
 }
