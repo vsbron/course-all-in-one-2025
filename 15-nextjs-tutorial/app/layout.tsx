@@ -26,7 +26,7 @@ export default function RootLayout({
   // Returned JSX
   return (
     <html lang="en">
-      <body className={`${robotoSerif.className}`}>
+      <body className={robotoSerif.className}>
         <Navbar />
         <main className="max-w-3xl mx-auto py-1">{children}</main>
       </body>
