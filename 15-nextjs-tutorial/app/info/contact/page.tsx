@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Contact() {
+function ContactPage() {
   // Returned JSX
   return (
     <div>
@@ -12,4 +12,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default ContactPage;
