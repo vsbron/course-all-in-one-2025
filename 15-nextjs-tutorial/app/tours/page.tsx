@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // The URL for fetching data
 const url = "https://www.course-api.com/react-tours-project";
 
@@ -29,7 +31,13 @@ async function ToursPage() {
     <section>
       <h1 className="text-7xl">Tours page</h1>
       {data.map((tour) => (
-        <h2 key={tour.id}>{tour.name}</h2>
+        <Link
+          href={`tours/${tour.id}`}
+          className="hover:text-blue-500"
+          key={tour.id}
+        >
+          <h2>{tour.name}</h2>
+        </Link>
       ))}
     </section>
   );
