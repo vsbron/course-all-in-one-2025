@@ -1,6 +1,8 @@
 "use server";
 
 import { readFile, writeFile } from "fs/promises";
+import { revalidatePath } from "next/cache";
+// import { redirect } from "next/navigation";
 
 type User = {
   id: string;
@@ -22,10 +24,13 @@ export const createUser = async (formData: FormData) => {
   const newUser: User = { firstName, lastName, id: Date.now().toString() };
 
   // Save user to the file
-  saveUser(newUser);
+  await saveUser(newUser);
 
-  // Log the results
-  console.log({ firstName, lastName });
+  // Revalidate data
+  revalidatePath("/actions");
+
+  // // OR redirect to force user to fetch data again
+  // redirect("/");
 };
 
 // Create the function to fetch the users list
