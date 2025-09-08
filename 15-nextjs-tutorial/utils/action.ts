@@ -42,6 +42,30 @@ export const createUser = async (prevState: unknown, formData: FormData) => {
   // redirect("/");
 };
 
+// Create the action for form
+export const deleteUser = async (prevState: unknown, formData: FormData) => {
+  try {
+    // Get the values (with type assertion MUST)
+    const id = formData.get("id") as string;
+
+    // Save user to the file
+    await removeUser(id);
+
+    // Revalidate data
+    revalidatePath("/actions");
+
+    // Return the form state message
+    return "User deleted successfully";
+  } catch (err) {
+    console.log(err);
+
+    // Return the form state error message
+    return "Failed to delete user";
+  }
+  // // OR redirect to force user to fetch data again
+  // redirect("/");
+};
+
 // Create the function to fetch the users list
 export const fetchUsers = async (): Promise<User[]> => {
   const result = await readFile("users.json", { encoding: "utf8" });
@@ -56,4 +80,16 @@ const saveUser = async (newUser: User) => {
 
   // Save all the data to the actual file
   await writeFile("users.json", JSON.stringify([...currentUsers, newUser]));
+};
+
+// Helper function to remove user
+const removeUser = async (id: string) => {
+  // Get the current users list
+  const currentUsers = await fetchUsers();
+
+  // Filter out the user with the passed ID
+  const newUsers = currentUsers.filter((user) => user.id !== id);
+
+  // Save all the data to the actual file
+  await writeFile("users.json", JSON.stringify([...newUsers]));
 };
