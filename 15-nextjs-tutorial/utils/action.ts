@@ -11,7 +11,7 @@ type User = {
 };
 
 // Create the action for form
-export const createUser = async (formData: FormData) => {
+export const createUser = async (prevState: unknown, formData: FormData) => {
   // Get the values (with type assertion MUST)
   const firstName = formData.get("firstName") as string;
   const lastName = formData.get("lastName") as string;
@@ -23,12 +23,21 @@ export const createUser = async (formData: FormData) => {
   // Create a new user object
   const newUser: User = { firstName, lastName, id: Date.now().toString() };
 
-  // Save user to the file
-  await saveUser(newUser);
+  try {
+    // Save user to the file
+    await saveUser(newUser);
 
-  // Revalidate data
-  revalidatePath("/actions");
+    // Revalidate data
+    revalidatePath("/actions");
 
+    // Return the form state message
+    return "User created successfully";
+  } catch (err) {
+    console.log(err);
+
+    // Return the form state error message
+    return "Failed to create user";
+  }
   // // OR redirect to force user to fetch data again
   // redirect("/");
 };

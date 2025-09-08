@@ -10,7 +10,10 @@ async function UsersList() {
       {users.length ? (
         <div>
           {users.map(({ id, firstName, lastName }) => (
-            <h4 key={id} className="capitalize text-lg">
+            <h4
+              key={id}
+              className="capitalize text-lg flex justify-between items-center mb-2"
+            >
               {firstName} {lastName}
             </h4>
           ))}

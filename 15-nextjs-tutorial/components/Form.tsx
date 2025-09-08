@@ -1,11 +1,20 @@
 "use client";
 
-import { createUser as CreateUserAction } from "@/utils/action";
+import { useActionState } from "react";
+
+import { createUser as createUserAction } from "@/utils/action";
+import { formStyle, inputStyle } from "@/utils/styles";
+
+import SubmitButton from "./SubmitButton";
 
 function Form() {
+  // Getting the message from form state hook
+  const [message, formAction] = useActionState(createUserAction, null);
+
   // Returned JSX
   return (
-    <form action={CreateUserAction} className={formStyle}>
+    <form action={formAction} className={formStyle}>
+      {message && <p>{message}</p>}
       <h2 className="text-2xl capitalize mb-4">create user</h2>
       <input
         type="text"
@@ -21,17 +30,9 @@ function Form() {
         required
         className={inputStyle}
       />
-      <button type="submit" className={btnStyle}>
-        Submit
-      </button>
+      <SubmitButton />
     </form>
   );
 }
 
 export default Form;
-
-// Classes for elements
-const formStyle = "max-w-lg flex flex-col gap-y-4  shadow rounded p-8";
-const inputStyle = "border shadow rounded py-2 px-3 text-gray-700";
-const btnStyle =
-  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded capitalize cursor-pointer";
