@@ -29,6 +29,6 @@ export const POST = async (req: Request) => {
   // Save the user
   await saveUser(newUser);
 
-  // Return success messaghe
+  // Return success message
   return Response.json({ msg: "User created" });
 };
