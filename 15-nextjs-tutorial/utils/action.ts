@@ -82,3 +82,22 @@ export const deleteUser = async (formData: FormData) => {
     console.log(err);
   }
 };
+
+// Delete user function that gets the ID as binded param
+export const removeUser = async (id: string) => {
+  try {
+    // Get the current users list
+    const currentUsers = await fetchUsers();
+
+    // Filter out the user with the passed ID
+    const newUsers = currentUsers.filter((user) => user.id !== id);
+
+    // Save all the data to the actual file
+    await writeFile("users.json", JSON.stringify([...newUsers]));
+
+    // Revalidate data
+    revalidatePath("/actions");
+  } catch (err) {
+    console.log(err);
+  }
+};
