@@ -50,7 +50,7 @@ export const fetchUsers = async (): Promise<User[]> => {
 };
 
 // Helper function to save user
-const saveUser = async (newUser: User) => {
+export const saveUser = async (newUser: User) => {
   // Get the current users list
   const currentUsers = await fetchUsers();
 
