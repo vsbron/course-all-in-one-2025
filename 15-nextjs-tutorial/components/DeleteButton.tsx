@@ -1,15 +1,11 @@
 "use client";
 
-import { deleteUser as deleteUserAction } from "@/utils/action";
-import { useActionState } from "react";
+import { deleteUser } from "@/utils/action";
 
 function DeleteButton({ id }: { id: string }) {
-  // Getting the message from form state hook
-  const [message, formAction] = useActionState(deleteUserAction, "");
-
   // Returned JSX
   return (
-    <form action={formAction}>
+    <form action={deleteUser}>
       <input type="hidden" name="id" value={id} />
       <button
         type="submit"
